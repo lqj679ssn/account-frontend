@@ -27,6 +27,10 @@ export class Point {
   toString() {
     return `x: ${this.x}, y: ${this.y}`;
   }
+
+  minus(anotherPoint: Point) {
+    return new Point(this.x - anotherPoint.x, this.y - anotherPoint.y);
+  }
 }
 
 export class Size {

@@ -5,7 +5,7 @@ import {debounceTime} from 'rxjs/operators';
 import {Point, Rect, Size} from '../../models/position';
 import {OneWorker} from '../../services/one-worker.service';
 import {Toast} from '../../models/toast';
-import {dataURLtoFile, fitStyle} from '../../services/common.service';
+import {dataURLtoFile, fileToBase64, fitStyle, getImageOrientation} from '../../services/common.service';
 
 @Component({
   templateUrl: './avatar-split.component.html',
@@ -22,6 +22,7 @@ export class AvatarSplitComponent implements OnInit {
     this.imageLoaded = false;
     this.centerRect = new Rect();
     this.imageRect = new Rect();
+    this.topLeftOffset = new Point();
     this.touchStatus = this.TOUCH_END;
   }
   private TOUCH_END = 0;
@@ -30,9 +31,9 @@ export class AvatarSplitComponent implements OnInit {
 
   private MAX_SCALE = 16;
 
-  @ViewChild('avatarCanvas') avatarCanvas: ElementRef;
-  @ViewChild('centerBox') centerBox: ElementRef;
-  @ViewChild('touchBoard') touchBoard: ElementRef;
+  @ViewChild('avatarCanvas') avatarCanvasElement: ElementRef;
+  @ViewChild('centerBox') centerBoxElement: ElementRef;
+  @ViewChild('touchBoard') touchBoardElement: ElementRef;
   @ViewChild('avatar') avatarElement: ElementRef;
 
   private canvas: HTMLCanvasElement;
@@ -45,6 +46,7 @@ export class AvatarSplitComponent implements OnInit {
   private imageRect: Rect;
   private readonly centerRect: Rect;
   private maxSize: Size;
+  private topLeftOffset: Point;
 
   private touchStatus: number;
   private originPoints: Array<Point>;
@@ -57,10 +59,10 @@ export class AvatarSplitComponent implements OnInit {
         this.fitImageToCanvas(true);
       });
 
-    this.canvas = this.avatarCanvas.nativeElement;
+    this.canvas = this.avatarCanvasElement.nativeElement;
 
     this.avatar = this.avatarElement.nativeElement;
-    this.touch = this.touchBoard.nativeElement;
+    this.touch = this.touchBoardElement.nativeElement;
     this.getElementSize();
     this.loadImage();
     this.addTouchEvents();
@@ -70,10 +72,10 @@ export class AvatarSplitComponent implements OnInit {
     this.touch.addEventListener('mousedown', (e) => {
       this.originPoints = new Array<Point>();
       this.touchStatus = this.TOUCH_MOVE;
-      this.originPoints.push(new Point(e.pageX, e.pageY));
+      this.originPoints.push(new Point(e.pageX, e.pageY).minus(this.topLeftOffset));
     });
     this.touch.addEventListener('mousemove', (e) => {
-      const currentPoint: Point = new Point(e.pageX, e.pageY);
+      const currentPoint: Point = new Point(e.pageX, e.pageY).minus(this.topLeftOffset);
       if (this.touchStatus === this.TOUCH_MOVE) {
         this.imageRect.left += currentPoint.x - this.originPoints[0].x;
         this.imageRect.top += currentPoint.y - this.originPoints[0].y;
@@ -92,7 +94,7 @@ export class AvatarSplitComponent implements OnInit {
         scale = e.detail / 30;
       }
       scale = Math.pow(1.1, scale);
-      const center = new Point(e.pageX, e.pageY);
+      const center = new Point(e.pageX, e.pageY).minus(this.topLeftOffset);
       this.imageRect.scale(center, scale, this.maxSize, this.centerRect.size);
       this.fitImageToCanvas();
     });
@@ -101,12 +103,12 @@ export class AvatarSplitComponent implements OnInit {
       if (e.touches.length === 0) {
         return;
       }
-      this.originPoints.push(new Point(e.touches[0].pageX, e.touches[0].pageY));
+      this.originPoints.push(new Point(e.touches[0].pageX, e.touches[0].pageY).minus(this.topLeftOffset));
       if (e.touches.length === 1) {
         this.touchStatus = this.TOUCH_MOVE;
       } else {
         this.touchStatus = this.TOUCH_RESIZE;
-        this.originPoints.push(new Point(e.touches[1].pageX, e.touches[1].pageY));
+        this.originPoints.push(new Point(e.touches[1].pageX, e.touches[1].pageY).minus(this.topLeftOffset));
       }
     });
     this.touch.addEventListener('touchmove', (e) => {
@@ -115,13 +117,13 @@ export class AvatarSplitComponent implements OnInit {
         return;
       }
       e.preventDefault();
-      currentPoints.push(new Point(e.touches[0].pageX, e.touches[0].pageY));
+      currentPoints.push(new Point(e.touches[0].pageX, e.touches[0].pageY).minus(this.topLeftOffset));
       if (this.touchStatus === this.TOUCH_MOVE) {
         this.imageRect.left += currentPoints[0].x - this.originPoints[0].x;
         this.imageRect.top += currentPoints[0].y - this.originPoints[0].y;
         this.originPoints[0].beSameAs(currentPoints[0]);
       } else {
-        currentPoints.push(new Point(e.touches[1].pageX, e.touches[1].pageY));
+        currentPoints.push(new Point(e.touches[1].pageX, e.touches[1].pageY).minus(this.topLeftOffset));
         const originDist = this.originPoints[0].distTo(this.originPoints[1]);
         const currentDist = currentPoints[0].distTo(currentPoints[1]);
         let scale = currentDist / originDist;
@@ -140,45 +142,32 @@ export class AvatarSplitComponent implements OnInit {
     });
   }
 
-  loadImage(debug = false) {
-    if (debug) {
-      this.image = new Image();
-      // this.image.crossOrigin = '';
-      this.image.src = 'https://s.6-79.cn/7ytI7l';
-      this.imageLoaded = false;
-      this.image.onload = () => {
-        this.imageLoaded = true;
-        this.avatar.style.backgroundImage = `url(${this.image.src})`;
-        this.maxSize = new Size(this.image.width, this.image.height);
-        this.maxSize.scale(this.MAX_SCALE);
-        this.imageRect.width = this.image.width;
-        this.imageRect.height = this.image.height;
-        this.fitImageToCanvas(true);
-      };
-      return;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(this.avatarSplitService.avatar_file);
-    reader.onload = (event) => {
-      this.image = new Image();
-      // this.image.crossOrigin = '';
-      this.image.src = event.target.result;
-      // this.image.src = 'https://s.6-79.cn/7ytI7l';
-      this.imageLoaded = false;
-      this.image.onload = () => {
-        this.imageLoaded = true;
-        this.avatar.style.backgroundImage = `url(${this.image.src})`;
-        this.maxSize = new Size(this.image.width, this.image.height);
-        this.maxSize.scale(this.MAX_SCALE);
-        this.imageRect.width = this.image.width;
-        this.imageRect.height = this.image.height;
-        this.fitImageToCanvas(true);
-      };
-    };
+  loadImage() {
+    const imageFile = this.avatarSplitService.avatar_file;
+    getImageOrientation(imageFile, (orientation) => {
+      fileToBase64(imageFile, orientation, (orientedImageFile: File) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(orientedImageFile);
+        reader.onload = (event) => {
+          this.image = new Image();
+          this.image.src = event.target.result;
+          this.imageLoaded = false;
+          this.image.onload = () => {
+            this.imageLoaded = true;
+            this.avatar.style.backgroundImage = `url(${this.image.src})`;
+            this.maxSize = new Size(this.image.width, this.image.height);
+            this.maxSize.scale(this.MAX_SCALE);
+            this.imageRect.width = this.image.width;
+            this.imageRect.height = this.image.height;
+            this.fitImageToCanvas(true);
+          };
+        };
+      });
+    });
   }
 
   getElementSize() {
-    const centerBoxDiv: HTMLDivElement = this.centerBox.nativeElement;
+    let centerBoxDiv = this.centerBoxElement.nativeElement;
     this.centerRect.setParam(
       centerBoxDiv.offsetTop,
       centerBoxDiv.offsetLeft,
@@ -191,6 +180,14 @@ export class AvatarSplitComponent implements OnInit {
 
     this.avatar.style.width = fitStyle(this.centerRect.width);
     this.avatar.style.height = fitStyle(this.centerRect.height + centerBoxDiv.offsetTop * 2);
+
+    this.topLeftOffset.setParam(0, 0);
+    centerBoxDiv = centerBoxDiv.offsetParent;
+    while (centerBoxDiv) {
+      this.topLeftOffset.x += centerBoxDiv.offsetLeft;
+      this.topLeftOffset.y += centerBoxDiv.offsetTop;
+      centerBoxDiv = centerBoxDiv.offsetParent;
+    }
   }
 
   fitImageToCanvas(initialize = false, from = this.TOUCH_MOVE) {
