@@ -1,0 +1,39 @@
+@import "size";
+@import "color";
+
+@toast-line-height: 40px;
+
+div.toast-container {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  //transition-timing-function: ease-out;
+  transition-duration: 0.5s;
+  div.toast-text {
+    font-size: @content-size;
+    color: white;
+    background-color: @dark-gray;
+    line-height: @toast-line-height;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 300px;
+    min-width: 100px;
+    border-radius: @toast-line-height / 2;
+    padding: 0 @toast-line-height / 2;
+    text-align: center;
+  }
+}
+
+div.toast-container.active {
+  bottom: 40px;
+  filter: opacity(1);
+}
+
+div.toast-container.inactive {
+  bottom: -@toast-line-height;
+  filter: opacity(0);
+}

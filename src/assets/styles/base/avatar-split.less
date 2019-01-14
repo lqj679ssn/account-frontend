@@ -1,0 +1,63 @@
+@import "size";
+@import "color";
+
+div.main-container {
+  position: relative;
+  background-color: black;
+  div.avatar-full {
+    position: absolute;
+  }
+  canvas {
+    position: absolute;
+    top: calc(~'50% - 50vw');
+  }
+  div.center-box {
+    position: absolute;
+    width: 100vw;
+    height: 100vw;
+    top: calc(~'50% - 50vw');
+    div.circle {
+      box-sizing: content-box;
+      border: @center-max-height solid rgba(0, 0, 0, 0.5);
+      border-radius: @center-max-height * 4;
+      margin-left: -@center-max-height;
+      margin-top: -@center-max-height;
+    }
+  }
+  @media screen and (min-width: @center-max-width) {
+    //div.mask {
+    //  width: @center-max-width;
+    //  height: calc(~'50vh - @{center-max-width} / 2');
+    //}
+    div.center-box {
+      width: @center-max-width;
+      height: @center-max-width;
+      top: calc(~'50% - @{center-max-width} / 2');
+      div.circle {
+        //border-radius: @center-max-width * 4;
+      }
+    }
+    canvas {
+      top: calc(~'50% - @{center-max-width} / 2');
+    }
+  }
+
+  div.bottom-operation-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    div.btn {
+      line-height: 60px;
+      vertical-align: middle;
+      color: @gray;
+      padding: 0 40px;
+    }
+    div.btn.left {
+      float: left;
+    }
+    div.btn.right {
+      float: right;
+    }
+  }
+}

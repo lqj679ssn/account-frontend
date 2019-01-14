@@ -1,0 +1,55 @@
+@import "color";
+@import "size";
+
+@icon-box-size: 40px;
+div.animate-button {
+  //position: relative;
+  div.background {
+    transition: all 0.5s ease 0.5s, width 0.5s ease 0s;
+    background-color: @light-blue;
+  }
+  div.icon-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: @icon-box-size;
+    height: @icon-box-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div.icon {
+      width: @icon-box-size / 2;
+      height: @icon-box-size / 2;
+      line-height: @icon-box-size;
+      vertical-align: middle;
+      text-align: center;
+      background-color: @yellow;
+    }
+  }
+}
+
+div.animate-button.fold {
+  div.background {
+    width: @icon-box-size;
+    max-width: 500px;
+    height: @icon-box-size;
+    transform: rotate(45deg);
+    overflow: hidden;
+    div.btn-name {
+      white-space: nowrap;
+      overflow: hidden;
+      color: @gray;
+      font-size: @content-size;
+      line-height: @icon-box-size;
+      vertical-align: middle;
+      margin-left: 1.207 * @icon-box-size;
+    }
+  }
+  &:hover {
+    div.background {
+      transition: all 0.5s ease 0s, width 0.5s ease 0.5s;
+      width: 100%;
+      transform: rotate(0);
+    }
+  }
+}

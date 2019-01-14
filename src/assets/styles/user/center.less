@@ -1,0 +1,292 @@
+@import "../base/color";
+@import "../base/size";
+
+
+@section-nav-height: 36px;
+@profile-attribute-width: 80px;
+@profile-attribute-margin: 10px;
+
+// user-center-component
+div.main-container {
+  background-color: @gray;
+  transition: 0.5s;
+
+  // nav
+  div.nav {
+    position: relative;
+    width: 100%;
+    height: @nav-height;
+    background-color: @yellow;
+    div.avatar-box {
+      position: absolute;
+      bottom: 10px;
+      left: 17px;
+      @avatar-size: 60px;
+      div.avatar {
+        width: @avatar-size;
+        height: @avatar-size;
+        border-radius: @avatar-size / 2;
+      }
+      div.text-box {
+        position: absolute;
+        left: @avatar-size + 8px;
+        div.nickname {
+          position: absolute;
+          bottom: 30px;
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+          width: max-content;
+        }
+        div.append-info {
+          position: absolute;
+          bottom: 4px;
+          width: max-content;
+          @verify-height: 19px;
+          div.verify {
+            border-radius: 5px;
+            height: @verify-height;
+            line-height: @verify-height;
+            vertical-align: middle;
+            color: white;
+            font-size: @append-text-size;
+            padding: 0 5px;
+          }
+          div.verify.verified {
+            background-color: @blue;
+          }
+        }
+      }
+    }
+  }
+
+  div.section-container {
+    margin-top: 15px;
+    width: 100%;
+    background-color: white;
+    div.section-nav {
+      padding-top: 4px;
+      width: 100%;
+      height: @section-nav-height;
+      div.section-title {
+        position: absolute;
+        left: 10px;
+        font-size: @section-title-size;
+        color: @yellow;
+        line-height: @section-nav-height;
+        vertical-align: middle;
+        font-weight: bold;
+      }
+      div.operator {
+        position: absolute;
+        right: 17px;
+        font-size: @content-size;
+        color: @shine-yellow;
+        line-height: @section-nav-height;
+        vertical-align: middle;
+      }
+    }
+    div.section-list {
+      div.section-item.profile {
+        max-height: 200px;
+        height: auto;
+        padding: 7px 0;
+        position: relative;
+        transition: 0.2s;
+        .profile-attribute {
+          display: inline-block;
+          font-size: @content-size;
+          color: @shine-yellow;
+          margin: 0 @profile-attribute-margin;
+          width: @profile-attribute-width;
+          vertical-align: middle;
+        }
+        .profile-value {
+          display: inline-block;
+          font-size: @content-size;
+          width: calc(~'100% - @{profile-attribute-width} - 2 * @{profile-attribute-margin} - 56px');
+          vertical-align: middle;
+        }
+        .active-element {
+          display: none;
+        }
+        .inactive-element {
+          display: unset;
+        }
+      }
+      div.section-item.profile.inactive {
+        .profile-value {
+          color: @blue;
+        }
+      }
+      div.section-item.profile.active {
+        background-color: @yellow;
+        .profile-attribute {
+          color: white;
+        }
+        .profile-value {
+          color: @gray;
+        }
+        .active-element {
+          display: inline-block;
+        }
+        .inactive-element {
+          display: none;
+        }
+      }
+      div.section-item.app {
+        position: relative;
+        padding: 10px 0;
+        @app-logo-size: 40px;
+        @right-operator-width: 60px;
+        @app-item-margin: 20px;
+        @item-element-margin: 7px;
+        div.app-logo {
+          display: inline-block;
+          vertical-align: top;
+          width: @app-logo-size;
+          height: @app-logo-size;
+          border-radius: 5px;
+          margin-left: @app-item-margin;
+        }
+        div.app-info {
+          display: inline-block;
+          vertical-align: top;
+          margin-left: @item-element-margin;
+          width: calc(~'100% - 2*@{app-item-margin} - @{app-logo-size} - @{right-operator-width} - 2*@{item-element-margin}');
+          div.app-name {
+            font-size: @section-title-size;
+            color: @shine-yellow;
+          }
+          div.app-slogan {
+            font-size: @append-text-size;
+            color: @light-blue;
+          }
+        }
+        div.right-operator-box {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: @app-logo-size;
+          margin-left: @item-element-margin;
+          div.right-operator {
+            display: flex;
+            align-items: center;
+          }
+          div.btn {
+            border-radius: 5px;
+            padding: 5px;
+            font-size: @append-text-size;
+            background-color: @yellow;
+            color: white;
+          }
+        }
+      }
+    }
+    div.center-hint {
+      font-size: @content-size;
+      color: @shine-yellow;
+      padding: 20px 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  div.section-container.edit-mode {
+    div.section-list {
+      div.section-item.profile.inactive {
+        .profile-value {
+          color: @light-blue;
+        }
+      }
+    }
+  }
+}
+
+
+
+// detailed element
+div.main-container {
+  div.section-container {
+    div.section-list {
+      div.section-item.profile {
+        div.change-avatar-hint {
+          position: relative;
+          padding: 100px 0 15px;
+          width: 100%;
+          text-align: center;
+          color: @gray;
+          font-size: @append-text-size;
+        }
+        @profile-avatar-size: 20px;
+        div.profile-avatar {
+          display: inline-block;
+          width: @profile-avatar-size;
+          height: @profile-avatar-size;
+          border-radius: @profile-avatar-size / 2;
+          transition: 0.2s;
+          vertical-align: middle;
+          z-index: 1;
+        }
+      }
+      div.section-item.profile.active {
+        @profile-avatar-size: 80px;
+        .profile-avatar {
+          position: absolute;
+          width: @profile-avatar-size;
+          height: @profile-avatar-size;
+          border: 3px solid white;
+          border-radius: @profile-avatar-size / 2;
+          left: calc(~'50% - @{profile-avatar-size} / 2');
+          top: 40px;
+          cursor: pointer;
+          &:hover {
+            border: 3px solid @dark-gray;
+          }
+        }
+        div.constellation {
+          display: block;
+          margin-left: @profile-attribute-width + @profile-attribute-margin * 2;
+          margin-top: 7px;
+        }
+      }
+    }
+  }
+}
+
+@show-menu-offset: 80%;
+@show-menu-scale: 0.8;
+@skewY-deg: 20deg;
+div.main-container.show-menu {
+  left: -@show-menu-offset;
+  transform: scale(@show-menu-scale) skewY(@skewY-deg);
+}
+
+div.show-menu-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% - @show-menu-offset - 50% * (1 - @show-menu-scale);
+  height: 100%;
+  display: none;
+}
+
+div.show-menu-mask.show-menu {
+  display: inherit;
+}
+
+div.menu-container {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: @show-menu-offset + 50% * (1 - @show-menu-scale);
+  //width: @show-menu-offset * 2 - @show-menu-scale * 100%;
+  height: @show-menu-scale * 100%;
+  transition: 0.5s;
+  //background-color: ;
+  filter: opacity(0);
+}
+
+div.menu-container.show-menu {
+  left: 50% - @show-menu-offset + 50% *  @show-menu-scale;
+  filter: opacity(1);
+}

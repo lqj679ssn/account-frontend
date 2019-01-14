@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
+import { ClockService } from './services/clock.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: [
+    '../assets/styles/app.less',
+  ]
 })
 export class AppComponent {
-  title = 'account-frontend';
+  constructor() {
+    ClockService.startClock();
+  }
 }
