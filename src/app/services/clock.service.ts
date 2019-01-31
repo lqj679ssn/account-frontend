@@ -5,26 +5,30 @@ export class ClockService {
   public static c_timestamp: number; // current timestamp
   public static c_date: Date;
   private static time_interval = null;
-  private static refreshTime() {
+  private static _refreshTime() {
     ClockService.c_date = new Date();
     // utc_ts_offset = current_time.getTimezoneOffset() * 60;
     ClockService.c_timestamp = ClockService.c_date.getTime() / 1000;
   }
-  public static startClock() {
+  public static StartClock() {
     clearInterval(ClockService.time_interval);
-    ClockService.time_interval = setInterval(ClockService.refreshTime, 60000);
-    ClockService.refreshTime();
+    ClockService.time_interval = setInterval(ClockService._refreshTime, 60000);
+    ClockService._refreshTime();
   }
 
-  private static getZeroPitchedNumber(num: number) {
+  private static GetZeroPitchedNumber(num: number) {
     return ((num > 10) ? '' : '0') + num;
+  }
+
+  public static LogCurrentTime(s: string) {
+    console.log(s, ' ', Date.parse(new Date().toString()));
   }
 
   public getFormattedDate() {
     return [
       ClockService.c_date.getFullYear(),
-      ClockService.getZeroPitchedNumber(ClockService.c_date.getMonth() + 1),
-      ClockService.getZeroPitchedNumber(ClockService.c_date.getDate())
+      ClockService.GetZeroPitchedNumber(ClockService.c_date.getMonth() + 1),
+      ClockService.GetZeroPitchedNumber(ClockService.c_date.getDate())
     ].join('-');
   }
 

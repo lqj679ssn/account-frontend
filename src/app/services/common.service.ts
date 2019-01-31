@@ -61,12 +61,9 @@ export function getImageOrientation(imageFile, callback) {
 export function fileToBase64(file, orientation, callback) {
   const reader = new FileReader();
   reader.readAsDataURL(file);
-  reader.onload = () => {
-    const base64 = reader.result;
-    resetImageOrientation(base64, orientation, (resetBase64Image) => {
-      const orientedImageFile = dataURLtoFile(resetBase64Image, 'temp-image');
-      callback(orientedImageFile);
-    });
+  reader.onload = (event) => {
+    const base64 = event.target.result;
+    resetImageOrientation(base64, orientation, callback);
   };
   reader.onerror = (error) => {
     console.log('Error: ', error);

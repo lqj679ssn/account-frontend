@@ -10,6 +10,6 @@ import { ClockService } from './services/clock.service';
 })
 export class AppComponent {
   constructor() {
-    ClockService.startClock();
+    ClockService.StartClock();
   }
 }

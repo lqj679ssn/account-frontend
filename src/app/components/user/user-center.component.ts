@@ -18,7 +18,7 @@ import {debounceTime} from 'rxjs/operators';
 })
 export class UserCenterComponent implements OnInit {
   static SCALE = 0.8;
-  static SKEWY = 20;
+  static SKEWY = 30;
 
   @ViewChild('measureContainer') measureContainerElement: ElementRef;
   @ViewChild('mainContainer') mainContainerElement: ElementRef;

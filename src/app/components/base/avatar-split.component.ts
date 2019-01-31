@@ -6,6 +6,7 @@ import {Point, Rect, Size} from '../../models/position';
 import {OneWorker} from '../../services/one-worker.service';
 import {Toast} from '../../models/toast';
 import {dataURLtoFile, fileToBase64, fitStyle, getImageOrientation} from '../../services/common.service';
+import {ClockService} from '../../services/clock.service';
 
 @Component({
   templateUrl: './avatar-split.component.html',
@@ -23,18 +24,18 @@ export class AvatarSplitComponent implements OnInit {
     this.centerRect = new Rect();
     this.imageRect = new Rect();
     this.topLeftOffset = new Point();
-    this.touchStatus = this.TOUCH_END;
+    this.touchStatus = this._TOUCH_END;
   }
-  private TOUCH_END = 0;
-  private TOUCH_MOVE = 1;
-  private TOUCH_RESIZE = 2;
+  private _TOUCH_END = 0;
+  private _TOUCH_MOVE = 1;
+  private _TOUCH_RESIZE = 2;
 
-  private MAX_SCALE = 16;
+  private _MAX_SCALE = 16;
 
-  @ViewChild('avatarCanvas') avatarCanvasElement: ElementRef;
-  @ViewChild('centerBox') centerBoxElement: ElementRef;
-  @ViewChild('touchBoard') touchBoardElement: ElementRef;
-  @ViewChild('avatar') avatarElement: ElementRef;
+  @ViewChild('avatarCanvas') private avatarCanvasElement: ElementRef;
+  @ViewChild('centerBox') private centerBoxElement: ElementRef;
+  @ViewChild('touchBoard') private touchBoardElement: ElementRef;
+  @ViewChild('avatar') private avatarElement: ElementRef;
 
   private canvas: HTMLCanvasElement;
   private canvasContext: CanvasRenderingContext2D;
@@ -46,12 +47,13 @@ export class AvatarSplitComponent implements OnInit {
   private imageRect: Rect;
   private readonly centerRect: Rect;
   private maxSize: Size;
-  private topLeftOffset: Point;
+  private readonly topLeftOffset: Point;
 
   private touchStatus: number;
   private originPoints: Array<Point>;
 
   ngOnInit(): void {
+    ClockService.LogCurrentTime('init');
     fromEvent(window, 'resize')
       .pipe(debounceTime(300))
       .subscribe(() => {
@@ -71,12 +73,12 @@ export class AvatarSplitComponent implements OnInit {
   addTouchEvents() {
     this.touch.addEventListener('mousedown', (e) => {
       this.originPoints = new Array<Point>();
-      this.touchStatus = this.TOUCH_MOVE;
+      this.touchStatus = this._TOUCH_MOVE;
       this.originPoints.push(new Point(e.pageX, e.pageY).minus(this.topLeftOffset));
     });
     this.touch.addEventListener('mousemove', (e) => {
       const currentPoint: Point = new Point(e.pageX, e.pageY).minus(this.topLeftOffset);
-      if (this.touchStatus === this.TOUCH_MOVE) {
+      if (this.touchStatus === this._TOUCH_MOVE) {
         this.imageRect.left += currentPoint.x - this.originPoints[0].x;
         this.imageRect.top += currentPoint.y - this.originPoints[0].y;
         this.originPoints[0].beSameAs(currentPoint);
@@ -84,7 +86,7 @@ export class AvatarSplitComponent implements OnInit {
       }
     });
     this.touch.addEventListener('mouseup', () => {
-      this.touchStatus = this.TOUCH_END;
+      this.touchStatus = this._TOUCH_END;
     });
     this.touch.addEventListener('mousewheel', (e) => {
       let scale = 1;
@@ -105,20 +107,20 @@ export class AvatarSplitComponent implements OnInit {
       }
       this.originPoints.push(new Point(e.touches[0].pageX, e.touches[0].pageY).minus(this.topLeftOffset));
       if (e.touches.length === 1) {
-        this.touchStatus = this.TOUCH_MOVE;
+        this.touchStatus = this._TOUCH_MOVE;
       } else {
-        this.touchStatus = this.TOUCH_RESIZE;
+        this.touchStatus = this._TOUCH_RESIZE;
         this.originPoints.push(new Point(e.touches[1].pageX, e.touches[1].pageY).minus(this.topLeftOffset));
       }
     });
     this.touch.addEventListener('touchmove', (e) => {
       const currentPoints: Array<Point> = new Array<Point>();
-      if (this.touchStatus === this.TOUCH_END) {
+      if (this.touchStatus === this._TOUCH_END) {
         return;
       }
       e.preventDefault();
       currentPoints.push(new Point(e.touches[0].pageX, e.touches[0].pageY).minus(this.topLeftOffset));
-      if (this.touchStatus === this.TOUCH_MOVE) {
+      if (this.touchStatus === this._TOUCH_MOVE) {
         this.imageRect.left += currentPoints[0].x - this.originPoints[0].x;
         this.imageRect.top += currentPoints[0].y - this.originPoints[0].y;
         this.originPoints[0].beSameAs(currentPoints[0]);
@@ -138,29 +140,30 @@ export class AvatarSplitComponent implements OnInit {
       this.fitImageToCanvas();
     });
     this.touch.addEventListener('touchend', () => {
-      this.touchStatus = this.TOUCH_END;
+      this.touchStatus = this._TOUCH_END;
     });
   }
 
   loadImage() {
+    ClockService.LogCurrentTime('load-image');
     const imageFile = this.avatarSplitService.avatar_file;
     getImageOrientation(imageFile, (orientation) => {
-      fileToBase64(imageFile, orientation, (orientedImageFile: File) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(orientedImageFile);
-        reader.onload = (event) => {
-          this.image = new Image();
-          this.image.src = event.target.result;
-          this.imageLoaded = false;
-          this.image.onload = () => {
-            this.imageLoaded = true;
-            this.avatar.style.backgroundImage = `url(${this.image.src})`;
-            this.maxSize = new Size(this.image.width, this.image.height);
-            this.maxSize.scale(this.MAX_SCALE);
-            this.imageRect.width = this.image.width;
-            this.imageRect.height = this.image.height;
-            this.fitImageToCanvas(true);
-          };
+      ClockService.LogCurrentTime('finish-get-orientation');
+      fileToBase64(imageFile, orientation, (orientedBase64Image) => {
+        ClockService.LogCurrentTime('finish-base64');
+        this.image = new Image();
+        this.image.src = orientedBase64Image;
+        this.imageLoaded = false;
+        this.image.onload = () => {
+          ClockService.LogCurrentTime('finish-load-image');
+          this.imageLoaded = true;
+          this.avatar.style.backgroundImage = `url(${this.image.src})`;
+          this.maxSize = new Size(this.image.width, this.image.height);
+          this.maxSize.scale(this._MAX_SCALE);
+          this.imageRect.width = this.image.width;
+          this.imageRect.height = this.image.height;
+          this.fitImageToCanvas(true);
+          ClockService.LogCurrentTime('finish-all');
         };
       });
     });
@@ -190,7 +193,7 @@ export class AvatarSplitComponent implements OnInit {
     }
   }
 
-  fitImageToCanvas(initialize = false, from = this.TOUCH_MOVE) {
+  fitImageToCanvas(initialize = false, from = this._TOUCH_MOVE) {
     // from 表示是从什么事件过来的
     if (!this.imageLoaded) {
       return;
@@ -198,11 +201,11 @@ export class AvatarSplitComponent implements OnInit {
     if (initialize) {
       this.imageRect.totalFit(this.centerRect);
     }
-    if (from === this.TOUCH_MOVE) {
+    if (from === this._TOUCH_MOVE) {
       // 如果移动出界面，就平移回来
       this.imageRect.moveFill(this.centerRect);
     }
-    if (from === this.TOUCH_RESIZE) {
+    if (from === this._TOUCH_RESIZE) {
       // 如果缩放过分，就自动填满
       this.imageRect.resizeFill(this.centerRect);
     }
