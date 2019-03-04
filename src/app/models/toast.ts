@@ -2,7 +2,7 @@ export class Toast {
   static TYPE_NORMAL = 0;
   static TIME_AUTO = 0;
   static TIME_ALWAYS = -1;
-  static TIME_PER_LETTER = 400;
+  static TIME_PER_LETTER = 100;
 
   text: string;
   type: number;

@@ -6,3 +6,8 @@
 @light-blue: #869CD3;
 @dark-gray: #888888;
 @shine-yellow: #FFB500;
+
+@main-alpha: 0.8;
+.transparent(@color, @alpha) {
+  background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
+}

@@ -1,0 +1,10 @@
+<router-outlet></router-outlet>
+<footer>
+  <div *ngFor="let footBtn of footBtnService.shownBtnList"
+       class="btn ptr"
+       (click)="activateBtn(footBtn)"
+       [ngClass]="footBtnService.active(footBtn)">
+    <span class="icon" [ngClass]="footBtn.icon"></span>
+    <span class="text">{{footBtn.text}}</span>
+  </div>
+</footer>

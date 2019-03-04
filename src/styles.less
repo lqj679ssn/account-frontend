@@ -7,6 +7,10 @@
   font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -103,4 +107,23 @@ body {
 
 .ib {
   display: inline-block;
+}
+
+.animate {
+  transition: 0.5s;
+}
+
+.bigger {
+  font-size: larger;
+}
+
+@bg-blur: 8px;
+.bg-blur {
+  position: absolute;
+  top: -@bg-blur;
+  left: -@bg-blur;
+  width: calc(~'100% + 2*@{bg-blur}');
+  height: calc(~'100% + 2*@{bg-blur}');
+  filter: brightness(70%) blur(@bg-blur);
+  background-color: black;
 }

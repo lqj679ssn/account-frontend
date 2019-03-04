@@ -6,10 +6,17 @@
 @profile-attribute-width: 80px;
 @profile-attribute-margin: 10px;
 
-// user-center-component
+div.main-container.no-footer {
+  height: 100%;
+}
+
+// menu-center-component
 div.main-container {
-  background-color: @gray;
+  .transparent(@gray, 0.4);
   transition: 0.5s;
+  position: absolute;
+  width: 100%;
+  height: calc(~'100% - @{footer-height}');
 
   // nav
   div.nav {
@@ -17,6 +24,27 @@ div.main-container {
     width: 100%;
     height: @nav-height;
     background-color: @yellow;
+    overflow: hidden;
+    div.myweb-qitianbu {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 250px;
+      right: 0;
+      top: 20px;
+      transition: 0.5s;
+    }
+    @media screen and (max-width: 370px) {
+      div.myweb-qitianbu {
+        font-size: 200px;
+        top: 40px;
+      }
+    }
+    @media screen and (max-width: 330px) {
+      div.myweb-qitianbu {
+        font-size: 150px;
+        top: 60px;
+      }
+    }
     div.avatar-box {
       position: absolute;
       bottom: 10px;
@@ -63,9 +91,12 @@ div.main-container {
   div.section-container {
     margin-top: 15px;
     width: 100%;
-    background-color: white;
+    .transparent(white, @main-alpha);
+    &:first-child {
+      margin-top: 0;
+    }
     div.section-nav {
-      padding-top: 4px;
+      //padding-top: 4px;
       width: 100%;
       height: @section-nav-height;
       div.section-title {
@@ -76,6 +107,16 @@ div.main-container {
         line-height: @section-nav-height;
         vertical-align: middle;
         font-weight: bold;
+        span.num {
+          background: @yellow;
+          color: white;
+          border-radius: @section-title-size;
+          font-size: xx-small;
+          font-weight: normal;
+          padding: 2px 5px;
+          vertical-align: bottom;
+          margin: 0 5px;
+        }
       }
       div.operator {
         position: absolute;
@@ -251,42 +292,4 @@ div.main-container {
       }
     }
   }
-}
-
-@show-menu-offset: 80%;
-@show-menu-scale: 0.8;
-@skewY-deg: 20deg;
-div.main-container.show-menu {
-  left: -@show-menu-offset;
-  transform: scale(@show-menu-scale) skewY(@skewY-deg);
-}
-
-div.show-menu-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% - @show-menu-offset - 50% * (1 - @show-menu-scale);
-  height: 100%;
-  display: none;
-}
-
-div.show-menu-mask.show-menu {
-  display: inherit;
-}
-
-div.menu-container {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: @show-menu-offset + 50% * (1 - @show-menu-scale);
-  //width: @show-menu-offset * 2 - @show-menu-scale * 100%;
-  height: @show-menu-scale * 100%;
-  transition: 0.5s;
-  //background-color: ;
-  filter: opacity(0);
-}
-
-div.menu-container.show-menu {
-  left: 50% - @show-menu-offset + 50% *  @show-menu-scale;
-  filter: opacity(1);
 }

@@ -1,5 +1,4 @@
-<div #measureContainer class="full"></div>
-<div #mainContainer class="main-container full oys" [ngClass]="{'show-menu': showMenu}">
+<div class="main-container oys">
   <div class="nav">
     <div class="avatar-box">
       <div class="avatar img-random img-fit"></div>
@@ -10,40 +9,12 @@
         </div>
       </div>
     </div>
-    <div class="menu"></div>
+    <div class="myweb-qitianbu"></div>
   </div>
   <app-saying></app-saying>
   <div class="section-container">
     <div class="section-nav">
-      <div class="section-title">个人信息</div>
-      <div class="operator ptr">编辑</div>
-    </div>
-    <div class="section-list">
-      <div class="section-item profile inactive">
-        <div class="profile-attribute oxs">个性签名</div>
-        <div class="inactive-element profile-value oxs">歌手，创作爱与好奇</div>
-        <input class="active-element profile-value oxs" value="歌手，创作爱与好奇"/>
-        <div class="profile-edit-icon"></div>
-      </div>
-      <div class="section-item profile active">
-        <div class="profile-attribute oxs">生日星座</div>
-        <div class="inactive-element profile-value oxs">1995-10-01 天秤座️</div>
-        <input #birthday class="active-element profile-value" type="date" value="1995-10-01" [max]="clockService.getFormattedDate()">
-        <div class="profile-edit-icon"></div>
-        <div class="active-element profile-value constellation oxs">{{clockService.getConstellation('1997-09-13')}}</div>
-      </div>
-      <div class="section-item profile inactive">
-        <div class="profile-attribute oxs">手机认证</div>
-        <div class="profile-value oxs">178****1961</div>
-        <div class="profile-edit-icon"></div>
-      </div>
-      <div class="section-item profile active">
-        <div class="profile-attribute oxs">头像</div>
-        <input #avatarUploader class="hide" type="file" accept="image/*" (change)="chooseAvatarImage($event.target.files)"/>
-        <div class="profile-avatar img-random img-fit" (click)="avatarUploader.click()"></div>
-        <div class="profile-edit-icon"></div>
-        <div class="active-element change-avatar-hint">点击更换头像</div>
-      </div>
+      <div class="section-title">消息中心<span class="num">10</span></div>
     </div>
   </div>
   <div class="section-container">
@@ -93,8 +64,3 @@
   </div>
 </div>
 
-<div class="show-menu-mask" [ngClass]="{'show-menu': showMenu}"></div>
-
-<div #menuContainer class="menu-container" [ngClass]="{'show-menu': showMenu}">
-  <app-animate-button></app-animate-button>
-</div>

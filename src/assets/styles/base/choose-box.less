@@ -1,0 +1,124 @@
+@import "./color";
+@import "./size";
+
+@search-input-height: 30px;
+@choose-item-height: 40px;
+@choose-list-max-height: @choose-item-height * 8;
+@op-height: 40px;
+@choose-box-total-height: 25px + 30px + @search-input-height + @choose-list-max-height + @op-height;
+
+div.choose-container {
+  div.choose-box-mask {
+    .transparent(black, 0.7);
+    display: none;
+  }
+
+  div.choose-box {
+    position: absolute;
+    bottom: -@choose-box-total-height;
+    left: 0;
+    width: 100%;
+    transition: 0.5s;
+
+    div.title-box {
+      background-color: @shine-yellow;
+
+      div.title {
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        padding: 10px 0 5px;
+      }
+
+      div.search-box {
+        padding-bottom: 10px;
+
+        span.search-icon {
+          position: absolute;
+          left: 20px;
+          line-height: @search-input-height;
+          vertical-align: middle;
+          font-size: 14px;
+          color: @dark-gray;
+        }
+
+        input.search-input {
+          height: @search-input-height;
+          margin: 0 10px;
+          border-radius: @search-input-height / 2;
+          padding: 0 @search-input-height;
+          font-size: @content-size;
+          background-color: white;
+          width: stretch;
+        }
+      }
+    }
+
+    div.choose-list {
+      max-height: @choose-list-max-height;
+
+      div.choose-item {
+        position: relative;
+        height: @choose-item-height;
+        background-color: white;
+        border-bottom: 1px solid @gray;
+        color: @blue;
+
+        div.key, div.value {
+          position: absolute;
+          top: 0;
+          line-height: @choose-item-height;
+          vertical-align: middle;
+          font-size: @content-size;
+        }
+
+        div.key {
+          left: 20px;
+        }
+
+        div.value {
+          right: 20px;
+        }
+
+        &:hover {
+          background-color: @gray;
+        }
+      }
+
+      div.choose-item.chosen {
+        background-color: @light-yellow;
+        color: @dark-blue;
+      }
+    }
+
+    div.op-box {
+      div.op {
+        height: @op-height;
+        line-height: @op-height;
+        vertical-align: middle;
+        text-align: center;
+        color: @gray;
+        display: inline-block;
+        width: 50%;
+      }
+
+      div.op.cancel {
+        background-color: @dark-gray;
+      }
+
+      div.op.submit {
+        background-color: @yellow;
+      }
+    }
+  }
+}
+
+div.choose-container.show {
+  div.choose-box-mask {
+    display: inherit;
+  }
+
+  div.choose-box {
+    bottom: 0;
+  }
+}

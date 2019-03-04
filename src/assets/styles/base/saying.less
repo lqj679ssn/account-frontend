@@ -3,7 +3,7 @@
 
 // base-saying-component
 div.saying-box {
-  background-color: @light-yellow;
+  .transparent(@light-yellow, @main-alpha);
   height: @saying-box-height;
   width: 100%;
   div.saying-text {
@@ -12,5 +12,7 @@ div.saying-box {
     vertical-align: middle;
     padding: 0 15px;
     font-size: @content-size;
+    overflow-x: scroll;
+    white-space: nowrap;
   }
 }

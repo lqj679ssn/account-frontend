@@ -1,0 +1,86 @@
+<div class="main-container no-footer">
+  <div class="nav">
+    <div class="title-box">{{pageText.title}}</div>
+    <div class="myweb-qitianbu"></div>
+  </div>
+  <app-saying></app-saying>
+  <div class="un-login-container">
+    <div class="main-title">{{pageText.mainTitle}}</div>
+    <div class="sub-title">{{pageText.subTitle}}</div>
+    <div class="input-box" *ngIf="pageText.showPhoneBox">
+      <div class="inner-padding animate">
+        <div class="title">手机号码</div>
+        <div class="right-button ptr" *ngIf="pageText.showUseQT" (click)="qtLogin()">使用齐天号</div>
+        <label>
+          <input class="region-selector" type="number" #phoneInput [(ngModel)]="phoneNumber">
+          <div class="right-operator">
+            <span class="icon-close ptr animate" (click)="phoneNumber = null" *ngIf="phoneNumber"></span>
+          </div>
+        </label>
+        <div class="region-selector ptr animate" (click)="chooseRegion()">{{currentRegionCode}}</div>
+      </div>
+    </div>
+    <div class="input-box" *ngIf="pageText.showQTBox">
+      <div class="inner-padding animate">
+        <div class="title">齐天号</div>
+        <div class="right-button ptr" (click)="pwdLogin()">使用手机号</div>
+        <label>
+          <input [(ngModel)]="qtID">
+          <div class="right-operator">
+            <span class="icon-close ptr animate" (click)="qtID = null" *ngIf="qtID"></span>
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="input-box" *ngIf="pageText.showPWDBox">
+      <div class="inner-padding animate">
+        <div class="title">{{pageText.pwdText}}</div>
+        <div class="right-button ptr" *ngIf="pageText.showForgetPWD" (click)="goFindPWD()">忘记密码？</div>
+        <label>
+          <input [(ngModel)]="password" placeholder="" [type]="showPassword? 'text': 'password'">
+          <div class="right-operator">
+            <span class="icon-close ptr animate" (click)="password = null" *ngIf="password"></span>
+            <span class="ptr animate" [ngClass]="{'icon-eye-open': showPassword, 'icon-eye-close': !showPassword}" (click)="showPassword = !showPassword"></span>
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="input-box" *ngIf="pageText.showCodeBox">
+      <div class="inner-padding animate">
+        <div class="title">6位验证码</div>
+        <div class="right-button ptr" (click)="getCodeAgain()">重新获取</div>
+        <label>
+          <input [(ngModel)]="verifiedCode" (ngModelChange)="codeListener()" maxlength="6" type="number">
+          <div class="right-operator">
+            <span class="icon-close ptr animate" (click)="verifiedCode = null" *ngIf="verifiedCode"></span>
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="footer-choices">
+      <div class="choice animate ptr" *ngIf="pageText.showGoRegister" (click)="goRegister()">没有账号，点我注册</div>
+      <div class="choice animate ptr" *ngIf="pageText.showGoLogin" (click)="goLogin()">已有账号，点我登录</div>
+      <div class="choice animate ptr" *ngIf="pageText.showPWDLogin" (click)="pwdLogin()">普通账密登录</div>
+      <div class="choice animate ptr" *ngIf="pageText.showCodeLogin" (click)="codeLogin()">手机动态登录</div>
+    </div>
+    <div class="icon-box animate" [ngClass]="{left: showIconBoxLeft}">
+      <span class="icon-right animate ptr" (click)="buttonDealer()"></span>
+    </div>
+  </div>
+  <app-choose-box
+    #chooseBox
+    [boxTitle]="'选择国家或地区'"
+    [showSearchBox]="true"
+    [fastMode]="true"
+    [maxChosenNum]="1"
+    [minChosenNum]="1"
+    [chooseList]="chooseList"
+    (onSubmit)="chooseBoxOnSubmit($event)"
+    (onCancel)="chooseBoxOnCancel()"
+  ></app-choose-box>
+  <app-captcha-box
+    #captchaBox
+    (onSubmit)="captchaBoxOnSubmit($event)"
+  ></app-captcha-box>
+  <app-loading-box #loadingBox></app-loading-box>
+</div>
