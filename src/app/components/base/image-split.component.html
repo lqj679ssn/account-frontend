@@ -1,0 +1,13 @@
+<div class="main-container full over-hide animate" [ngClass]="{show: showComponent, 'fade-in': fadeInComponent}">
+  <canvas #avatarCanvas class="hide"></canvas>
+  <div #avatar class="img-fit avatar-full"></div>
+  <div #centerBox class="center-box">
+    <div class="circle full"></div>
+  </div>
+  <div #touchBoard class="full"></div>
+  <div class="bottom-operation-box">
+    <div class="btn left ptr" (click)="hide()">取消</div>
+    <div class="btn right ptr" (click)="returnSplitImage()">确定</div>
+  </div>
+  <app-loading-box #loadingBox></app-loading-box>
+</div>

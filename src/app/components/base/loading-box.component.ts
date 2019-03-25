@@ -14,7 +14,8 @@ export class LoadingBoxComponent {
 
   constructor() {
     this.loadingText = null;
-    this.hide();
+    this.fadeInLoadingBox = false;
+    this.showLoadingBox = false;
   }
 
   hide() {

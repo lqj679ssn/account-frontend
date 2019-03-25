@@ -10,6 +10,7 @@ export class UserService {
   public tokenKey: string;
   private _user: User;
   private _token: string;
+
   public tokenLC: LoadCallback;
   public userLC: LoadCallback;
 
@@ -17,6 +18,7 @@ export class UserService {
     private local: LocalService,
     private userHabitService: UserHabitService,
   ) {
+    this._user = new User({});
     this.tokenKey = 'user-token';
     this.tokenLC = new LoadCallback();
     this.userLC = new LoadCallback();
@@ -38,6 +40,7 @@ export class UserService {
   }
   set token(token: string) {
     this._token = token;
+    RequestService.token = this._token;
     this.saveToken();
   }
 
@@ -49,5 +52,9 @@ export class UserService {
     this._user = user;
     this.userLC.load();
     this.userHabitService.changeUser(this._user.user_str_id);
+  }
+
+  get isLogin() {
+    return !!this.user.user_str_id;
   }
 }

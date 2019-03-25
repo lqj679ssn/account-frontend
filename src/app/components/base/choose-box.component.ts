@@ -65,6 +65,19 @@ export class ChooseBoxComponent {
   }
 
   triggerChoose(id: string) {
+    for (const chooseItem of this.chooseList) {
+      if (id === chooseItem.id) {
+        if (chooseItem.always !== null) {
+          if (chooseItem.always) {
+            this.toastService.show(new Toast('此项默认选中'));
+          } else {
+            this.toastService.show(new Toast('此项无法选中'));
+          }
+          return;
+        }
+      }
+    }
+
     if (this.maxChosenNum === 1) {
       let chosenItem: ChooseItem;
       for (const chooseItem of this.chooseList) {

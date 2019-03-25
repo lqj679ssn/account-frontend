@@ -1,8 +1,22 @@
 @import "size";
 @import "color";
 
+div.main-container.show {
+  display: inherit;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+div.main-container.fade-in {
+  filter: opacity(1);
+}
+
+
 div.main-container {
-  position: relative;
+  display: none;
+  filter: opacity(0);
+  position: absolute;
   background-color: black;
   div.avatar-full {
     position: absolute;

@@ -2,7 +2,7 @@
   <div class="choose-box-mask full" (click)="cancel()"></div>
   <div class="choose-box">
     <div class="title-box">
-      <div class="title">{{boxTitle}}</div>
+      <div class="title" [ngClass]="{'show-search-box': showSearchBox}">{{boxTitle}}</div>
       <div class="search-box" *ngIf="showSearchBox">
         <span class="search-icon animate" [ngClass]="{'icon-search-l': !keyword, 'icon-search-s': keyword}"></span>
         <input class="search-input" placeholder="搜索" [(ngModel)]="keyword">
@@ -11,11 +11,17 @@
     <div class="choose-list oys">
       <div class="choose-item animate ptr"
            *ngFor="let chooseItem of searchList"
-           [ngClass]="{chosen: chooseItem.selected}"
+           [ngClass]="{
+             chosen: chooseItem.selected,
+             disabled: chooseItem.always === false,
+             enabled: chooseItem.always === true
+           }"
            (click)="triggerChoose(chooseItem.id)"
       >
-        <div class="key">{{chooseItem.key}}</div>
-        <div class="value">{{chooseItem.value}}</div>
+        <div class="check-icon animate" [ngClass]="chooseItem.icon"></div>
+        <div class="key" [ngClass]="{'show-desc': chooseItem.desc}">{{chooseItem.key}}</div>
+        <div class="value" [ngClass]="{'show-desc': chooseItem.desc}">{{chooseItem.value}}</div>
+        <div class="desc oxs" *ngIf="chooseItem.desc">{{chooseItem.desc}}</div>
       </div>
       <div class="choose-item" *ngIf="searchList === undefined || searchList.length === 0">
         <div class="key">没有选项…</div>

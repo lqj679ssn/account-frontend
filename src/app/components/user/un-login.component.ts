@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ReCAPTCHA} from '../../models/recaptcha';
 import {ReCAPTCHAService} from '../../services/recaptcha.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../services/api.service';
@@ -8,11 +7,12 @@ import {ToastService} from '../../services/toast.service';
 import {Toast} from '../../models/toast';
 import {ChooseBoxComponent} from '../base/choose-box.component';
 import {CaptchaBoxComponent} from '../base/captcha-box.component';
-import {template} from '../../models/common';
 import {LoadingBoxComponent} from '../base/loading-box.component';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
 import {JumpService} from '../../services/jump.service';
+import {template} from '../../services/common.service';
+import {OneWorker} from '../../services/one-worker.service';
 
 @Component({
   templateUrl: './un-login.component.html',
@@ -46,7 +46,6 @@ export class UnLoginComponent implements OnInit {
   // region choose-box component
   @ViewChild('chooseBox') chooseBox: ChooseBoxComponent;
   public currentRegionCode: string;
-  public regionLoaded: boolean;
   public chooseList: Array<ChooseItem>;
 
   // phone input
@@ -70,11 +69,11 @@ export class UnLoginComponent implements OnInit {
     private userService: UserService,
     private jump: JumpService,
     private router: Router,
+    private oneWorker: OneWorker,
   ) {
     this.initStatusList();
     // region choose-box
     this.currentRegionCode = '+86';
-    this.regionLoaded = false;
     this.subTitleTemplate = template`我们向${0}发送了一个验证码，请在下方输入`;
     this.verifiedCode = null;
     this.lastVerifiedCode = null;
@@ -150,32 +149,30 @@ export class UnLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.mode = this.activatedRoute.snapshot.data['mode'];
-    // this.mode = UnLoginComponent.MODE_FIND_PWD_CODE;
-
-    // get region data
-    this.api.getRegions()
-      .then((countries) => {
-        this.chooseList = [];
-        for (let i = 0; i < countries.length; i++) {
-          const country = countries[i];
-          this.chooseList.push(new ChooseItem({
-            key: '+' + country.num,
-            value: country.name + ' ' + country.flag,
-            id: '' + i,
-            selected: false,
-          }));
-        }
-        this.currentRegionCode = this.chooseList[0].key;
-        this.chooseList[0].selected = true;
-        this.regionLoaded = true;
-      });
 
     // detect if login
     if (this.userService.userLC.loaded) {
-      this.jump.homePage()
-        .then();
+      this.userLoadedCallback();
     } else {
-      this.userService.userLC.callback = this.jump.homePage.bind(this.jump);
+      this.userService.userLC.callback = this.userLoadedCallback.bind(this);
+    }
+
+    // detect region list loaded
+    if (this.reCAPTCHAService.regionLC.loaded) {
+      this.regionLoadedCallback();
+    } else {
+      this.reCAPTCHAService.regionLC.callback = this.regionLoadedCallback.bind(this);
+    }
+  }
+
+  regionLoadedCallback() {
+    this.chooseList = this.reCAPTCHAService.regionList;
+    this.currentRegionCode = this.chooseList[0].key;
+  }
+
+  userLoadedCallback() {
+    if (this.userService.isLogin) {
+      this.jump.homePage();
     }
   }
 
@@ -221,7 +218,7 @@ export class UnLoginComponent implements OnInit {
     this.setMode(UnLoginComponent.MODE_REGISTER);
   }
   goLogin() {
-    this.setMode(UnLoginComponent.MODE_LOGIN_PHONE_CODE);
+    this.setMode(UnLoginComponent.MODE_LOGIN_PHONE_PWD);
   }
   goFindPWD() {
     this.setMode(UnLoginComponent.MODE_FIND_PWD);
@@ -319,21 +316,25 @@ export class UnLoginComponent implements OnInit {
       if (!this.checkInputValid()) {
         return;
       }
-      this.lastVerifiedCode = this.verifiedCode;
-      this.loadingBox.show('正在验证…');
-      this.api.getLoginTokenUsingCode({
-        mode: this.mode,
-        code: this.verifiedCode,
-        pwd: this.password,
-      }).then((resp) => {
-        this.loadingBox.hide();
-        this.userService.user = new User(resp.user);
-        this.userService.token = resp.token;
-        this.router.navigate(['/menu'])
-          .then();
-      }).catch(() => {
-        this.loadingBox.hide();
-        this.goBack();
+      this.oneWorker.do('get-login-token-using-code', (callback) => {
+        this.lastVerifiedCode = this.verifiedCode;
+        // this.loadingBox.show('正在验证…');
+        this.api.getLoginTokenUsingCode({
+          mode: this.mode,
+          code: this.verifiedCode,
+          pwd: this.password,
+        }).then((resp) => {
+          // this.loadingBox.hide();
+          callback();
+          this.userService.user = new User(resp.user);
+          this.userService.token = resp.token;
+          this.router.navigate(['/menu'])
+            .then();
+        }).catch(() => {
+          callback();
+          // this.loadingBox.hide();
+          this.goBack();
+        });
       });
     }
   }
@@ -350,7 +351,7 @@ export class UnLoginComponent implements OnInit {
    * 选择手机地域
    */
   chooseRegion() {
-    if (this.regionLoaded) {
+    if (this.reCAPTCHAService.regionLC.loaded) {
       this.chooseBox.show();
     } else {
       this.toastService.show(new Toast('正在加载，请稍后'));
@@ -383,7 +384,7 @@ export class UnLoginComponent implements OnInit {
         if (resp.toast_msg.length > 0) {
           this.toastService.show(new Toast(resp.toast_msg));
         }
-      }).catch();
+      }).catch(this.api.defaultCatcher);
     } else if (this.isPasswordMode) {
       this.api.getLoginTokenUsingPWD({
         mode: this.mode,
@@ -394,7 +395,7 @@ export class UnLoginComponent implements OnInit {
       }).then((resp) => {
         this.userService.user = new User(resp.user);
         this.userService.token = resp.token;
-      });
+      }).catch(this.api.defaultCatcher);
     }
   }
 }

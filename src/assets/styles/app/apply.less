@@ -1,0 +1,103 @@
+@import "../base/size";
+@import "../base/color";
+
+div.main-container {
+  @fix-nav-height: 32px;
+
+  div.fix-nav {
+    position: relative;
+    height: @fix-nav-height;
+    background-color: @yellow;
+    width: 100%;
+    div.title {
+      line-height: @fix-nav-height;
+      vertical-align: middle;
+      color: white;
+      padding: 0 10px;
+    }
+  }
+
+  div.scroll-container {
+    height: calc(~'100% - @{fix-nav-height}');
+    div.nav {
+      height: 90px;
+      div.title-box {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: white;
+        font-size: 44px;
+        transition: 0.5s;
+        padding-left: 15px;
+      }
+    }
+
+    div.section-container {
+      div.section-list {
+        div.section-item {
+          div.textarea-box {
+            padding: 8px 10px;
+            width: 100%;
+
+            textarea {
+              width: 100%;
+              font-size: @content-size;
+              color: @dark-gray;
+
+              &::placeholder {
+                color: @middle-gray;
+              }
+            }
+          }
+        }
+
+        div.section-item.profile {
+          .profile-avatar.profile-logo {
+            border-radius: 3px;
+          }
+        }
+
+        div.section-item.profile.active {
+          .profile-avatar.profile-logo {
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  min-width: 100%;
+  bottom: 0;
+  height: @footer-height;
+  white-space: nowrap;
+  .transparent(@gray, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  div.license-box {
+    margin-left: 20px;
+    color: @dark-blue;
+    div {
+      display: inline-block;
+      font-size: @content-size;
+    }
+    div.agree-text {
+      margin-left: 10px;
+    }
+  }
+
+  div.next-box {
+    float: right;
+    margin-right: 20px;
+    color: white;
+    div {
+      display: inline-block;
+      font-size: @content-size;
+    }
+  }
+}

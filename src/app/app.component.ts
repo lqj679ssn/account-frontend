@@ -5,6 +5,8 @@ import {ApiService} from './services/api.service';
 import {PreloadImage} from './models/preload-image';
 import {UserService} from './services/user.service';
 import {User} from './models/user';
+import {AppDepotService} from './services/app-depot.service';
+import {ChooseItem} from './models/choose-item';
 
 declare var window: any;
 
@@ -23,6 +25,7 @@ export class AppComponent implements OnInit {
     private reCAPTCHAService: ReCAPTCHAService,
     private api: ApiService,
     private userService: UserService,
+    private appDepot: AppDepotService,
   ) {
     ClockService.startClock();
   }
@@ -37,7 +40,7 @@ export class AppComponent implements OnInit {
         this.smallImage.load(() => {
           this.regularImage.load(null);
         });
-      });
+      }).catch();
 
     // try login with user-token
     if (this.userService.tokenLC.loaded) {
@@ -45,6 +48,41 @@ export class AppComponent implements OnInit {
     } else {
       this.userService.tokenLC.callback = this.loginWithUserToken.bind(this);
     }
+
+    // get scope and premise list
+    this.api.getAppScope()
+      .then((scopes) => {
+        this.appDepot.scopeList = [];
+        for (const scope of scopes) {
+          this.appDepot.scopeList.push(ChooseItem.fromScope(scope));
+        }
+        this.appDepot.scopeLC.load();
+      });
+
+    this.api.getAppPremise()
+      .then((premises) => {
+        this.appDepot.premiseList = [];
+        for (const premise of premises) {
+          this.appDepot.premiseList.push(ChooseItem.fromPremise(premise));
+        }
+        this.appDepot.premiseLC.load();
+      });
+
+    // get region list
+    this.api.getRegions()
+      .then((countries) => {
+        this.reCAPTCHAService.regionList = [];
+        for (let i = 0; i < countries.length; i++) {
+          const country = countries[i];
+          this.reCAPTCHAService.regionList.push(new ChooseItem({
+            key: '+' + country.num,
+            value: country.name + ' ' + country.flag,
+            id: '' + i,
+          }));
+        }
+        this.reCAPTCHAService.regionList[0].selected = true;
+        this.reCAPTCHAService.regionLC.load();
+      }).catch(this.api.defaultCatcher);
   }
 
   get backgroundImage() {
@@ -61,7 +99,8 @@ export class AppComponent implements OnInit {
     this.api.getMyInfo()
       .then(resp => {
         this.userService.user = new User(resp);
-      })
-      .catch();
+      }).catch(() => {
+        this.userService.user = new User({});
+    });
   }
 }

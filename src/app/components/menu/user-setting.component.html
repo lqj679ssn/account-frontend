@@ -1,35 +1,126 @@
 <div class="main-container oys">
-  <div class="section-container">
+  <div class="section-container" [ngClass]="{'edit-mode': editUserInfo}">
     <div class="section-nav">
       <div class="section-title">个人信息</div>
-      <div class="operator ptr">编辑</div>
+      <!--<div class="operator ptr" (click)="editUserInfo = !editUserInfo">{{editUserInfoText}}</div>-->
+      <div class="operator-box">
+        <div class="op ptr" *ngIf="editUserInfo">取消</div>
+        <div class="op ptr" (click)="editUserInfo = !editUserInfo">{{editUserInfoText}}</div>
+      </div>
     </div>
-    <div class="section-list">
+    <div class="avatar-box" *ngIf="!editUserInfo">
+      <div class="avatar img-fit" [ngStyle]="{'background-image': userService.user.avatar.url}"></div>
+      <div class="text-box">
+        <div class="nickname">{{userService.user.nickname}}</div>
+        <div class="append-info">
+          <div class="desc">{{userService.user.description}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-list" *ngIf="editUserInfo">
       <div class="section-item profile inactive">
-        <div class="profile-attribute oxs">个性签名</div>
-        <div class="inactive-element profile-value oxs">歌手，创作爱与好奇</div>
-        <input class="active-element profile-value oxs" value="歌手，创作爱与好奇"/>
-        <div class="profile-edit-icon"></div>
-      </div>
-      <div class="section-item profile active">
-        <div class="profile-attribute oxs">生日星座</div>
-        <div class="inactive-element profile-value oxs">1995-10-01 天秤座️</div>
-        <input #birthday class="active-element profile-value" type="date" value="1995-10-01" [max]="clockService.getFormattedDate()">
-        <div class="profile-edit-icon"></div>
-        <div class="active-element profile-value constellation oxs">{{clockService.getConstellation('1997-09-13')}}</div>
+        <div class="profile-attribute oxs middle-line">昵称</div>
+        <!--<div class="inactive-element profile-value oxs middle-line animate">{{userService.user.nickname}}</div>-->
+        <input class="profile-value oxs middle-line animate" value="{{userService.user.nickname}}"/>
+        <!--<div class="right-icon animate ptr middle-line" [ngClass]="userNicknameRadio.editIcon" (click)="editUserInfo && userInfoRadioList.toggle(userNicknameRadio)"></div>-->
       </div>
       <div class="section-item profile inactive">
-        <div class="profile-attribute oxs">手机认证</div>
-        <div class="profile-value oxs">178****1961</div>
-        <div class="profile-edit-icon"></div>
+        <div class="profile-attribute oxs middle-line">个性签名</div>
+        <!--<div class="inactive-element profile-value oxs middle-line animate">{{userService.user.description}}</div>-->
+        <input class="profile-value oxs middle-line animate" value="{{userService.user.description}}"/>
+        <!--<div class="right-icon animate ptr middle-line" [ngClass]="userDescRadio.editIcon" (click)="editUserInfo && userInfoRadioList.toggle(userDescRadio)"></div>-->
       </div>
-      <div class="section-item profile active">
-        <div class="profile-attribute oxs">头像</div>
+      <div class="section-item profile" [ngClass]="userAvatarRadio.class">
+        <div class="profile-attribute oxs middle-line">头像</div>
         <input #avatarUploader class="hide" type="file" accept="image/*" (change)="chooseAvatarImage($event.target.files)"/>
-        <div class="profile-avatar img-random img-fit" (click)="avatarUploader.click()"></div>
-        <div class="profile-edit-icon"></div>
+        <div class="profile-avatar img-fit" [ngStyle]="{'background-image': userService.user.avatar.url}" (click)="avatarUploader.click()"></div>
+        <div class="right-icon icon-next animate ptr middle-line" (click)="editUserInfo && userInfoRadioList.toggle(userAvatarRadio)"></div>
         <div class="active-element change-avatar-hint">点击更换头像</div>
+      </div>
+      <div class="section-item profile inactive">
+        <div class="profile-attribute oxs middle-line">齐天号</div>
+        <!--<div class="inactive-element profile-value oxs middle-line animate">{{userService.user.qitian}}</div>-->
+        <input class="profile-value oxs middle-line animate" value="{{userService.user.qitian}}"/>
+        <!--<div class="right-icon animate ptr middle-line" [ngClass]="userQitianRadio.editIcon" (click)="editUserInfo && userInfoRadioList.toggle(userQitianRadio)"></div>-->
+      </div>
+      <div class="section-item profile" [ngClass]="userBirthdayRadio.class">
+        <div class="profile-attribute oxs middle-line">生日星座</div>
+        <div class="inactive-element profile-value oxs middle-line animate">{{clockService.getReadableBirthday(userService.user.birthday)}}️</div>
+        <input #birthday class="active-element profile-value middle-line" type="date" [(ngModel)]="userService.user.birthday" [max]="clockService.getFormattedDate()">
+        <div class="right-icon icon-next animate ptr middle-line" (click)="editUserInfo && userInfoRadioList.toggle(userBirthdayRadio)"></div>
+        <div class="active-element profile-value under-line oxs middle-line">{{clockService.getConstellation(userService.user.birthday)}}</div>
       </div>
     </div>
   </div>
+
+  <div class="section-container edit-mode">
+    <div class="section-nav">
+      <div class="section-title">账号与安全</div>
+      <!--<div class="operator ptr" (click)="editAccountInfo = !editAccountInfo">{{editAccountInfoText}}</div>-->
+    </div>
+    <div class="section-list">
+      <div class="section-item profile" [ngClass]="accountPhoneRadio.class">
+        <div class="profile-attribute oxs middle-line">手机认证</div>
+        <div class="profile-value oxs middle-line">178****1961</div>
+        <div class="right-icon icon-next animate ptr middle-line" (click)="accountInfoRadioList.toggle(accountPhoneRadio)"></div>
+      </div>
+      <div class="section-item profile" [ngClass]="accountVerifyRadio.class">
+        <div class="profile-attribute oxs middle-line">实名认证</div>
+        <div class="inactive-element profile-value oxs middle-line">{{verifyInfoText}}</div>
+        <div class="right-icon icon-next animate ptr middle-line" (click)="accountInfoRadioList.toggle(accountVerifyRadio)" *ngIf="!userService.user.isVerified"></div>
+        <div class="active-element idcard-box">
+          <input #cardFrontUploader class="hide" type="file" accept="image/*" (change)="uploadIDCard($event.target.files, 0)"/>
+          <input #cardBackUploader class="hide" type="file" accept="image/*" (change)="uploadIDCard($event.target.files, 1)"/>
+          <div class="card-size animate ptr img-fit" (click)="cardBackUploader.click()" [ngStyle]="{'background-image': cardBack.url}">上传身份证国徽面</div>
+          <div class="card-size animate ptr img-fit" (click)="cardFrontUploader.click()" [ngStyle]="{'background-image': cardFront.url}">上传身份证肖像面</div>
+        </div>
+        <div class="active-element note">*暂时只支持中国大陆持有居民身份证的用户进行认证</div>
+      </div>
+      <div class="section-item profile active" *ngIf="accountVerifyRadio.active && verifyInfoList[verifyMode].showOCRInfo">
+        <div class="profile-attribute oxs middle-line">真实姓名</div>
+        <input class="profile-value oxs middle-line animate" value="刘奇煚"/>
+      </div>
+      <div class="section-item profile active" *ngIf="accountVerifyRadio.active && verifyInfoList[verifyMode].showOCRInfo">
+        <div class="profile-attribute oxs middle-line">身份证号</div>
+        <input class="profile-value oxs middle-line animate" value="330881199510010014"/>
+      </div>
+      <div class="section-item profile active" *ngIf="accountVerifyRadio.active && verifyInfoList[verifyMode].showOCRInfo">
+        <div class="profile-attribute oxs middle-line">性别</div>
+        <input class="profile-value oxs middle-line animate" value="男"/>
+      </div>
+      <div class="section-item profile active" *ngIf="accountVerifyRadio.active && verifyInfoList[verifyMode].showOCRInfo">
+        <div class="profile-attribute oxs middle-line">生日</div>
+        <input class="profile-value oxs middle-line animate" value="1995-10-01"/>
+      </div>
+      <div class="section-item profile active" *ngIf="accountVerifyRadio.active && verifyInfoList[verifyMode].showVerifyButton">
+        <div class="profile-attribute oxs middle-line"></div>
+        <div class="right-icon animate ptr middle-line button">{{verifyInfoList[verifyMode].verifyButtonText}}</div>
+      </div>
+      <div class="section-item profile" [ngClass]="accountDevRadio.class">
+        <div class="profile-attribute oxs middle-line">开发者申请</div>
+        <div class="profile-value oxs middle-line">成为开发者，让你的应用连接世界</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <div class="section-nav">
+      <div class="section-title">开发者专区</div>
+    </div>
+    <div class="section-list">
+      <div class="section-item profile">
+        <div class="profile-attribute oxs middle-line">应用接入</div>
+        <div class="profile-value oxs middle-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container" [ngClass]="{'edit-mode': editUserInfo}">
+    <div class="section-nav">
+      <div class="section-title">关于齐天簿</div>
+      <div class="operator ptr icon-next"></div>
+    </div>
+  </div>
 </div>
+<app-image-split #appImageSplit (onSplit)="uploadAvatar($event)"></app-image-split>
+<app-loading-box #loadingBox></app-loading-box>

@@ -97,6 +97,7 @@ div.main-container {
     }
     div.section-nav {
       //padding-top: 4px;
+      position: relative;
       width: 100%;
       height: @section-nav-height;
       div.section-title {
@@ -111,9 +112,9 @@ div.main-container {
           background: @yellow;
           color: white;
           border-radius: @section-title-size;
-          font-size: xx-small;
+          font-size: small;
           font-weight: normal;
-          padding: 2px 5px;
+          padding: 2px 7px;
           vertical-align: bottom;
           margin: 0 5px;
         }
@@ -126,14 +127,78 @@ div.main-container {
         line-height: @section-nav-height;
         vertical-align: middle;
       }
+      div.operator-box {
+        position: absolute;
+        right: 17px;
+        font-size: @content-size;
+        color: @shine-yellow;
+        line-height: @section-nav-height;
+        vertical-align: middle;
+
+        div.op {
+          margin-left: 10px;
+          white-space: nowrap;
+          display: inline-block;
+        }
+      }
     }
+
+    div.avatar-box {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @avatar-size: 46px;
+      div.avatar {
+        width: @avatar-size;
+        height: @avatar-size;
+        border-radius: @avatar-size / 2;
+        vertical-align: middle;
+      }
+      div.text-box {
+        position: relative;
+        margin-left: 8px;
+        height: @avatar-size;
+        vertical-align: middle;
+        div.nickname {
+          //position: absolute;
+          //bottom: 30px;
+          color: @blue;
+          font-size: 18px;
+          font-weight: bold;
+          width: max-content;
+        }
+        div.append-info {
+          //position: absolute;
+          //bottom: 4px;
+          width: max-content;
+          max-width: 200px;
+          overflow-x: scroll;
+          @desc-height: 19px;
+          div.desc {
+            height: @desc-height;
+            line-height: @desc-height;
+            vertical-align: middle;
+            color: @dark-gray;
+            font-size: @append-text-size;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
     div.section-list {
       div.section-item.profile {
-        max-height: 200px;
         height: auto;
-        padding: 7px 0;
+        padding: 8px 0;
         position: relative;
         transition: 0.2s;
+        .middle-line {
+          @item-line-height: 23px;
+          height: @item-line-height;
+          line-height: @item-line-height;
+          vertical-align: middle;
+        }
         .profile-attribute {
           display: inline-block;
           font-size: @content-size;
@@ -147,39 +212,41 @@ div.main-container {
           font-size: @content-size;
           width: calc(~'100% - @{profile-attribute-width} - 2 * @{profile-attribute-margin} - 56px');
           vertical-align: middle;
+          &::placeholder {
+            color: @middle-gray;
+          }
         }
         .active-element {
           display: none;
         }
         .inactive-element {
-          display: unset;
+          display: inline-block;
+        }
+        .right-icon {
+          display: none;
+          float: right;
+          margin-right: 23px;
+          font-size: @content-size;
+        }
+        .right-icon.button {
+          background-color: white;
+          border-radius: 5px;
+          padding: 0 10px;
         }
       }
-      div.section-item.profile.inactive {
+      div.section-item.profile {
         .profile-value {
           color: @blue;
         }
-      }
-      div.section-item.profile.active {
-        background-color: @yellow;
-        .profile-attribute {
-          color: white;
-        }
-        .profile-value {
-          color: @gray;
-        }
-        .active-element {
-          display: inline-block;
-        }
-        .inactive-element {
-          display: none;
+        .right-icon {
+          color: @shine-yellow;
         }
       }
       div.section-item.app {
         position: relative;
         padding: 10px 0;
         @app-logo-size: 40px;
-        @right-operator-width: 60px;
+        @right-operator-width: 80px;
         @app-item-margin: 20px;
         @item-element-margin: 7px;
         div.app-logo {
@@ -207,16 +274,17 @@ div.main-container {
         div.right-operator-box {
           position: relative;
           display: inline-block;
-          width: 60px;
+          width: @right-operator-width;
           height: @app-logo-size;
           margin-left: @item-element-margin;
           div.right-operator {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
           }
           div.btn {
-            border-radius: 5px;
-            padding: 5px;
+            border-radius: 20px;
+            padding: 5px 10px;
             font-size: @append-text-size;
             background-color: @yellow;
             color: white;
@@ -239,14 +307,104 @@ div.main-container {
           color: @light-blue;
         }
       }
+      div.section-item.profile.active {
+        //background-color: @yellow;
+        background-color: @shine-yellow;
+        .profile-attribute {
+          color: white;
+        }
+        .profile-value {
+          color: @gray;
+        }
+        .active-element {
+          display: inline-block;
+        }
+        .inactive-element {
+          display: none;
+        }
+        .right-icon {
+          color: white;
+        }
+        .right-icon.button {
+          color: @yellow;
+        }
+        .icon-next {
+          transform: rotate(90deg);
+        }
+      }
+      div.section-item {
+        div.right-icon {
+          display: inline-block;
+        }
+      }
     }
   }
 }
 
-
-
 // detailed element
 div.main-container {
+  div.section-container.edit-mode {
+    div.section-list {
+      div.section-item.profile.active {
+        @profile-avatar-size: 80px;
+
+        .profile-avatar {
+          position: absolute;
+          width: @profile-avatar-size;
+          height: @profile-avatar-size;
+          border: 3px solid white;
+          border-radius: @profile-avatar-size / 2;
+          left: calc(~'50% - @{profile-avatar-size} / 2');
+          top: 40px;
+          cursor: pointer;
+
+          &:hover {
+            border: 3px solid @dark-gray;
+          }
+        }
+
+        .note {
+          text-align: center;
+          font-size: @append-text-size;
+          color: @gray;
+          padding: 0 10px;
+          display: inherit;
+        }
+
+        .idcard-box {
+          width: 100%;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          @border-height: 80px;
+          @ratio: 1.58;
+          div.card-size {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: @border-height * @ratio;
+            height: @border-height;
+            border-width: 3px;
+            border-style: dashed;
+            border-color: white;
+            font-size: @append-text-size;
+            color: white;
+            &:hover {
+              border-color: @dark-gray;
+              color: @dark-gray;
+            }
+          }
+        }
+
+        div.under-line {
+          display: block;
+          margin-left: @profile-attribute-width + @profile-attribute-margin * 2;
+          margin-top: 7px;
+        }
+      }
+    }
+  }
   div.section-container {
     div.section-list {
       div.section-item.profile {
@@ -268,26 +426,13 @@ div.main-container {
           vertical-align: middle;
           z-index: 1;
         }
-      }
-      div.section-item.profile.active {
-        @profile-avatar-size: 80px;
-        .profile-avatar {
-          position: absolute;
-          width: @profile-avatar-size;
-          height: @profile-avatar-size;
-          border: 3px solid white;
-          border-radius: @profile-avatar-size / 2;
-          left: calc(~'50% - @{profile-avatar-size} / 2');
-          top: 40px;
-          cursor: pointer;
-          &:hover {
-            border: 3px solid @dark-gray;
-          }
+
+        .idcard-box {
+          display: none;
         }
-        div.constellation {
-          display: block;
-          margin-left: @profile-attribute-width + @profile-attribute-margin * 2;
-          margin-top: 7px;
+
+        .note {
+          display: none;
         }
       }
     }

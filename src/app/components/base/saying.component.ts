@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from '../../services/request.service';
 import {OneWorker} from '../../services/one-worker.service';
 
@@ -10,6 +10,7 @@ import {OneWorker} from '../../services/one-worker.service';
   ]
 })
 export class SayingComponent implements OnInit {
+  @Input('identifier') identifier: string;
   sayingText: string;
 
   constructor(
@@ -24,7 +25,7 @@ export class SayingComponent implements OnInit {
   }
 
   getSaying() {
-    this.oneWorker.do('get-saying', (callback) => {
+    this.oneWorker.do('get-saying' + this.identifier, (callback) => {
       this.request.get('https://saying.6-79.cn/api/sentence', {max_length: 24, consider_author: 1})
         .then((body) => {
           const author = body.author || '佚名';

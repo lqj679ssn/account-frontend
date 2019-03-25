@@ -1,9 +1,9 @@
 <div class="main-container oys">
   <div class="nav">
     <div class="avatar-box">
-      <div class="avatar img-random img-fit"></div>
+      <div class="avatar img-fit" [ngStyle]="{'background-image': userService.user.avatar.url}"></div>
       <div class="text-box">
-        <div class="nickname">欺天大甚</div>
+        <div class="nickname">{{userService.user.nickname}}</div>
         <div class="append-info">
           <div class="verify verified">实名认证</div>
         </div>
@@ -11,7 +11,7 @@
     </div>
     <div class="myweb-qitianbu"></div>
   </div>
-  <app-saying></app-saying>
+  <app-saying [identifier]="'from-home-page'"></app-saying>
   <div class="section-container">
     <div class="section-nav">
       <div class="section-title">消息中心<span class="num">10</span></div>
@@ -23,39 +23,15 @@
       <!--<div class="operator ptr"></div>-->
     </div>
     <div class="section-list">
-      <div class="section-item app">
-        <div class="app-logo img-random img-fit"></div>
+      <div class="section-item app" *ngFor="let frequentApp of appDepot.frequentAppList">
+        <div class="app-logo img-fit" [ngStyle]="{'background-image': frequentApp.logo.url}"></div>
         <div class="app-info">
-          <div class="app-name oxs">浑天匣</div>
-          <div class="app-slogan oxs">分享世界，离自由更近一点。</div>
+          <div class="app-name oxs">{{frequentApp.app_name}}</div>
+          <div class="app-slogan oxs">{{frequentApp.app_desc}}</div>
         </div>
         <div class="right-operator-box">
           <div class="right-operator full">
-            <div class="btn ptr">进入应用</div>
-          </div>
-        </div>
-      </div>
-      <div class="section-item app">
-        <div class="app-logo img-random img-fit"></div>
-        <div class="app-info">
-          <div class="app-name oxs">世界观</div>
-          <div class="app-slogan oxs">看见真实，用双眼。</div>
-        </div>
-        <div class="right-operator-box">
-          <div class="right-operator full">
-            <div class="btn ptr">进入应用</div>
-          </div>
-        </div>
-      </div>
-      <div class="section-item app">
-        <div class="app-logo img-random img-fit"></div>
-        <div class="app-info">
-          <div class="app-name oxs">褶天言</div>
-          <div class="app-slogan oxs">行走的诗人归栖处。</div>
-        </div>
-        <div class="right-operator-box">
-          <div class="right-operator full">
-            <div class="btn ptr">进入应用</div>
+            <div class="btn ptr" (click)="goOauthApp(frequentApp)">进入应用</div>
           </div>
         </div>
       </div>
@@ -63,4 +39,5 @@
     <div class="center-hint ptr">更多应用，快来发现！</div>
   </div>
 </div>
+<app-display #appDisplay [app]="app" [showPage]="showDisplayPage" [childMode]="true"></app-display>
 

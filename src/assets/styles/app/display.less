@@ -1,0 +1,54 @@
+@import "../base/color";
+@import "../base/size";
+
+footer.show {
+  left: 0;
+}
+
+footer.solid {
+  background-color: @gray;
+  div.next-box {
+    color: @blue;
+  }
+}
+
+footer {
+  position: absolute;
+  z-index: 2;
+  left: 100%;
+  width: max-content;
+  min-width: 100%;
+  bottom: 0;
+  height: @footer-height;
+  white-space: nowrap;
+  .transparent(@gray, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  div.license-box {
+    margin-left: 20px;
+    color: @dark-blue;
+
+    div {
+      display: inline-block;
+      font-size: @content-size;
+    }
+
+    div.agree-text {
+      margin-left: 10px;
+    }
+  }
+
+  div.next-box {
+    float: right;
+    margin-right: 20px;
+    color: white;
+
+    div {
+      display: inline-block;
+      font-size: @content-size;
+    }
+  }
+}
+

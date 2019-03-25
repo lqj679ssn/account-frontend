@@ -1,16 +1,19 @@
 import { NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {HomePageComponent} from './components/menu/home-page.component';
-import {AvatarSplitComponent} from './components/base/avatar-split.component';
+import {ImageSplitComponent} from './components/base/image-split.component';
 import {MenuComponent} from './components/menu/menu.component';
 import {UserSettingComponent} from './components/menu/user-setting.component';
 import {UnLoginComponent} from './components/user/un-login.component';
+import {OauthComponent} from './components/app/oauth.component';
+import {ApplyComponent} from './components/app/apply.component';
+import {UpdateComponent} from './components/app/update.component';
 
 const routes: Routes = [
   {
     path: 'user/login',
     component: UnLoginComponent,
-    data: {mode: UnLoginComponent.MODE_LOGIN_PHONE_CODE},
+    data: {mode: UnLoginComponent.MODE_LOGIN_PHONE_PWD},
   },
   {
     path: 'user/register',
@@ -33,7 +36,19 @@ const routes: Routes = [
   },
   {
     path: 'base/avatar/cut',
-    component: AvatarSplitComponent
+    component: ImageSplitComponent
+  },
+  {
+    path: 'oauth',
+    component: OauthComponent,
+  },
+  {
+    path: 'app/apply',
+    component: ApplyComponent,
+  },
+  {
+    path: 'app/update',
+    component: UpdateComponent,
   }
 ];
 

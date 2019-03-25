@@ -25,11 +25,13 @@
     "angular-recaptcha": "^4.2.0",
     "core-js": "^2.5.4",
     "ng-img-crop": "^0.2.0",
-    "rxjs": "~6.2.0",
+    "ngx-markdown": "^1.5.2",
+    "rxjs": "^6.4.0",
+    "rxjs-compat": "^6.4.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.11.4",
+    "@angular-devkit/build-angular": "^0.13.4",
     "@angular/cli": "~6.2.3",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",

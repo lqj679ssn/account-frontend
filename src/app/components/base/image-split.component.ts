@@ -1,22 +1,22 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AvatarSplitService} from '../../services/avatar-split.service';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {ImageSplitService} from '../../services/image-split.service';
 import {fromEvent} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import {Point, Rect, Size} from '../../models/position';
 import {OneWorker} from '../../services/one-worker.service';
 import {Toast} from '../../models/toast';
 import {dataURLtoFile, fileToBase64, fitStyle, getImageOrientation} from '../../services/common.service';
+import {LoadingBoxComponent} from './loading-box.component';
 
 @Component({
-  templateUrl: './avatar-split.component.html',
+  selector: 'app-image-split',
+  templateUrl: './image-split.component.html',
   styleUrls: [
-    '../../../assets/styles/base/avatar-split.less',
+    '../../../assets/styles/base/image-split.less',
   ]
 })
-export class AvatarSplitComponent implements OnInit {
-
+export class ImageSplitComponent {
   constructor(
-    public avatarSplitService: AvatarSplitService,
     public oneWorker: OneWorker,
   ) {
     this.imageLoaded = false;
@@ -31,6 +31,7 @@ export class AvatarSplitComponent implements OnInit {
 
   private MAX_SCALE = 16;
 
+  @ViewChild('loadingBox') loadingBox: LoadingBoxComponent;
   @ViewChild('avatarCanvas') avatarCanvasElement: ElementRef;
   @ViewChild('centerBox') centerBoxElement: ElementRef;
   @ViewChild('touchBoard') touchBoardElement: ElementRef;
@@ -46,26 +47,46 @@ export class AvatarSplitComponent implements OnInit {
   private imageRect: Rect;
   private readonly centerRect: Rect;
   private maxSize: Size;
-  private topLeftOffset: Point;
+  private readonly topLeftOffset: Point;
 
   private touchStatus: number;
   private originPoints: Array<Point>;
 
-  ngOnInit(): void {
-    fromEvent(window, 'resize')
-      .pipe(debounceTime(300))
-      .subscribe(() => {
-        this.getElementSize();
-        this.fitImageToCanvas(true);
-      });
+  private showComponent: boolean;
+  private fadeInComponent: boolean;
 
-    this.canvas = this.avatarCanvasElement.nativeElement;
+  imageFile: File;
+  @Output() onSplit = new EventEmitter<File>();
 
-    this.avatar = this.avatarElement.nativeElement;
-    this.touch = this.touchBoardElement.nativeElement;
-    this.getElementSize();
-    this.loadImage();
-    this.addTouchEvents();
+  hide() {
+    this.fadeInComponent = false;
+    setTimeout(() => {
+      this.showComponent = false;
+    }, 500);
+  }
+
+  show(imageFile: File): void {
+    this.imageFile = imageFile;
+    this.loadingBox.show('正在加载图片');
+    this.showComponent = true;
+    setTimeout(() => {
+      this.fadeInComponent = true;
+
+      fromEvent(window, 'resize')
+        .pipe(debounceTime(300))
+        .subscribe(() => {
+          this.getElementSize();
+          this.fitImageToCanvas(true);
+        });
+
+      this.canvas = this.avatarCanvasElement.nativeElement;
+
+      this.avatar = this.avatarElement.nativeElement;
+      this.touch = this.touchBoardElement.nativeElement;
+      this.getElementSize();
+      this.loadImage();
+      this.addTouchEvents();
+    }, 500);
   }
 
   addTouchEvents() {
@@ -143,7 +164,7 @@ export class AvatarSplitComponent implements OnInit {
   }
 
   loadImage() {
-    const imageFile = this.avatarSplitService.avatar_file;
+    const imageFile = this.imageFile;
     getImageOrientation(imageFile, (orientation) => {
       fileToBase64(imageFile, orientation, (orientedImageFile: File) => {
         const reader = new FileReader();
@@ -159,6 +180,7 @@ export class AvatarSplitComponent implements OnInit {
             this.maxSize.scale(this.MAX_SCALE);
             this.imageRect.width = this.image.width;
             this.imageRect.height = this.image.height;
+            this.loadingBox.hide();
             this.fitImageToCanvas(true);
           };
         };
@@ -212,7 +234,7 @@ export class AvatarSplitComponent implements OnInit {
     this.avatar.style.height = fitStyle(this.imageRect.height);
   }
 
-  uploadAvatar() {
+  returnSplitImage() {
     this.oneWorker.do('upload-avatar', (callback) => {
       const scale = this.imageRect.width / this.image.width;
       this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -227,10 +249,11 @@ export class AvatarSplitComponent implements OnInit {
         this.centerRect.width,
         this.centerRect.height);
       const dataURL = this.canvas.toDataURL('image/jpeg');
-      const file = dataURLtoFile(dataURL, 'avatar-image');
-      setTimeout(() => {
-        callback();
-      }, 1000);
-    }, new Toast(AvatarSplitService.ERROR_IS_UPLOADING));
+      const file = dataURLtoFile(dataURL, 'split-image');
+      this.hide();
+      callback();
+      this.onSplit.emit(file);
+    }, new Toast(ImageSplitService.ERROR_IS_UPLOADING));
   }
+
 }

@@ -1,0 +1,102 @@
+@import "./color";
+@import "./size";
+
+@score-box-total-height: 240px;
+
+div.score-container {
+  div.score-box-mask {
+    z-index: 3;
+    .transparent(black, 0.7);
+    display: none;
+  }
+
+  div.score-box {
+    z-index: 3;
+    position: absolute;
+    bottom: -@score-box-total-height;
+    left: 0;
+    width: 100%;
+    transition: 0.5s;
+
+    div.title-box {
+      background-color: @blue;
+
+      div.title {
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        padding: 10px 0;
+      }
+    }
+  }
+
+  div.score-display-box {
+    background-color: white;
+    padding: 20px;
+
+    @star-ratio-line-height: 14px;
+    @star-size: 12px;
+    div.star-ratio-line {
+      position: relative;
+
+      div.star-line {
+        display: inline-block;
+        div.icon-star-s {
+          line-height: @star-ratio-line-height;
+          vertical-align: middle;
+          font-size: @star-size;
+          color: @dark-gray;
+          display: inline-block;
+        }
+        div.hidden {
+          visibility: hidden;
+        }
+      }
+
+      div.ratio-line {
+        line-height: @star-ratio-line-height;
+        height: 8px;
+        vertical-align: middle;
+        display: inline-block;
+        background-color: @gray;
+        font-size: 14px;
+        margin-left: 10px;
+        width: calc(~'100% - @{star-size} * 5 - 10px');
+        border-radius: 6px;
+        div.percentage-line {
+          height: 8px;
+          background-color: @dark-gray;
+          border-radius: 6px;
+        }
+      }
+    }
+    @my-score-height: 30px;
+    div.my-score-box {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      div.title {
+        color: @middle-gray;
+        font-size: 14px;
+      }
+      div.star-line {
+        div {
+          display: inline-block;
+          color: @dark-gray;
+          font-size: @my-score-height;
+        }
+      }
+    }
+  }
+}
+
+div.score-container.show {
+  div.score-box-mask {
+    display: inherit;
+  }
+
+  div.score-box {
+    bottom: 0;
+  }
+}

@@ -3,10 +3,46 @@ export class ChooseItem {
   value: string;
   id: string;
   selected: boolean;
-  constructor(_: {key, value, id, selected}) {
+  always: boolean;
+  desc: string;
+
+  static fromScope(scope) {
+    return new ChooseItem({
+      key: scope.desc,
+      value: '',
+      id: '' + scope.name,
+      always: scope.always,
+      desc: scope.detail,
+    });
+  }
+
+  static fromPremise(premise) {
+    return new ChooseItem({
+      key: premise.desc,
+      value: '',
+      id: '' + premise.name,
+      desc: premise.detail,
+    });
+  }
+
+  constructor(_: {key, value, id, selected?, always?, desc?, descRight?}) {
     this.key = _.key;
     this.value = _.value;
     this.id = _.id || _.key;
-    this.selected = _.selected;
+    this.desc = _.desc;
+    this.always = [true, false].includes(_.always) ? _.always : null;
+    this.selected = this.always ? true : this.always === false ? false : _.selected || false;
+  }
+
+  get icon() {
+    return this.selected ? 'icon-checked' : 'icon-unchecked';
+  }
+
+  get keyDesc() {
+    if (this.desc) {
+      return `${this.key}（${this.desc}）`;
+    } else {
+      return this.key;
+    }
   }
 }

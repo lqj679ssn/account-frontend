@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {MenuFootBtnService} from '../../services/menu-foot-btn.service';
 import {MenuFootBtn} from '../../models/menu-foot-btn';
 import {Router} from '@angular/router';
+import {JumpService} from '../../services/jump.service';
 
 @Component({
   templateUrl: './menu.component.html',
@@ -12,23 +13,21 @@ import {Router} from '@angular/router';
 })
 export class MenuComponent {
   constructor(
-    private footBtnService: MenuFootBtnService,
+    public footBtnService: MenuFootBtnService,
     private router: Router,
+    private jump: JumpService,
   ) {}
 
   activateBtn(footBtn: MenuFootBtn) {
     switch (footBtn) {
       case this.footBtnService.footBtnHomePage:
-        this.router.navigate(['/menu', 'home-page'])
-          .then();
+        this.jump.homePage();
         break;
       case this.footBtnService.footBtnAppCenter:
-        this.router.navigate(['/menu', 'app-center'])
-          .then();
+        this.jump.appCenter();
         break;
       case this.footBtnService.footBtnUserSetting:
-        this.router.navigate(['/menu', 'user-setting'])
-          .then();
+        this.jump.userSetting();
         break;
     }
   }

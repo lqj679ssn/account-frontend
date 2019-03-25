@@ -1,0 +1,100 @@
+<div class="main-container">
+  <div class="fix-nav">
+    <div class="title" *ngIf="showMagic">申请应用</div>
+  </div>
+  <div class="scroll-container oys" (scroll)="onScroll($event)">
+    <div class="nav">
+      <div class="title-box" *ngIf="!showMagic">申请应用</div>
+    </div>
+
+    <div class="section-container edit-mode" *ngIf="firstMode.active">
+      <div class="section-nav">
+        <div class="section-title">基本信息</div>
+      </div>
+      <div class="section-list">
+        <div class="section-item profile">
+          <div class="profile-attribute oxs middle-line">应用名</div>
+          <input class="profile-value oxs middle-line" placeholder="至少两个字符" [(ngModel)]="app.app_name"/>
+        </div>
+        <div class="section-item profile">
+          <div class="profile-attribute oxs middle-line">应用标语</div>
+          <input class="profile-value oxs middle-line" placeholder="尽量简短" [(ngModel)]="app.app_desc"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-container edit-mode" *ngIf="firstMode.active">
+      <div class="section-nav">
+        <div class="section-title">授权信息</div>
+      </div>
+      <div class="section-list">
+        <div class="section-item profile">
+          <div class="profile-attribute oxs middle-line">回调URI</div>
+          <input class="profile-value oxs middle-line" placeholder="用户授权后的跳转地址" [(ngModel)]="app.redirect_uri"/>
+        </div>
+        <div class="section-item profile" [ngClass]="oauthScope.class">
+          <div class="profile-attribute oxs middle-line">权限</div>
+          <div class="profile-value oxs middle-line ptr" (click)="chooseScope()">{{scopeText}}</div>
+          <div class="right-icon icon-next animate ptr middle-line" *ngIf="app.scopes.length" (click)="oauthInfoRadioList.toggle(oauthScope)"></div>
+          <div class="active-element profile-value oxs middle-line under-line" *ngFor="let scope of app.scopes">{{scope.keyDesc}}</div>
+        </div>
+        <div class="section-item profile" [ngClass]="oauthPremise.class">
+          <div class="profile-attribute oxs middle-line">要求</div>
+          <div class="profile-value oxs middle-line ptr" (click)="choosePremise()">{{premiseText}}</div>
+          <div class="right-icon icon-next animate ptr middle-line" *ngIf="app.premises.length" (click)="oauthInfoRadioList.toggle(oauthPremise)"></div>
+          <div class="active-element profile-value oxs middle-line under-line" *ngFor="let premise of app.premises">{{premise.keyDesc}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-container edit-mode" *ngIf="secondMode.active">
+      <div class="section-nav">
+        <div class="section-title">基本信息</div>
+      </div>
+      <div class="section-list">
+        <div class="section-item profile" [ngClass]="appLogo.class">
+          <div class="profile-attribute oxs middle-line">应用图标</div>
+          <input #logoUploader class="hide" type="file" accept="image/*" (change)="chooseLogoImage($event.target.files)"/>
+          <div class="profile-avatar img-fit profile-logo" [ngStyle]="{'background-image': app.logo.url}" (click)="logoUploader.click()"></div>
+          <div class="right-icon icon-next animate ptr middle-line" (click)="appInfoRadioList.toggle(appLogo)"></div>
+          <div class="active-element change-avatar-hint">点击更换图标</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-container" *ngIf="secondMode.active">
+      <div class="section-nav">
+        <div class="section-title">应用介绍<span class="num">支持Markdown</span></div>
+      </div>
+      <div class="section-list">
+        <div class="section-item">
+          <div class="textarea-box">
+            <textarea rows="7" placeholder="尽量具体，体现应用功能" [(ngModel)]="app.app_info"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="license-box">
+    <div *ngIf="firstMode.active">
+      <div class="icon-checked"></div>
+      <div class="agree-text">我同意<b>齐天簿开发者条款</b></div>
+    </div>
+  </div>
+  <div class="next-box ptr" (click)="createNewApp()" *ngIf="firstMode.active">
+    <div>下一步</div>
+    <div class="icon-next"></div>
+  </div>
+  <div class="next-box ptr" (click)="updateAppInfo()" *ngIf="secondMode.active">
+    <div>完成</div>
+    <div class="icon-next"></div>
+  </div>
+</footer>
+<app-choose-box
+  #chooseBox
+  [boxTitle]="chooseBoxTitle"
+  [chooseList]="chooseList"
+  (onSubmit)="chooseBoxOnSubmit($event)"
+  (onCancel)="chooseBoxOnCancel()"
+></app-choose-box>
+<app-image-split #appImageSplit (onSplit)="uploadLogo($event)"></app-image-split>

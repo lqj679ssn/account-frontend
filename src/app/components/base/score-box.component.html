@@ -1,0 +1,26 @@
+<div class="score-container" [ngClass]="{show: showScoreBox}">
+  <div class="score-box-mask full" (click)="cancel()"></div>
+  <div class="score-box">
+    <div class="title-box">
+      <div class="title">{{app.app_name}}的评分</div>
+    </div>
+    <div class="score-display-box">
+      <div class="star-ratio-line" *ngFor="let stars of [4, 3, 2, 1, 0]">
+        <div class="star-line">
+          <div class="icon-star-s hidden" *ngFor="let _ of getArrayInstance(4 - stars)"></div>
+          <div class="icon-star-s" *ngFor="let _ of getArrayInstance(stars + 1)"></div>
+        </div>
+        <div class="ratio-line">
+          <div class="percentage-line animate" [ngStyle]="{width: app.markPercentage(stars)}"></div>
+        </div>
+      </div>
+      <div class="my-score-box">
+        <div class="title">我的评分</div>
+        <div class="star-line">
+          <div [ngClass]="getMyScoreClass(score)" *ngFor="let score of getArrayInstance(5)" (click)="updateScore(score + 1)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<app-toast></app-toast>-->

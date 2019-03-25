@@ -21,12 +21,16 @@ div.choose-container {
     transition: 0.5s;
 
     div.title-box {
-      background-color: @shine-yellow;
+      background-color: @blue;
 
       div.title {
         font-size: 20px;
         text-align: center;
         color: white;
+        padding: 10px 0;
+      }
+
+      div.title.show-search-box {
         padding: 10px 0 5px;
       }
 
@@ -62,9 +66,12 @@ div.choose-container {
         height: @choose-item-height;
         background-color: white;
         border-bottom: 1px solid @gray;
-        color: @blue;
+        color: @light-blue;
 
-        div.key, div.value {
+        @key-left-padding: 50px;
+        @value-right-padding: 20px;
+
+        div.check-icon, div.key, div.value {
           position: absolute;
           top: 0;
           line-height: @choose-item-height;
@@ -72,22 +79,56 @@ div.choose-container {
           font-size: @content-size;
         }
 
-        div.key {
+        div.check-icon {
           left: 20px;
         }
 
+        div.check-icon.icon-checked {
+          color: @light-blue;
+        }
+
+        @desc-padding-bottom: 1px;
+        div.desc {
+          position: absolute;
+          font-size: @append-text-size;
+          left: @key-left-padding;
+          bottom: @desc-padding-bottom;
+          color: @middle-gray;
+          width: calc(~'100% - @{key-left-padding} - @{value-right-padding}');
+        }
+
+        div.key.show-desc, div.value.show-desc {
+          line-height: @choose-item-height - @append-text-size - @desc-padding-bottom * 2;
+        }
+
+        div.key {
+          left: @key-left-padding;
+        }
+
         div.value {
-          right: 20px;
+          right: @value-right-padding;
         }
 
         &:hover {
           background-color: @gray;
         }
+
+        &:last-child {
+          border-bottom: none;
+        }
       }
 
       div.choose-item.chosen {
-        background-color: @light-yellow;
-        color: @dark-blue;
+        color: @blue;
+      }
+
+      div.choose-item.disabled {
+        background-color: white;
+        color: @dark-gray;
+      }
+
+      div.choose-item.enabled {
+        background-color: @gray;
       }
     }
 
@@ -107,7 +148,7 @@ div.choose-container {
       }
 
       div.op.submit {
-        background-color: @yellow;
+        background-color: @blue;
       }
     }
   }

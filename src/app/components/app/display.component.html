@@ -1,0 +1,74 @@
+<div class="main-container display animate" [ngClass]="{show: showPage, solid: childMode}">
+  <div class="fix-nav">
+    <div class="logo-box full" *ngIf="showMagic">
+      <div class="app-logo img-fit" [ngStyle]="{'background-image': app.logo.url}"></div>
+    </div>
+    <div class="icon-next ptr"></div>
+  </div>
+  <div class="scroll-container oys" (scroll)="onScroll($event)">
+    <div class="app-nav">
+      <div class="app-name">{{app.app_name}}</div>
+      <div class="app-desc">{{app.app_desc}}</div>
+      <div class="app-logo img-fit" [ngStyle]="{'background-image': app.logo.url}"></div>
+    </div>
+    <app-saying [identifier]="'oauth'"></app-saying>
+    <div class="section-container">
+      <div class="section-nav">
+        <div class="section-title">应用介绍</div>
+        <div class="operator ptr"
+             *ngIf="markdownBox.scrollHeight > 150"
+             (click)="foldInfo = !foldInfo"
+        >{{foldText}}</div>
+      </div>
+      <div class="markdown-box" #markdownBox [ngClass]="{fold: foldInfo}">
+        <markdown [data]="app.info"></markdown>
+      </div>
+      <div class="mark-box">
+        <div class="mark-num">{{app.markNum}}</div>
+        <div class="mark-info-star" (click)="appScoreBox.show()">
+          <div class="star-box ptr">
+            <div *ngFor="let star_class of app.starClassList" [ngClass]="star_class"></div>
+          </div>
+          <div class="mark-info">{{app.markPeopleText}}评分，{{app.user_num}}人在用</div>
+        </div>
+        <div class="owner-box">
+          <div class="owner-name ptr">{{app.owner.nickname}}</div>
+          <div class="owner-title">开发者</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-container edit-mode">
+      <div class="section-nav">
+        <div class="section-title">使用信息</div>
+      </div>
+      <div class="section-list">
+        <div class="section-item profile" [ngClass]="appScopes.class">
+          <div class="profile-attribute oxs middle-line">权限</div>
+          <div class="profile-value oxs middle-line" *ngIf="app.scopes.length">需获得{{app.scopes.length}}项权限…</div>
+          <div class="profile-value oxs middle-line" *ngIf="!app.scopes.length">无需获得任何权限</div>
+          <div class="right-icon icon-next animate ptr middle-line" *ngIf="app.scopes.length" (click)="appInfoRadioList.toggle(appScopes)"></div>
+          <div class="active-element profile-value oxs middle-line under-line" *ngFor="let scope of app.scopes">{{scope.keyDesc}}</div>
+        </div>
+        <div class="section-item profile" [ngClass]="appPremises.class">
+          <div class="profile-attribute oxs middle-line">要求</div>
+          <div class="profile-value oxs middle-line" *ngIf="app.premises.length">需满足{{app.premises.length}}项要求…</div>
+          <div class="profile-value oxs middle-line" *ngIf="!app.premises.length">无需满足任何要求</div>
+          <div class="right-icon icon-next animate ptr middle-line" *ngIf="app.premises.length" (click)="appInfoRadioList.toggle(appPremises)"></div>
+          <div class="active-element profile-value oxs middle-line under-line" *ngFor="let premise of app.premises">{{premise.keyDesc}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="animate" [ngClass]="{solid: childMode, show: showPage}">
+  <div class="license-box">
+    <div class="icon-checked"></div>
+    <div class="agree-text">我同意<b>齐天簿服务条款</b></div>
+  </div>
+  <div class="next-box ptr" (click)="oauthApp()">
+    <div>前往</div>
+    <div class="icon-next"></div>
+  </div>
+</footer>
+<app-score-box #appScoreBox [app]="app"></app-score-box>

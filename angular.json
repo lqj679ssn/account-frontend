@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "src/assets/styles/showdown-v2.less"
             ],
             "scripts": [
             ]

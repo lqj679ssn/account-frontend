@@ -1,0 +1,142 @@
+@import "base/color";
+
+@c-bg: #f8f8f8;
+@c-border-hard: #e2e2e2;
+@c-border-soft: #eaeaea;
+@c-link: #4484c2;
+@c-main: @dark-gray;
+@c-title: @dark-blue;
+@c-title-light: @blue;
+
+markdown {
+  font-size: 12px;
+  color: @c-main;
+
+  * {
+    padding: 1px 10px;
+    margin: 5px 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  h1 {
+    color: @dark-blue;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  h2 {
+    background-color: @light-blue;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: 5px;
+    color: white;
+    font-weight: normal;
+    padding: 3px 10px;
+  }
+
+  h3 {
+    color: @dark-blue;
+    font-weight: bold;
+  }
+
+  h4 {
+    color: @blue;
+    //padding: 5px 10px;
+    font-weight: normal;
+  }
+
+  h5 {
+    color: black;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+  }
+
+  h6 {
+    color: black;
+    font-weight: normal;
+  }
+
+  h1, h2 {
+    font-size: 15px;
+  }
+
+  h3, h4 {
+    font-size: 14px;
+  }
+
+  h5, h6 {
+    font-size: 13px;
+  }
+
+  a {
+    color: @c-link;
+    padding: 0 4px;
+  }
+  pre {
+    background: @c-bg;
+    border: 1px solid @c-border-hard;
+    border-radius: 5px;
+    padding: 5px 10px;
+    overflow-x: scroll;
+  }
+  code {
+    background: @c-bg;
+    border: 1px solid @c-border-soft;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin: 0 2px;
+    color: @yellow;
+  }
+  pre code {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  table {
+    border-collapse: collapse;
+    thead {
+      background-color: @light-blue;
+      color: white;
+    }
+    th, td {
+      border: 1px solid @c-border-hard;
+      padding: 5px;
+      white-space: nowrap;
+    }
+    tr:nth-child(even) {
+      background: @c-bg;
+    }
+  }
+
+  a {
+    color: @blue;
+    text-decoration: none;
+    &:hover {
+      color: @dark-blue;
+    }
+  }
+
+  mark {
+    background-color: @yellow;
+    color: white;
+    padding: 0 2px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  div.table-box {
+    max-width: 100%;
+    overflow-x: scroll;
+  }
+
+  li {
+    padding: 1px 0;
+  }
+}
