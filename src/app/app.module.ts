@@ -39,6 +39,8 @@ import { JumpService } from './services/jump.service';
 import { markedOptionsFactory } from './services/common.service';
 import { AppDepotService } from './services/app-depot.service';
 import {ScoreBoxComponent} from './components/base/score-box.component';
+import {InitProfileComponent} from './components/user/init-profile.component';
+import {RegionService} from './services/region.service';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,7 @@ import {ScoreBoxComponent} from './components/base/score-box.component';
     ApplyComponent,
     UpdateComponent,
     ScoreBoxComponent,
+    InitProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ import {ScoreBoxComponent} from './components/base/score-box.component';
     LocalService,
     JumpService,
     AppDepotService,
+    RegionService,
   ],
   bootstrap: [AppComponent]
 })

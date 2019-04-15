@@ -34,7 +34,15 @@ export class JumpService {
     this.handler(['/oauth'], {app_id: appId});
   }
 
+  homePageOauthApp(appId) {
+    this.handler(['/menu', 'home-page', 'oauth'], {app_id: appId});
+  }
+
   loginPage() {
     this.handler(['/user', 'login']);
+  }
+
+  appApply() {
+    this.handler(['/app', 'apply']);
   }
 }

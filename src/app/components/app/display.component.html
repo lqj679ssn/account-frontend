@@ -16,7 +16,7 @@
       <div class="section-nav">
         <div class="section-title">应用介绍</div>
         <div class="operator ptr"
-             *ngIf="markdownBox.scrollHeight > 150"
+             *ngIf="showFoldButton"
              (click)="foldInfo = !foldInfo"
         >{{foldText}}</div>
       </div>
@@ -44,17 +44,16 @@
       <div class="section-list">
         <div class="section-item profile" [ngClass]="appScopes.class">
           <div class="profile-attribute oxs middle-line">权限</div>
-          <div class="profile-value oxs middle-line" *ngIf="app.scopes.length">需获得{{app.scopes.length}}项权限…</div>
+          <div class="profile-value oxs middle-line" *ngIf="app.scopes.length" (click)="appInfoRadioList.toggle(appScopes)">需获得{{app.scopes.length}}项权限…</div>
           <div class="profile-value oxs middle-line" *ngIf="!app.scopes.length">无需获得任何权限</div>
           <div class="right-icon icon-next animate ptr middle-line" *ngIf="app.scopes.length" (click)="appInfoRadioList.toggle(appScopes)"></div>
           <div class="active-element profile-value oxs middle-line under-line" *ngFor="let scope of app.scopes">{{scope.keyDesc}}</div>
         </div>
         <div class="section-item profile" [ngClass]="appPremises.class">
           <div class="profile-attribute oxs middle-line">要求</div>
-          <div class="profile-value oxs middle-line" *ngIf="app.premises.length">需满足{{app.premises.length}}项要求…</div>
-          <div class="profile-value oxs middle-line" *ngIf="!app.premises.length">无需满足任何要求</div>
+          <div class="profile-value oxs middle-line" [ngClass]="{'warn': app.premiseWarn}" (click)="app.premises.length && appInfoRadioList.toggle(appPremises)">{{app.premiseSummaryText}}</div>
           <div class="right-icon icon-next animate ptr middle-line" *ngIf="app.premises.length" (click)="appInfoRadioList.toggle(appPremises)"></div>
-          <div class="active-element profile-value oxs middle-line under-line" *ngFor="let premise of app.premises">{{premise.keyDesc}}</div>
+          <div class="active-element profile-value oxs middle-line under-line" *ngFor="let premise of app.premises"><span [ngClass]="app.premiseCheckIcon(premise)"></span>{{premise.keyDesc}}</div>
         </div>
       </div>
     </div>

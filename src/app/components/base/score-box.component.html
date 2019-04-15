@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="my-score-box">
-        <div class="title">我的评分</div>
+        <div class="title">我的评分（{{myScoreText}}）</div>
         <div class="star-line">
           <div [ngClass]="getMyScoreClass(score)" *ngFor="let score of getArrayInstance(5)" (click)="updateScore(score + 1)"></div>
         </div>

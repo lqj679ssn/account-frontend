@@ -8,6 +8,7 @@ import {UnLoginComponent} from './components/user/un-login.component';
 import {OauthComponent} from './components/app/oauth.component';
 import {ApplyComponent} from './components/app/apply.component';
 import {UpdateComponent} from './components/app/update.component';
+import {InitProfileComponent} from './components/user/init-profile.component';
 
 const routes: Routes = [
   {
@@ -26,12 +27,17 @@ const routes: Routes = [
     data: {mode: UnLoginComponent.MODE_FIND_PWD},
   },
   {
+    path: 'user/init',
+    component: InitProfileComponent,
+  },
+  {
     path: 'menu',
     component: MenuComponent,
     children: [
       { path: '', redirectTo: 'home-page', pathMatch: 'full'},
-      { path: 'home-page', component: HomePageComponent },
+      { path: 'home-page', component: HomePageComponent, data: {oauth: false} },
       { path: 'user-setting', component: UserSettingComponent },
+      { path: 'home-page/oauth', component: HomePageComponent, data: {oauth: true} },
     ]
   },
   {

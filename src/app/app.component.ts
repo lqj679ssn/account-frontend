@@ -7,6 +7,7 @@ import {UserService} from './services/user.service';
 import {User} from './models/user';
 import {AppDepotService} from './services/app-depot.service';
 import {ChooseItem} from './models/choose-item';
+import {RegionService} from './services/region.service';
 
 declare var window: any;
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   regularImage: PreloadImage;
 
   constructor(
+    private regionService: RegionService,
     private reCAPTCHAService: ReCAPTCHAService,
     private api: ApiService,
     private userService: UserService,
@@ -46,7 +48,7 @@ export class AppComponent implements OnInit {
     if (this.userService.tokenLC.loaded) {
       this.loginWithUserToken();
     } else {
-      this.userService.tokenLC.callback = this.loginWithUserToken.bind(this);
+      this.userService.tokenLC.calling(this.loginWithUserToken.bind(this));
     }
 
     // get scope and premise list
@@ -71,17 +73,17 @@ export class AppComponent implements OnInit {
     // get region list
     this.api.getRegions()
       .then((countries) => {
-        this.reCAPTCHAService.regionList = [];
+        this.regionService.regionList = [];
         for (let i = 0; i < countries.length; i++) {
           const country = countries[i];
-          this.reCAPTCHAService.regionList.push(new ChooseItem({
+          this.regionService.regionList.push(new ChooseItem({
             key: '+' + country.num,
             value: country.name + ' ' + country.flag,
             id: '' + i,
           }));
         }
-        this.reCAPTCHAService.regionList[0].selected = true;
-        this.reCAPTCHAService.regionLC.load();
+        this.regionService.regionList[0].selected = true;
+        this.regionService.regionLC.load();
       }).catch(this.api.defaultCatcher);
   }
 

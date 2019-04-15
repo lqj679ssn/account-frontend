@@ -12,7 +12,7 @@ export class ClockService {
   }
   public static startClock() {
     clearInterval(ClockService.time_interval);
-    ClockService.time_interval = setInterval(ClockService.refreshTime, 60000);
+    ClockService.time_interval = setInterval(ClockService.refreshTime, 1000);
     ClockService.refreshTime();
   }
 

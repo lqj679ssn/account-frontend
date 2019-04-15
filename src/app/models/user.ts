@@ -27,7 +27,11 @@ export class User {
   update(_: {nickname?, description?, avatar?, qitian?, allow_qitian_modify?, birthday?, verify_status?, verify_type?}) {
     this.nickname = _.nickname;
     this.description = _.description;
-    this.avatar = new Link(_.avatar);
+    if (_.avatar instanceof Link) {
+      this.avatar = new Link(_.avatar.link);
+    } else {
+      this.avatar = new Link(_.avatar);
+    }
     this.qitian = _.qitian;
     this.allow_qitian_modify = _.allow_qitian_modify;
     this.birthday = _.birthday;
@@ -37,5 +41,17 @@ export class User {
 
   get isVerified() {
     return this.verify_status === User.VERIFY_STATUS_DONE;
+  }
+
+  get isUnverified() {
+    return this.verify_status === User.VERIFY_STATUS_UNVERIFIED;
+  }
+
+  get isAutoVerifying() {
+    return this.verify_status === User.VERIFY_STATUS_UNDER_AUTO;
+  }
+
+  get isManualVerifying() {
+    return this.verify_status === User.VERIFY_STATUS_UNDER_MANUAL;
   }
 }

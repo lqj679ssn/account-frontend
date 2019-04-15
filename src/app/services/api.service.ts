@@ -127,4 +127,19 @@ export class ApiService {
     return this.requestService
       .get('/api/user/idcard', data);
   }
+
+  public autoVerify() {
+    return this.requestService
+      .get('/api/user/verify', {});
+  }
+
+  public confirmVerify(data: {name?, birthday?, idcard?, male?, token?, auto?}) {
+    return this.requestService
+      .post('/api/user/verify', data);
+  }
+
+  public updateUserInfo(data: {nickname?, description?, qitian?, birthday?}) {
+    return this.requestService
+      .put('/api/user/', data);
+  }
 }

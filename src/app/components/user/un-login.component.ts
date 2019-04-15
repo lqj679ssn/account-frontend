@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ReCAPTCHAService} from '../../services/recaptcha.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../services/api.service';
 import {ChooseItem} from '../../models/choose-item';
@@ -13,6 +12,7 @@ import {User} from '../../models/user';
 import {JumpService} from '../../services/jump.service';
 import {template} from '../../services/common.service';
 import {OneWorker} from '../../services/one-worker.service';
+import {RegionService} from '../../services/region.service';
 
 @Component({
   templateUrl: './un-login.component.html',
@@ -62,7 +62,7 @@ export class UnLoginComponent implements OnInit {
   public showPassword: boolean;
 
   constructor(
-    private reCAPTCHAService: ReCAPTCHAService,
+    private regionService: RegionService,
     private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
     private api: ApiService,
@@ -154,19 +154,19 @@ export class UnLoginComponent implements OnInit {
     if (this.userService.userLC.loaded) {
       this.userLoadedCallback();
     } else {
-      this.userService.userLC.callback = this.userLoadedCallback.bind(this);
+      this.userService.userLC.calling(this.userLoadedCallback.bind(this));
     }
 
     // detect region list loaded
-    if (this.reCAPTCHAService.regionLC.loaded) {
+    if (this.regionService.regionLC.loaded) {
       this.regionLoadedCallback();
     } else {
-      this.reCAPTCHAService.regionLC.callback = this.regionLoadedCallback.bind(this);
+      this.regionService.regionLC.calling(this.regionLoadedCallback.bind(this));
     }
   }
 
   regionLoadedCallback() {
-    this.chooseList = this.reCAPTCHAService.regionList;
+    this.chooseList = this.regionService.regionList;
     this.currentRegionCode = this.chooseList[0].key;
   }
 
@@ -328,8 +328,7 @@ export class UnLoginComponent implements OnInit {
           callback();
           this.userService.user = new User(resp.user);
           this.userService.token = resp.token;
-          this.router.navigate(['/menu'])
-            .then();
+          this.jump.homePage();
         }).catch(() => {
           callback();
           // this.loadingBox.hide();
@@ -351,7 +350,7 @@ export class UnLoginComponent implements OnInit {
    * 选择手机地域
    */
   chooseRegion() {
-    if (this.reCAPTCHAService.regionLC.loaded) {
+    if (this.regionService.regionLC.loaded) {
       this.chooseBox.show();
     } else {
       this.toastService.show(new Toast('正在加载，请稍后'));
@@ -395,6 +394,7 @@ export class UnLoginComponent implements OnInit {
       }).then((resp) => {
         this.userService.user = new User(resp.user);
         this.userService.token = resp.token;
+        this.jump.homePage();
       }).catch(this.api.defaultCatcher);
     }
   }

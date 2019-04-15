@@ -4,6 +4,7 @@ import {App} from '../../models/app';
 import {ApiService} from '../../services/api.service';
 import {ToastService} from '../../services/toast.service';
 import {Toast} from '../../models/toast';
+import {OneWorker} from '../../services/one-worker.service';
 
 @Component({
   selector: 'app-score-box',
@@ -23,6 +24,7 @@ export class ScoreBoxComponent {
   constructor(
     private api: ApiService,
     private toastService: ToastService,
+    private oneWorker: OneWorker,
   ) {}
 
   getArrayInstance(number) {
@@ -46,18 +48,25 @@ export class ScoreBoxComponent {
     return this.app.relation.mark > score ? 'icon-star-s' : 'icon-star-l';
   }
 
+  get myScoreText() {
+    return this.app.relation.mark > 0 ? `${this.app.relation.mark}星` : '轻触右侧评分';
+  }
+
   updateScore(score) {
     if (!this.app.relation.bind) {
       this.toastService.show(new Toast('请先体验应用后评分'));
       return;
     }
-    this.api.updateScore(this.app.relation.user_app_id, {mark: score})
-      .then(resp => {
-        this.toastService.show(new Toast('您的评分已更新'));
-        this.app.mark = resp;
-        this.app.updateValue();
-        this.app.relation.mark = score;
-        // this.hide();
-      }).catch(this.api.defaultCatcher);
+    this.oneWorker.do('score-update', (callback) => {
+      this.api.updateScore(this.app.relation.user_app_id, {mark: score})
+        .then(resp => {
+          this.toastService.show(new Toast('您的评分已更新'));
+          this.app.mark = resp;
+          this.app.updateValue();
+          this.app.relation.mark = score;
+          // this.hide();
+          callback();
+        }).catch(callback);
+    }, new Toast('正在更新评分'));
   }
 }

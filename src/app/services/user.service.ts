@@ -9,6 +9,7 @@ import {UserHabitService} from './user-habit.service';
 export class UserService {
   public tokenKey: string;
   private _user: User;
+  private _backUser: User;
   private _token: string;
 
   public tokenLC: LoadCallback;
@@ -35,6 +36,15 @@ export class UserService {
     this.local.save(this.tokenKey, this._token);
   }
 
+  userBackUp() {
+    this._backUser = new User({user_str_id: this.user.user_str_id});
+    this._backUser.update(this._user);
+  }
+
+  restoreBackUp() {
+    this.user.update(this._backUser);
+  }
+
   get token() {
     return this._token;
   }
@@ -50,6 +60,7 @@ export class UserService {
 
   set user(user: User) {
     this._user = user;
+    this.userBackUp();
     this.userLC.load();
     this.userHabitService.changeUser(this._user.user_str_id);
   }

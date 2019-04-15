@@ -215,6 +215,9 @@ div.main-container {
           &::placeholder {
             color: @middle-gray;
           }
+          span.icon-checked, span.icon-unchecked {
+            margin-right: 10px;
+          }
         }
         .active-element {
           display: none;
@@ -230,7 +233,7 @@ div.main-container {
         }
         .right-icon.button {
           background-color: white;
-          border-radius: 5px;
+          border-radius: 15px;
           padding: 0 10px;
         }
       }
@@ -305,6 +308,9 @@ div.main-container {
       div.section-item.profile.inactive {
         .profile-value {
           color: @light-blue;
+        }
+        .profile-value.warn {
+          color: #d04b4b;
         }
       }
       div.section-item.profile.active {
@@ -385,15 +391,17 @@ div.main-container {
             justify-content: center;
             width: @border-height * @ratio;
             height: @border-height;
-            border-width: 3px;
-            border-style: dashed;
-            border-color: white;
+            border: 1px dotted white;
+            border-radius: 10px;
             font-size: @append-text-size;
             color: white;
             &:hover {
               border-color: @dark-gray;
               color: @dark-gray;
             }
+          }
+          div.card-size.text-hide {
+            color: rgba(255, 255, 255, 0) !important;
           }
         }
 

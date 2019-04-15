@@ -1,0 +1,50 @@
+<div class="main-container">
+  <div class="fix-nav">
+    <div class="title" *ngIf="showMagic">完善个人信息</div>
+  </div>
+  <div class="scroll-container oys" (scroll)="onScroll($event)">
+    <div class="nav">
+      <div class="title-box" *ngIf="!showMagic">完善个人信息</div>
+    </div>
+
+    <div class="section-container edit-mode">
+      <div class="section-nav">
+        <div class="section-title">基本信息</div>
+      </div>
+      <div class="section-list">
+        <div class="section-item profile inactive">
+          <div class="profile-attribute oxs middle-line">昵称</div>
+          <input class="profile-value oxs middle-line animate" [(ngModel)]="userService.user.nickname"/>
+        </div>
+        <div class="section-item profile" [ngClass]="userAvatarRadio.class">
+          <div class="profile-attribute oxs middle-line">头像</div>
+          <input #avatarUploader class="hide" type="file" accept="image/*" (change)="chooseAvatarImage($event.target.files)"/>
+          <div class="profile-value oxs middle-line" *ngIf="!userService.user.avatar.link" (click)="avatarUploader.click()">点击上传头像</div>
+          <div class="profile-avatar img-fit" [ngStyle]="{'background-image': userService.user.avatar.url}" (click)="avatarUploader.click()" *ngIf="userService.user.avatar.link"></div>
+          <div class="right-icon icon-next animate ptr middle-line" (click)="userInfoRadioList.toggle(userAvatarRadio)" *ngIf="userService.user.avatar.link"></div>
+          <div class="active-element change-avatar-hint">点击更换头像</div>
+        </div>
+        <div class="section-item profile" [ngClass]="userBirthdayRadio.class">
+          <div class="profile-attribute oxs middle-line">生日星座</div>
+          <div class="inactive-element profile-value oxs middle-line animate" (click)="showBirthdayModifyHint()">{{clockService.getReadableBirthday(userService.user.birthday)}}️</div>
+          <input class="active-element profile-value middle-line"
+                 type="date"
+                 [(ngModel)]="userService.user.birthday"
+                 [readOnly]="!userService.user.isUnverified"
+                 [max]="clockService.getFormattedDate()">
+          <div class="right-icon icon-next animate ptr middle-line" (click)="userInfoRadioList.toggle(userBirthdayRadio)" *ngIf="userService.user.isUnverified"></div>
+          <div class="active-element profile-value under-line oxs middle-line">{{clockService.getConstellation(userService.user.birthday)}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="license-box">
+  </div>
+  <div class="next-box ptr" (click)="updateAppInfo()">
+    <div>完成</div>
+    <div class="icon-next"></div>
+  </div>
+</footer>
+<app-image-split #appImageSplit (onSplit)="uploadAvatar($event)"></app-image-split>

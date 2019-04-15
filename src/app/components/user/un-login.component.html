@@ -37,7 +37,7 @@
         <div class="title">{{pageText.pwdText}}</div>
         <div class="right-button ptr" *ngIf="pageText.showForgetPWD" (click)="goFindPWD()">忘记密码？</div>
         <label>
-          <input [(ngModel)]="password" placeholder="" [type]="showPassword? 'text': 'password'">
+          <input [(ngModel)]="password" placeholder="" [type]="showPassword? 'text': 'password'" (keydown.enter)="buttonDealer()">
           <div class="right-operator">
             <span class="icon-close ptr animate" (click)="password = null" *ngIf="password"></span>
             <span class="ptr animate" [ngClass]="{'icon-eye-open': showPassword, 'icon-eye-close': !showPassword}" (click)="showPassword = !showPassword"></span>

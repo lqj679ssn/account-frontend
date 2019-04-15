@@ -1,16 +1,22 @@
 export class LoadCallback {
   loaded: boolean;
-  callback: any;
+  callbacks: Set<any>;
 
   constructor() {
-    this.callback = null;
     this.loaded = false;
+    this.callbacks = new Set();
   }
 
   load() {
     this.loaded = true;
-    if (this.callback) {
-      this.callback();
+    const callbackList = Array.from(this.callbacks);
+    for (const c of callbackList) {
+      c();
+      this.callbacks.delete(c);
     }
+  }
+
+  calling(callback) {
+    this.callbacks.add(callback);
   }
 }

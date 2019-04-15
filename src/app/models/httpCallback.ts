@@ -15,7 +15,7 @@ class CallbackFunction {
     if (this.isFunction) {
       return this._function;
     } else {
-      return CallbackFunction.handler();
+      return CallbackFunction.handler;
     }
   }
 }

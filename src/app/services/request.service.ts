@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEventType, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpEventType, HttpHeaderResponse, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ToastService} from './toast.service';
 import {Toast} from '../models/toast';
@@ -74,15 +74,17 @@ export class RequestService {
 
   private handleHTTPV2(o: Observable<object>, callback: HttpCallback) {
     o.subscribe((event: any) => {
-      if (event.type === HttpEventType.UploadProgress) {
-        console.log('upload');
+      if ('ok' in event && !event.ok) {
+        callback.failResponseCallback.run(event);
+      } else if (event.type === HttpEventType.UploadProgress) {
+        callback.uploadProgress.run(event);
       } else if (event.type === HttpEventType.DownloadProgress) {
-        console.log('download');
+        callback.downloadProgress.run(event);
       } else if (event.type === HttpEventType.Response) {
-        console.log('response');
         const resp = event.body;
         if (resp.code !== 0) {
           this.toastService.show(new Toast(resp.msg));
+          callback.failResponseCallback.run(resp);
         } else {
           callback.responseCallback.run(resp.body);
         }

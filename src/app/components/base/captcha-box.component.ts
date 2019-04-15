@@ -34,16 +34,16 @@ export class CaptchaBoxComponent implements OnInit {
     if (this.reCAPTCHAService.reCaptchaLC.loaded) {
       this.renderReCAPTCHA();
     } else {
-      this.reCAPTCHAService.reCaptchaLC.callback = this.renderReCAPTCHA.bind(this);
+      this.reCAPTCHAService.reCaptchaLC.calling(this.renderReCAPTCHA.bind(this));
     }
   }
 
   renderReCAPTCHA() {
     this.rendered = true;
+    window['reCAPTCHACallback'] = this.submit.bind(this);
     grecaptcha.render(this.gReCaptcha.nativeElement, {
       'callback': 'reCAPTCHACallback'
     });
-    window['reCAPTCHACallback'] = this.submit.bind(this);
   }
 
   cancel() {

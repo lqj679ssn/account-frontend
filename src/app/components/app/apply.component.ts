@@ -90,19 +90,19 @@ export class ApplyComponent implements OnInit {
     if (this.userService.userLC.loaded) {
       this.userLoadedCallback();
     } else {
-      this.userService.userLC.callback = this.userLoadedCallback.bind(this);
+      this.userService.userLC.calling(this.userLoadedCallback.bind(this));
     }
 
     if (this.appDepot.scopeLC.loaded) {
       this.scopeLoadedCallback();
     } else {
-      this.appDepot.scopeLC.callback = this.scopeLoadedCallback.bind(this);
+      this.appDepot.scopeLC.calling(this.scopeLoadedCallback.bind(this));
     }
 
     if (this.appDepot.premiseLC.loaded) {
       this.premiseLoadedCallback();
     } else {
-      this.appDepot.premiseLC.callback = this.premiseLoadedCallback.bind(this);
+      this.appDepot.premiseLC.calling(this.premiseLoadedCallback.bind(this));
     }
   }
 

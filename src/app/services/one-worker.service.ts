@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ToastService} from './toast.service';
+import {Toast} from '../models/toast';
 
 @Injectable()
 export class OneWorker {
@@ -13,7 +14,7 @@ export class OneWorker {
     if (OneWorker.workers.has(identifier)) {
       if (typeof busyHandler === 'function') {
         busyHandler();
-      } else if (typeof busyHandler === 'object' && busyHandler) {
+      } else if (busyHandler instanceof Toast) {
         this.toastService.show(busyHandler);
       }
       return;

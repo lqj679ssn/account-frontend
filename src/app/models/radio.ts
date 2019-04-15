@@ -38,4 +38,8 @@ export class RadioList {
       radio.active = radio === r;
     }
   }
+
+  deactivate(r: Radio) {
+    r.active = false;
+  }
 }

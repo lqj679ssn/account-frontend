@@ -34,7 +34,7 @@ export class OauthComponent implements OnInit {
       this.api.getAppInfo( this.appId)
         .then(resp => {
           this.app = this.appDepot.push(resp);
-          this.appDisplay.initPage();
+          this.appDisplay.initPage(this.app);
         }).catch(this.api.defaultCatcher);
     });
   }

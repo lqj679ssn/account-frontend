@@ -13,6 +13,7 @@ export class AppDepotService {
   public premiseList: Array<ChooseItem>;
   public scopeLC: LoadCallback;
   public premiseLC: LoadCallback;
+  public appTemplate: App;
 
   constructor(
     private api: ApiService,
@@ -24,15 +25,21 @@ export class AppDepotService {
     this.premiseList = [];
     this.scopeLC = new LoadCallback();
     this.premiseLC = new LoadCallback();
+
+    this.appTemplate = new App({});
   }
 
-  push(app) {
+  push(app, base = false) {
     if (app.app_id in this._appDepot) {
-      this._appDepot[app.app_id].update(app);
+      this._appDepot[app.app_id].update(app, base);
     } else {
       this._appDepot[app.app_id] = new App(app);
     }
     return this._appDepot[app.app_id];
+  }
+
+  get(appId) {
+    return this._appDepot[appId] || new App({});
   }
 
   getFrequentAppList() {
@@ -40,7 +47,7 @@ export class AppDepotService {
       .then(resp => {
         const newFrequentAppList = [];
         for (const app of resp) {
-          const o_app = this.push(app);
+          const o_app = this.push(app, true);
           newFrequentAppList.push(o_app);
         }
         this.frequentAppList = newFrequentAppList;

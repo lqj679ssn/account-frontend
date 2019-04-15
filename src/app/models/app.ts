@@ -24,6 +24,8 @@ export class App {
   starClassList: Array<string>;
 
   logoImage: HTMLImageElement;
+  premiseSummaryText: string;
+  premiseWarn: boolean;
 
   constructor(_: {user_num?, app_desc?, app_id?, app_name?, app_info?, logo?,
     redirect_uri?, owner?, app_secret?, scopes?, premises?, relation?, mark?}) {
@@ -32,27 +34,29 @@ export class App {
   }
 
   update(_: {user_num?, app_desc?, app_name?, app_info?, logo?, redirect_uri?,
-    owner?, app_secret?, scopes?, premises?, relation?, mark?}) {
-    this.user_num = _.user_num || 0;
+    owner?, app_secret?, scopes?, premises?, relation?, mark?}, base = false) {
     this.app_desc = _.app_desc;
     this.app_name = _.app_name;
-    this.app_info = _.app_info;
     this.logo = new Link(_.logo);
-    this.redirect_uri = _.redirect_uri;
-    this.owner = _.owner || new User({});
-    this.app_secret = _.app_secret;
-    this.scopes = [];
-    this.premises = [];
-    this.relation = _.relation || {belong: false, bind: false, mark: 0, rebind: false, user_app_id: null};
-    this.mark = _.mark || [0, 0, 0, 0, 0];
-    if (_.scopes) {
-      for (const scope of _.scopes) {
-        this.scopes.push(ChooseItem.fromScope(scope));
+    this.user_num = _.user_num || 0;
+    if (!base) {
+      this.app_info = _.app_info;
+      this.redirect_uri = _.redirect_uri;
+      this.owner = _.owner || new User({});
+      this.app_secret = _.app_secret;
+      this.scopes = [];
+      this.premises = [];
+      this.relation = _.relation || {belong: false, bind: false, mark: 0, rebind: false, user_app_id: null};
+      this.mark = _.mark || [0, 0, 0, 0, 0];
+      if (_.scopes) {
+        for (const scope of _.scopes) {
+          this.scopes.push(ChooseItem.fromScope(scope));
+        }
       }
-    }
-    if (_.premises) {
-      for (const premise of _.premises) {
-        this.premises.push(ChooseItem.fromPremise(premise));
+      if (_.premises) {
+        for (const premise of _.premises) {
+          this.premises.push(ChooseItem.fromPremise(premise));
+        }
       }
     }
 
@@ -87,6 +91,30 @@ export class App {
       }
       markNumRaw -= 1;
     }
+
+    // update premise summary text
+    let checker = true;
+    let failNum = 0;
+    for (const premise of this.premises) {
+      if (!premise.external || !premise.external.check) {
+        checker = false;
+        break;
+      }
+      if (premise.external.check.identifier !== 'OK') {
+        failNum += 1;
+      }
+    }
+    this.premiseWarn = false;
+    if (!this.premises.length) {
+      this.premiseSummaryText = '无需满足任何要求';
+    } else if (!checker) {
+      this.premiseSummaryText = `需满足${this.premises.length}项要求`;
+    } else if (!failNum) {
+      this.premiseSummaryText = `您满足所有${this.premises.length}项要求`;
+    } else {
+      this.premiseSummaryText = `您不满足${failNum}项要求`;
+      this.premiseWarn = true;
+    }
   }
 
   get info() {
@@ -95,5 +123,15 @@ export class App {
 
   markPercentage(index) {
     return this.mark[index] / this.markPeople * 100 + '%';
+  }
+
+  premiseCheckIcon(premise: ChooseItem) {
+    if (!premise.external || !premise.external.check) {
+      return null;
+    } else if (premise.external.check.identifier === 'OK') {
+      return 'icon-checked';
+    } else {
+      return 'icon-unchecked';
+    }
   }
 }
