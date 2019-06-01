@@ -1,29 +1,24 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpEventType, HttpHeaderResponse, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpEventType, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ToastService} from './toast.service';
 import {Toast} from '../models/toast';
 import {HttpCallback} from '../models/http-callback';
-// import {ProgressHttp} from 'angular-progress-http';
 
 @Injectable()
 export class RequestService {
 
   constructor(
     private http: HttpClient,
-    // private processHttp: ProgressHttp,
     private toastService: ToastService,
   ) {}
   public static token: string = null;
   public static api_host = 'https://ssoapi.6-79.cn';
-  // public static api_host = 'http://localhost:8001';
-  // public static api_host = 'http://172.20.10.3:8001';
 
   public static async_worker = 0;
 
   private static handleError(error: any): Promise<any> {
     RequestService.async_worker -= 1;
-    // console.error(error);
     return Promise.reject(error);
   }
 
