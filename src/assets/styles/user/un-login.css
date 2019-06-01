@@ -1,0 +1,133 @@
+div.main-container div.nav div.title-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+  font-size: 44px;
+  transition: 0.5s;
+  padding-left: 15px;
+}
+@media screen and (max-width: 370px) {
+  div.main-container div.nav div.title-box {
+    font-size: 40px;
+    padding-left: 10px;
+  }
+}
+div.main-container div.un-login-container {
+  margin-top: 15px;
+  width: 100%;
+  height: calc(100% - 140px - 0px - 15px);
+  padding: 0 24px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+div.main-container div.un-login-container div.main-title {
+  padding-top: 11px;
+  color: #EDAC0F;
+  font-size: 20px;
+  font-weight: bold;
+}
+div.main-container div.un-login-container div.sub-title {
+  color: #EDAC0F;
+  font-size: 16px;
+}
+div.main-container div.un-login-container div.input-box {
+  position: relative;
+  margin-top: 25px;
+  height: 70px;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding {
+  position: relative;
+  border-bottom: 1px solid #FFDE8E;
+  height: 70px;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding:hover {
+  border-bottom: 1px solid #FFB500;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding div.title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #EDAC0F;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding div.right-button {
+  font-size: 14px;
+  color: #EDAC0F;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding div.region-selector {
+  background-color: #FFB500;
+  padding: 7px 8px;
+  color: white;
+  position: absolute;
+  bottom: 7px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding div.region-selector:hover {
+  background-color: #EDAC0F;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding input {
+  position: absolute;
+  bottom: 7px;
+  left: 0;
+  padding: 7px 0;
+  font-size: 14px;
+  width: 100%;
+  color: #FFB500;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding input.region-selector {
+  left: 70px;
+  width: calc(100% - 70px);
+}
+div.main-container div.un-login-container div.input-box div.inner-padding div.right-operator {
+  position: absolute;
+  bottom: 7px;
+  font-size: 14px;
+  padding: 7px 0;
+  right: 0;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding div.right-operator span {
+  padding: 0 7px;
+  color: #FFB500;
+}
+div.main-container div.un-login-container div.input-box div.inner-padding div.right-operator span:hover {
+  color: #EDAC0F;
+}
+div.main-container div.footer-choices {
+  position: absolute;
+  bottom: 16px;
+}
+div.main-container div.footer-choices div.choice {
+  margin-bottom: 12px;
+  border: 1px solid #FFB500;
+  border-radius: 15px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  color: #FFB500;
+  font-size: 14px;
+  padding: 0 20px;
+  width: fit-content;
+}
+div.main-container div.footer-choices div.choice:hover {
+  background-color: #FFB500;
+  color: white;
+}
+div.main-container div.icon-box {
+  position: absolute;
+  bottom: 28px;
+  right: 24px;
+}
+div.main-container div.icon-box span.icon-right {
+  font-size: 60px;
+  color: #FFB500;
+}
+div.main-container div.icon-box span.icon-right:hover {
+  color: #EDAC0F;
+}
+div.main-container div.icon-box.left {
+  right: calc(100% - 60px - 24px);
+  transform: rotate(180deg);
+}
+/*# sourceMappingURL=un-login.css.map */

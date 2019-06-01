@@ -1,0 +1,60 @@
+div.loading-box {
+  display: none;
+  filter: opacity(0);
+}
+div.loading-box div.loading-box-mask {
+  background-color: black;
+  filter: opacity(0.7);
+}
+div.loading-box div.canvas {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
+}
+div.loading-box .spinner {
+  align-items: center;
+  border: 5px solid transparent;
+  border-top: 5px solid #FFB500;
+  border-right: 5px solid #FFB500;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+}
+div.loading-box .spinnerMax {
+  animation: spinnerOne 3s linear infinite;
+  height: 80px;
+  width: 80px;
+}
+div.loading-box .spinnerMid {
+  animation: spinnerOne 5s linear infinite;
+  height: 70px;
+  width: 70px;
+}
+div.loading-box .spinnerMin {
+  animation: spinnerOne 5s linear infinite;
+  height: 60px;
+  width: 60px;
+}
+@keyframes spinnerOne {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+div.loading-box div.text {
+  margin-top: 10px;
+  color: #FFB500;
+}
+div.loading-box.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.loading-box.fade-in {
+  filter: opacity(1);
+}
+/*# sourceMappingURL=loading-box.css.map */

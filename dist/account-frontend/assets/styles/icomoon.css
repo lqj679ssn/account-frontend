@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?h7o2do');
+  src:  url('../fonts/icomoon.eot?h7o2do#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?h7o2do') format('truetype'),
+    url('../fonts/icomoon.woff?h7o2do') format('woff'),
+    url('../fonts/icomoon.svg?h7o2do#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon', serif !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-ok:before {
+  content: "\e5ca";
+}
+.icon-close:before {
+  content: "\e5cd";
+}
+.icon-star-s:before {
+  content: "\e838";
+}
+.icon-eye-open:before {
+  content: "\e8f4";
+}
+.icon-star-l:before {
+  content: "\e83a";
+}
+.icon-star-h:before {
+  content: "\e839";
+}
+.icon-eye-close:before {
+  content: "\e8f5";
+}
+.icon-unchecked:before {
+  content: "\e909";
+}
+.icon-edit:before {
+  content: "\e907";
+}
+.icon-next:before {
+  content: "\e908";
+}
+.icon-search-l:before {
+  content: "\e904";
+}
+.icon-setting:before {
+  content: "\e906";
+}
+.icon-fire:before {
+  content: "\e900";
+}
+.icon-user:before {
+  content: "\e901";
+}
+.icon-app:before {
+  content: "\e902";
+}
+.icon-right:before {
+  content: "\e903";
+}
+.icon-search-s:before {
+  content: "\e905";
+}
+.icon-checked:before {
+  content: "\e90a";
+}

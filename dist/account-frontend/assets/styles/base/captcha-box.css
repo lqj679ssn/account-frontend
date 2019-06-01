@@ -1,0 +1,20 @@
+div.captcha-box {
+  display: none;
+  filter: opacity(0);
+}
+div.captcha-box div.captcha-box-mask {
+  background-color: black;
+  filter: opacity(0.7);
+}
+div.captcha-box div.g-re-captcha {
+  z-index: 1;
+}
+div.captcha-box.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.captcha-box.fade-in {
+  filter: opacity(1);
+}
+/*# sourceMappingURL=captcha-box.css.map */

@@ -1,0 +1,158 @@
+div.main-container.display {
+  position: absolute;
+  left: 100%;
+}
+div.main-container.display.show {
+  left: 0;
+}
+div.main-container.display.solid {
+  background-color: #F0F0F0;
+  z-index: 2;
+}
+div.main-container div.fix-nav {
+  position: relative;
+  height: 32px;
+  background-color: #EDAC0F;
+  width: 100%;
+}
+div.main-container div.fix-nav div.icon-next {
+  display: inline-block;
+  transform: rotate(180deg);
+  font-size: 16px;
+  line-height: 32px;
+  width: 32px;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+}
+div.main-container div.fix-nav div.logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.main-container div.fix-nav div.logo-box div.app-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+}
+div.main-container div.fix-nav div.bind-btn {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  background-color: white;
+  line-height: 24px;
+  vertical-align: middle;
+  border-radius: 12px;
+  padding: 0 15px;
+  color: #FFB500;
+  font-size: 14px;
+  margin-top: 4px;
+}
+div.main-container div.fix-nav div.bind-btn:hover {
+  background-color: #F0F0F0;
+}
+div.main-container div.scroll-container {
+  height: calc(100% - 32px);
+}
+div.main-container div.scroll-container div.app-nav {
+  position: relative;
+  height: 124px;
+  background-color: #EDAC0F;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+div.main-container div.scroll-container div.app-nav div.app-name {
+  font-size: 20px;
+  color: #F0F0F0;
+}
+div.main-container div.scroll-container div.app-nav div.app-desc {
+  font-size: 12px;
+  color: #888888;
+}
+div.main-container div.scroll-container div.app-nav div.app-logo {
+  margin-top: 13px;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+}
+div.main-container div.scroll-container div.app-nav div.icon-right {
+  color: white;
+  position: absolute;
+  font-size: 40px;
+  bottom: 13px;
+  right: 20px;
+}
+div.main-container div.scroll-container div.app-nav div.icon-right:hover {
+  color: #F0F0F0;
+}
+div.main-container div.section-container div.fold-box {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+div.main-container div.section-container div.fold-box div.fold-btn {
+  display: inline-block;
+  border-radius: 20px;
+  padding: 5px 15px;
+  background-color: #EDAC0F;
+  color: white;
+  font-size: 12px;
+}
+div.main-container div.section-container div.app-info {
+  padding: 0 25px;
+  width: 100%;
+  color: #BBBBBB;
+  font-size: 14px;
+  text-align: justify;
+}
+div.main-container div.section-container div.markdown-box {
+  padding: 0 10px;
+}
+div.main-container div.section-container div.markdown-box.fold {
+  max-height: 150px;
+  overflow-y: hidden;
+}
+div.main-container div.section-container div.mark-box {
+  padding: 10px 20px;
+}
+div.main-container div.section-container div.mark-box div.mark-num {
+  display: inline-block;
+  line-height: 38px;
+  font-size: 30px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+div.main-container div.section-container div.mark-box div.mark-info-star {
+  display: inline-block;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.mark-box div.mark-info-star div.star-box {
+  line-height: 20px;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.mark-box div.mark-info-star div.star-box div {
+  display: inline-block;
+  font-size: 14px;
+  color: #FFB500;
+}
+div.main-container div.section-container div.mark-box div.mark-info-star div.mark-info {
+  line-height: 18px;
+  font-size: 12px;
+  color: #BBBBBB;
+}
+div.main-container div.section-container div.mark-box div.owner-box {
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  font-size: 12px;
+  text-align: right;
+}
+div.main-container div.section-container div.mark-box div.owner-box div.owner-name {
+  color: #444;
+  font-weight: bold;
+}
+div.main-container div.section-container div.mark-box div.owner-box div.owner-title {
+  color: #BBBBBB;
+}
+/*# sourceMappingURL=app.css.map */

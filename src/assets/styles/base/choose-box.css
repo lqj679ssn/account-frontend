@@ -1,0 +1,125 @@
+div.choose-container div.choose-box-mask {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+div.choose-container div.choose-box {
+  position: absolute;
+  bottom: -445px;
+  left: 0;
+  width: 100%;
+  transition: 0.5s;
+  z-index: 2;
+}
+div.choose-container div.choose-box div.title-box {
+  background-color: #5F80D0;
+}
+div.choose-container div.choose-box div.title-box div.title {
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+}
+div.choose-container div.choose-box div.title-box div.title.show-search-box {
+  padding: 10px 0 5px;
+}
+div.choose-container div.choose-box div.title-box div.search-box {
+  padding-bottom: 10px;
+}
+div.choose-container div.choose-box div.title-box div.search-box span.search-icon {
+  position: absolute;
+  left: 20px;
+  line-height: 30px;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #BBBBBB;
+}
+div.choose-container div.choose-box div.title-box div.search-box input.search-input {
+  height: 30px;
+  margin: 0 10px;
+  border-radius: 15px;
+  padding: 0 30px;
+  font-size: 14px;
+  background-color: white;
+  width: stretch;
+}
+div.choose-container div.choose-box div.choose-list {
+  max-height: 320px;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item {
+  position: relative;
+  height: 40px;
+  background-color: white;
+  border-bottom: 1px solid #F0F0F0;
+  color: #869CD3;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item div.check-icon,
+div.choose-container div.choose-box div.choose-list div.choose-item div.key,
+div.choose-container div.choose-box div.choose-list div.choose-item div.value {
+  position: absolute;
+  top: 0;
+  line-height: 40px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item div.check-icon {
+  left: 20px;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item div.check-icon.icon-checked {
+  color: #869CD3;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item div.desc {
+  position: absolute;
+  font-size: 12px;
+  left: 50px;
+  bottom: 1px;
+  color: #BBBBBB;
+  width: calc(100% - 50px - 20px);
+}
+div.choose-container div.choose-box div.choose-list div.choose-item div.key.show-desc,
+div.choose-container div.choose-box div.choose-list div.choose-item div.value.show-desc {
+  line-height: 26px;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item div.key {
+  left: 50px;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item div.value {
+  right: 20px;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item:hover {
+  background-color: #F0F0F0;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item:last-child {
+  border-bottom: none;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item.chosen {
+  color: #5F80D0;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item.disabled {
+  background-color: white;
+  color: #BBBBBB;
+}
+div.choose-container div.choose-box div.choose-list div.choose-item.enabled {
+  background-color: #F0F0F0;
+}
+div.choose-container div.choose-box div.op-box div.op {
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  color: #F0F0F0;
+  display: inline-block;
+  width: 50%;
+}
+div.choose-container div.choose-box div.op-box div.op.cancel {
+  background-color: #BBBBBB;
+}
+div.choose-container div.choose-box div.op-box div.op.submit {
+  background-color: #5F80D0;
+}
+div.choose-container.show div.choose-box-mask {
+  display: inherit;
+}
+div.choose-container.show div.choose-box {
+  bottom: 0;
+}
+/*# sourceMappingURL=choose-box.css.map */

@@ -1,0 +1,81 @@
+.animate {
+  transition: 0.5s;
+}
+footer {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  min-width: 100%;
+  bottom: 0;
+  height: 56px;
+  background: #EDAC0F;
+  white-space: nowrap;
+  text-align: center;
+  transition: ease-in-out 0.2s;
+}
+footer div.btn {
+  display: inline-block;
+  line-height: 56px;
+  vertical-align: middle;
+  margin: 0 5px;
+  transition: 0.2s;
+  background: #EDAC0F;
+  position: relative;
+}
+footer div.btn span.icon {
+  color: white;
+  transition: 0.5s;
+}
+footer div.btn span.text {
+  color: white;
+  font-size: 10px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  transition: 0.5s;
+}
+footer div.btn.inactive {
+  width: 56px;
+  height: 56px;
+  transition: 0.5s;
+}
+footer div.btn.inactive span.icon {
+  font-size: 20px;
+  filter: opacity(0.3);
+  transition: 0.5s;
+}
+footer div.btn.inactive span.text {
+  bottom: 0;
+  filter: opacity(0);
+  transition: 0.5s;
+}
+footer div.btn.active {
+  margin-top: calc(56px - 74px);
+  box-shadow: 1px 3px 10px 0 gray;
+  width: 74px;
+  height: 74px;
+  transition: 0.5s;
+}
+footer div.btn.active span.icon {
+  filter: opacity(1);
+  font-size: 24px;
+  transition: 0.2s;
+}
+footer div.btn.active span.text {
+  filter: opacity(1);
+  bottom: -5px;
+  transition: 0.5s;
+}
+footer div.join-us {
+  height: 56px;
+  line-height: 56px;
+  font-size: 14px;
+  color: #FFDE8E;
+  vertical-align: middle;
+}
+footer div.join-us span.myweb-huntianxia {
+  margin-left: 6px;
+  font-size: 16px;
+}
+/*# sourceMappingURL=footer.css.map */

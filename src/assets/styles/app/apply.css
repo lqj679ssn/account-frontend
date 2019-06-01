@@ -1,0 +1,79 @@
+div.main-container div.fix-nav {
+  position: relative;
+  height: 32px;
+  background-color: #EDAC0F;
+  width: 100%;
+}
+div.main-container div.fix-nav div.title {
+  line-height: 32px;
+  vertical-align: middle;
+  color: white;
+  padding: 0 10px;
+}
+div.main-container div.scroll-container {
+  height: calc(100% - 32px);
+}
+div.main-container div.scroll-container div.nav {
+  height: 90px;
+}
+div.main-container div.scroll-container div.nav div.title-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+  font-size: 44px;
+  transition: 0.5s;
+  padding-left: 15px;
+}
+div.main-container div.scroll-container div.section-container div.section-list div.section-item div.textarea-box {
+  padding: 8px 10px;
+  width: 100%;
+}
+div.main-container div.scroll-container div.section-container div.section-list div.section-item div.textarea-box textarea {
+  width: 100%;
+  font-size: 14px;
+  color: #BBBBBB;
+}
+div.main-container div.scroll-container div.section-container div.section-list div.section-item div.textarea-box textarea::placeholder {
+  color: #BBBBBB;
+}
+div.main-container div.scroll-container div.section-container div.section-list div.section-item.profile .profile-avatar.profile-logo {
+  border-radius: 3px;
+}
+div.main-container div.scroll-container div.section-container div.section-list div.section-item.profile.active .profile-avatar.profile-logo {
+  border-radius: 10px;
+}
+footer {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  min-width: 100%;
+  bottom: 0;
+  height: 56px;
+  white-space: nowrap;
+  background-color: rgba(240, 240, 240, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+footer div.license-box {
+  margin-left: 20px;
+  color: #223E83;
+}
+footer div.license-box div {
+  display: inline-block;
+  font-size: 14px;
+}
+footer div.license-box div.agree-text {
+  margin-left: 10px;
+}
+footer div.next-box {
+  float: right;
+  margin-right: 20px;
+  color: white;
+}
+footer div.next-box div {
+  display: inline-block;
+  font-size: 14px;
+}
+/*# sourceMappingURL=apply.css.map */

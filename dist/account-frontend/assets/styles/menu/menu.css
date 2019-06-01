@@ -1,0 +1,398 @@
+div.main-container.no-footer {
+  height: 100%;
+}
+div.main-container {
+  background-color: rgba(240, 240, 240, 0.4);
+  transition: 0.5s;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 56px);
+}
+div.main-container div.nav {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  background-color: #EDAC0F;
+  overflow: hidden;
+}
+div.main-container div.nav div.myweb-qitianbu {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 250px;
+  right: 0;
+  top: 20px;
+  transition: 0.5s;
+}
+@media screen and (max-width: 370px) {
+  div.main-container div.nav div.myweb-qitianbu {
+    font-size: 200px;
+    top: 40px;
+  }
+}
+@media screen and (max-width: 330px) {
+  div.main-container div.nav div.myweb-qitianbu {
+    font-size: 150px;
+    top: 60px;
+  }
+}
+div.main-container div.nav div.avatar-box {
+  position: absolute;
+  bottom: 10px;
+  left: 17px;
+}
+div.main-container div.nav div.avatar-box div.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+div.main-container div.nav div.avatar-box div.text-box {
+  position: absolute;
+  left: 68px;
+}
+div.main-container div.nav div.avatar-box div.text-box div.nickname {
+  position: absolute;
+  bottom: 30px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  width: max-content;
+}
+div.main-container div.nav div.avatar-box div.text-box div.append-info {
+  position: absolute;
+  bottom: 4px;
+  width: max-content;
+}
+div.main-container div.nav div.avatar-box div.text-box div.append-info div.boxy {
+  border-radius: 5px;
+  height: 19px;
+  line-height: 19px;
+  vertical-align: middle;
+  color: white;
+  font-size: 12px;
+  padding: 0 5px;
+  display: inline-block;
+  margin-right: 6px;
+}
+div.main-container div.nav div.avatar-box div.text-box div.append-info div.boxy.succ {
+  background-color: #5F80D0;
+}
+div.main-container div.nav div.avatar-box div.text-box div.append-info div.boxy.fail {
+  background-color: #d04b4b;
+}
+div.main-container div.section-container {
+  margin-top: 15px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+div.main-container div.section-container:first-child {
+  margin-top: 0;
+}
+div.main-container div.section-container div.section-nav {
+  position: relative;
+  width: 100%;
+  height: 36px;
+}
+div.main-container div.section-container div.section-nav div.section-title {
+  position: absolute;
+  left: 10px;
+  font-size: 16px;
+  color: #EDAC0F;
+  line-height: 36px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+div.main-container div.section-container div.section-nav div.section-title span.num {
+  background: #EDAC0F;
+  color: white;
+  border-radius: 16px;
+  font-size: small;
+  font-weight: normal;
+  padding: 2px 7px;
+  vertical-align: bottom;
+  margin: 0 5px;
+}
+div.main-container div.section-container div.section-nav div.operator {
+  position: absolute;
+  right: 17px;
+  font-size: 14px;
+  color: #FFB500;
+  line-height: 36px;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.section-nav div.operator-box {
+  position: absolute;
+  right: 17px;
+  font-size: 14px;
+  color: #FFB500;
+  line-height: 36px;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.section-nav div.operator-box div.op {
+  margin-left: 10px;
+  white-space: nowrap;
+  display: inline-block;
+}
+div.main-container div.section-container div.avatar-box {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.main-container div.section-container div.avatar-box div.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 23px;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.avatar-box div.text-box {
+  position: relative;
+  margin-left: 8px;
+  height: 46px;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.avatar-box div.text-box div.nickname {
+  color: #5F80D0;
+  font-size: 18px;
+  font-weight: bold;
+  width: max-content;
+}
+div.main-container div.section-container div.avatar-box div.text-box div.append-info {
+  width: max-content;
+  max-width: 200px;
+  overflow-x: scroll;
+}
+div.main-container div.section-container div.avatar-box div.text-box div.append-info div.desc {
+  height: 19px;
+  line-height: 19px;
+  vertical-align: middle;
+  color: #BBBBBB;
+  font-size: 12px;
+  white-space: nowrap;
+}
+div.main-container div.section-container div.section-list div.section-item.profile {
+  height: auto;
+  padding: 8px 0;
+  position: relative;
+  transition: 0.2s;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .middle-line {
+  height: 23px;
+  line-height: 23px;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .profile-attribute {
+  display: inline-block;
+  font-size: 14px;
+  color: #444;
+  margin: 0 10px;
+  width: 80px;
+  vertical-align: middle;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .profile-value {
+  display: inline-block;
+  font-size: 14px;
+  width: calc(100% - 80px - 2 * 10px - 56px);
+  vertical-align: middle;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .profile-value::placeholder {
+  color: #BBBBBB;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .profile-value span.icon-checked,
+div.main-container div.section-container div.section-list div.section-item.profile .profile-value span.icon-unchecked {
+  margin-right: 10px;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .active-element {
+  display: none;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .inactive-element {
+  display: inline-block;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .right-icon {
+  display: none;
+  float: right;
+  margin-right: 23px;
+  font-size: 14px;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .right-icon.button {
+  background-color: white;
+  border-radius: 15px;
+  padding: 0 10px;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .profile-value {
+  color: #5F80D0;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .right-icon {
+  color: #444;
+}
+div.main-container div.section-container div.section-list div.section-item.app {
+  position: relative;
+  padding: 10px 0;
+}
+div.main-container div.section-container div.section-list div.section-item.app div.app-logo {
+  display: inline-block;
+  vertical-align: top;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+div.main-container div.section-container div.section-list div.section-item.app div.app-info {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 7px;
+  width: calc(100% - 2*20px - 40px - 80px - 2*7px);
+}
+div.main-container div.section-container div.section-list div.section-item.app div.app-info div.app-name {
+  font-size: 16px;
+  color: #FFB500;
+  font-weight: bold;
+}
+div.main-container div.section-container div.section-list div.section-item.app div.app-info div.app-slogan {
+  font-size: 12px;
+  color: #869CD3;
+}
+div.main-container div.section-container div.section-list div.section-item.app div.right-operator-box {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+  margin-left: 7px;
+}
+div.main-container div.section-container div.section-list div.section-item.app div.right-operator-box div.right-operator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+div.main-container div.section-container div.section-list div.section-item.app div.right-operator-box div.btn {
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: #EDAC0F;
+  color: white;
+}
+div.main-container div.section-container div.center-hint {
+  font-size: 14px;
+  color: #FFB500;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.inactive .profile-value {
+  color: #888888;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.inactive .profile-value.warn {
+  color: #d04b4b;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active {
+  background-color: #444;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .profile-attribute {
+  color: white;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .profile-value {
+  color: #F0F0F0;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .active-element {
+  display: inline-block;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .inactive-element {
+  display: none;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .right-icon {
+  color: white;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .right-icon.button {
+  color: #444;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .icon-next {
+  transform: rotate(90deg);
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item div.right-icon {
+  display: inline-block;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .profile-avatar {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 3px solid white;
+  border-radius: 40px;
+  left: calc(50% - 80px / 2);
+  top: 40px;
+  cursor: pointer;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .profile-avatar:hover {
+  border: 3px solid #BBBBBB;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .note {
+  text-align: center;
+  font-size: 12px;
+  color: #F0F0F0;
+  padding: 0 10px;
+  display: inherit;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .idcard-box {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .idcard-box div.card-size {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 126.4px;
+  height: 80px;
+  border: 1px dotted white;
+  border-radius: 10px;
+  font-size: 12px;
+  color: white;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .idcard-box div.card-size:hover {
+  border-color: #BBBBBB;
+  color: #BBBBBB;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .idcard-box div.card-size.text-hide {
+  color: rgba(255, 255, 255, 0) !important;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active div.under-line {
+  display: block;
+  margin-left: 100px;
+  margin-top: 7px;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active div.apply-dev {
+  background: white;
+  border-radius: 15px;
+  height: 24px;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  display: flex;
+  margin: 10px auto 5px;
+  width: fit-content;
+}
+div.main-container div.section-container div.section-list div.section-item.profile div.change-avatar-hint {
+  position: relative;
+  padding: 100px 0 15px;
+  width: 100%;
+  text-align: center;
+  color: #F0F0F0;
+  font-size: 12px;
+}
+div.main-container div.section-container div.section-list div.section-item.profile div.profile-avatar {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  transition: 0.2s;
+  vertical-align: middle;
+  z-index: 1;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .idcard-box {
+  display: none;
+}
+div.main-container div.section-container div.section-list div.section-item.profile .note {
+  display: none;
+}
+/*# sourceMappingURL=menu.css.map */

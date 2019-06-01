@@ -1,0 +1,64 @@
+div.main-container.show {
+  display: inherit;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+div.main-container.fade-in {
+  filter: opacity(1);
+}
+div.main-container {
+  display: none;
+  filter: opacity(0);
+  position: absolute;
+  background-color: black;
+}
+div.main-container div.avatar-full {
+  position: absolute;
+}
+div.main-container canvas {
+  position: absolute;
+  top: calc(50% - 50vw);
+}
+div.main-container div.center-box {
+  position: absolute;
+  width: 100vw;
+  height: 100vw;
+  top: calc(50% - 50vw);
+}
+div.main-container div.center-box div.circle {
+  box-sizing: content-box;
+  border: 823px solid rgba(0, 0, 0, 0.5);
+  border-radius: 3292px;
+  margin-left: -823px;
+  margin-top: -823px;
+}
+@media screen and (min-width: 414px) {
+  div.main-container div.center-box {
+    width: 414px;
+    height: 414px;
+    top: calc(50% - 414px / 2);
+  }
+  div.main-container canvas {
+    top: calc(50% - 414px / 2);
+  }
+}
+div.main-container div.bottom-operation-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+div.main-container div.bottom-operation-box div.btn {
+  line-height: 60px;
+  vertical-align: middle;
+  color: #F0F0F0;
+  padding: 0 40px;
+}
+div.main-container div.bottom-operation-box div.btn.left {
+  float: left;
+}
+div.main-container div.bottom-operation-box div.btn.right {
+  float: right;
+}
+/*# sourceMappingURL=image-split.css.map */

@@ -1,0 +1,44 @@
+footer.show {
+  left: 0;
+}
+footer.solid {
+  background-color: #F0F0F0;
+}
+footer.solid div.next-box {
+  color: #5F80D0;
+}
+footer {
+  position: absolute;
+  z-index: 2;
+  left: 100%;
+  width: max-content;
+  min-width: 100%;
+  bottom: 0;
+  height: 56px;
+  white-space: nowrap;
+  background-color: rgba(240, 240, 240, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+footer div.license-box {
+  margin-left: 20px;
+  color: #223E83;
+}
+footer div.license-box div {
+  display: inline-block;
+  font-size: 14px;
+}
+footer div.license-box div.agree-text {
+  margin-left: 10px;
+}
+footer div.next-box {
+  float: right;
+  margin-right: 20px;
+  color: white;
+}
+footer div.next-box div {
+  display: inline-block;
+  font-size: 14px;
+}
+/*# sourceMappingURL=display.css.map */

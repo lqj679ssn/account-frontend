@@ -1,0 +1,103 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+a {
+  text-decoration: none;
+}
+input,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+  resize: none;
+}
+body {
+  height: 100%;
+  min-height: 568px;
+  overflow: scroll;
+  width: 100%;
+  min-width: 320px;
+}
+.center-container {
+  position: absolute;
+  height: 100%;
+  min-height: 568px;
+  max-height: 823px;
+  width: 100%;
+  min-width: 320px;
+  max-width: 414px;
+  overflow: hidden;
+}
+@media screen and (min-height: 823px) {
+  .center-container {
+    height: 823px;
+    top: calc(50% - 823px / 2);
+  }
+}
+@media screen and (min-width: 414px) {
+  .center-container {
+    width: 414px;
+    left: calc(50% - 414px / 2);
+  }
+}
+.full {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.full.fit-body {
+  min-height: 568px;
+  min-width: 320px;
+}
+.img-fit {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: inherit;
+}
+.img-random {
+  background-image: url("https://unsplash.6-79.cn/random");
+}
+.oxs {
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.oys {
+  overflow-y: scroll;
+}
+.ptr {
+  cursor: pointer;
+}
+.over-hide {
+  overflow: hidden;
+}
+.hide {
+  display: none;
+}
+.ib {
+  display: inline-block;
+}
+.animate {
+  transition: 0.5s;
+}
+.bigger {
+  font-size: larger;
+}
+.bg-blur {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 2*8px);
+  height: calc(100% + 2*8px);
+  filter: brightness(70%) blur(8px);
+  background-color: black;
+}
+/*# sourceMappingURL=styles.css.map */

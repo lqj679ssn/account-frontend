@@ -1,0 +1,44 @@
+div.animate-button div.background {
+  transition: all 0.5s ease 0.5s, width 0.5s ease 0s;
+  background-color: #869CD3;
+}
+div.animate-button div.icon-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.animate-button div.icon-box div.icon {
+  width: 20px;
+  height: 20px;
+  line-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #EDAC0F;
+}
+div.animate-button.fold div.background {
+  width: 40px;
+  max-width: 500px;
+  height: 40px;
+  transform: rotate(45deg);
+  overflow: hidden;
+}
+div.animate-button.fold div.background div.btn-name {
+  white-space: nowrap;
+  overflow: hidden;
+  color: #F0F0F0;
+  font-size: 14px;
+  line-height: 40px;
+  vertical-align: middle;
+  margin-left: 48.28px;
+}
+div.animate-button.fold:hover div.background {
+  transition: all 0.5s ease 0s, width 0.5s ease 0.5s;
+  width: 100%;
+  transform: rotate(0);
+}
+/*# sourceMappingURL=animate-button.css.map */

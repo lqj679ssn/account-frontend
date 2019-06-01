@@ -1,0 +1,80 @@
+div.score-container div.score-box-mask {
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+div.score-container div.score-box {
+  z-index: 3;
+  position: absolute;
+  bottom: -260px;
+  left: 0;
+  width: 100%;
+  transition: 0.5s;
+}
+div.score-container div.score-box div.title-box {
+  background-color: #5F80D0;
+}
+div.score-container div.score-box div.title-box div.title {
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  padding: 10px 0;
+}
+div.score-container div.score-display-box {
+  background-color: white;
+  padding: 20px;
+}
+div.score-container div.score-display-box div.star-ratio-line {
+  position: relative;
+}
+div.score-container div.score-display-box div.star-ratio-line div.star-line {
+  display: inline-block;
+}
+div.score-container div.score-display-box div.star-ratio-line div.star-line div.icon-star-s {
+  line-height: 14px;
+  vertical-align: middle;
+  font-size: 12px;
+  color: #BBBBBB;
+  display: inline-block;
+}
+div.score-container div.score-display-box div.star-ratio-line div.star-line div.hidden {
+  visibility: hidden;
+}
+div.score-container div.score-display-box div.star-ratio-line div.ratio-line {
+  line-height: 14px;
+  height: 8px;
+  vertical-align: middle;
+  display: inline-block;
+  background-color: #F0F0F0;
+  font-size: 14px;
+  margin-left: 10px;
+  width: calc(100% - 12px * 5 - 10px);
+  border-radius: 6px;
+}
+div.score-container div.score-display-box div.star-ratio-line div.ratio-line div.percentage-line {
+  height: 8px;
+  background-color: #BBBBBB;
+  border-radius: 6px;
+}
+div.score-container div.score-display-box div.my-score-box {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+div.score-container div.score-display-box div.my-score-box div.title {
+  color: #BBBBBB;
+  font-size: 14px;
+}
+div.score-container div.score-display-box div.my-score-box div.star-line div {
+  display: inline-block;
+  color: #BBBBBB;
+  font-size: 30px;
+}
+div.score-container.show div.score-box-mask {
+  display: inherit;
+}
+div.score-container.show div.score-box {
+  bottom: 0;
+}
+/*# sourceMappingURL=score-box.css.map */

@@ -1,0 +1,33 @@
+div.toast-container {
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition-duration: 0.5s;
+}
+div.toast-container div.toast-text {
+  font-size: 14px;
+  color: white;
+  background-color: #BBBBBB;
+  line-height: 40px;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 300px;
+  min-width: 100px;
+  border-radius: 20px;
+  padding: 0 20px;
+  text-align: center;
+}
+div.toast-container.active {
+  bottom: 60px;
+  filter: opacity(1);
+}
+div.toast-container.inactive {
+  bottom: -40px;
+  filter: opacity(0);
+}
+/*# sourceMappingURL=toast.css.map */

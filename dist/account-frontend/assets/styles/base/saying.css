@@ -1,0 +1,15 @@
+div.saying-box {
+  background-color: rgba(255, 222, 142, 0.8);
+  height: 0px;
+  width: 100%;
+}
+div.saying-box div.saying-text {
+  color: #223E83;
+  line-height: 0px;
+  vertical-align: middle;
+  padding: 0 15px;
+  font-size: 14px;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+/*# sourceMappingURL=saying.css.map */
