@@ -52,8 +52,8 @@ export class ImageSplitComponent implements OnDestroy {
   private touchStatus: number;
   private originPoints: Array<Point>;
 
-  private showComponent: boolean;
-  private fadeInComponent: boolean;
+  public showComponent: boolean;
+  public fadeInComponent: boolean;
 
   imageFile: File;
   @Output() split = new EventEmitter<File>();

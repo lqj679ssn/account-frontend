@@ -87,4 +87,17 @@ export class InitProfileComponent {
   onScroll($event) {
     this.showMagic = $event.target.scrollTop >= this.magicScrollTop;
   }
+
+  updateUserInfo() {
+    this.api.updateUserInfo({
+      nickname: this.userService.user.nickname,
+      birthday: this.userService.user.birthday,
+      qitian: this.userService.user.qitian,
+      description: this.userService.user.description,
+    })
+      .then(resp => {
+        this.userService.user.update(resp);
+        this.toastService.show(new Toast('更新个人信息成功'));
+      }).catch(this.api.defaultCatcher);
+  }
 }

@@ -34,7 +34,7 @@ export class HomePageComponent implements OnDestroy {
     public userService: UserService,
     public appDepot: AppDepotService,
     private api: ApiService,
-    private jump: JumpService,
+    public jump: JumpService,
   ) {
     this._routerSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {

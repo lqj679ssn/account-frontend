@@ -87,7 +87,7 @@ export class UserSettingComponent implements OnInit {
     private footBtnService: MenuFootBtnService,
     public userService: UserService,
     private oneWorker: OneWorker,
-    private jump: JumpService,
+    public jump: JumpService,
   ) {
     // user info part
     this.editUserInfo = false;
