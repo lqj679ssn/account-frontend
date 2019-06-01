@@ -1,0 +1,180 @@
+@import "../base/color";
+@import "../base/size";
+
+div.main-container.display {
+  position: absolute;
+  left: 100%;
+}
+
+div.main-container.display.show {
+  left: 0;
+}
+
+div.main-container.display.solid {
+  background-color: @gray;
+  z-index: 2;
+}
+
+div.main-container {
+  @fix-nav-height: 32px;
+
+  div.fix-nav {
+    position: relative;
+    height: @fix-nav-height;
+    background-color: @yellow;
+    width: 100%;
+    div.icon-next {
+      display: inline-block;
+      transform: rotate(180deg);
+      font-size: @fix-nav-height / 2;
+      line-height: @fix-nav-height;
+      width: @fix-nav-height;
+      vertical-align: middle;
+      text-align: center;
+      color: white;
+    }
+    div.logo-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @app-logo-size: 26px;
+      div.app-logo {
+        width: @app-logo-size;
+        height: @app-logo-size;
+        border-radius: 5px;
+      }
+    }
+    @bind-btn-height: 24px;
+    div.bind-btn {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      background-color: white;
+      line-height: @bind-btn-height;
+      vertical-align: middle;
+      border-radius: @bind-btn-height / 2;
+      padding: 0 15px;
+      color: @shine-yellow;
+      font-size: 14px;
+      margin-top: @fix-nav-height / 2 - @bind-btn-height / 2;
+      &:hover {
+        background-color: @gray;
+      }
+    }
+  }
+  div.scroll-container {
+    height: calc(~'100% - @{fix-nav-height}');
+    div.app-nav {
+      position: relative;
+      height: @nav-height - 16px;
+      background-color: @yellow;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      div.app-name {
+        font-size: 20px;
+        color: @gray;
+      }
+      div.app-desc {
+        font-size: @append-text-size;
+        color: @dark-gray;
+      }
+      @app-logo-size: 50px;
+      @middle-margin: 38px - @app-logo-size / 2;
+      div.app-logo {
+        margin-top: @middle-margin;
+        border-radius: 5px;
+        width: @app-logo-size;
+        height: @app-logo-size;
+      }
+      div.icon-right {
+        color: white;
+        position: absolute;
+        font-size: 40px;
+        bottom: @middle-margin;
+        right: 20px;
+        &:hover {
+          color: @gray;
+        }
+      }
+    }
+  }
+
+  div.section-container {
+    div.fold-box {
+      text-align: right;
+      margin-top: 10px;
+      margin-right: 20px;
+      div.fold-btn {
+        display: inline-block;
+        border-radius: 20px;
+        padding: 5px 15px;
+        background-color: @yellow;
+        color: white;
+        font-size: @append-text-size;
+      }
+    }
+
+    div.app-info {
+      padding: 0 25px;
+      width: 100%;
+      color: @middle-gray;
+      font-size: @content-size;
+      text-align: justify;
+    }
+    div.markdown-box {
+      padding: 0 10px;
+      //border-bottom: 1px solid #dfdfdf;
+    }
+    div.markdown-box.fold {
+      max-height: 150px;
+      overflow-y: hidden;
+    }
+
+    @star-box-height: 20px;
+    @mark-info-height: 18px;
+    @mark-box-height: @star-box-height + @mark-info-height;
+    div.mark-box {
+      padding: 10px 20px;
+      div.mark-num {
+        display: inline-block;
+        line-height: @mark-box-height;
+        font-size: 30px;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      div.mark-info-star {
+        display: inline-block;
+        vertical-align: middle;
+        div.star-box {
+          line-height: @star-box-height;
+          vertical-align: middle;
+          div {
+            display: inline-block;
+            font-size: 14px;
+            color: @shine-yellow;
+          }
+        }
+        div.mark-info {
+          line-height: @mark-info-height;
+          font-size: 12px;
+          color: @middle-gray;
+        }
+      }
+      div.owner-box {
+        display: inline-block;
+        vertical-align: middle;
+        float: right;
+        font-size: 12px;
+        text-align: right;
+        div.owner-name {
+          color: @light-black;
+          font-weight: bold;
+        }
+        div.owner-title {
+          color: @middle-gray;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@import "../base/color";
+@import "../base/size";
+
+@footer-bg: @yellow;
+@footer-text: @light-yellow;
+@footer-btn-bg: white;
+@footer-btn-font-size: 20px;
+@footer-text-font-size: 10px;
+
+.animate {
+  transition: 0.5s;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  width: max-content;
+  min-width: 100%;
+  bottom: 0;
+  height: @footer-height;
+  background: @footer-bg;
+  white-space: nowrap;
+
+  text-align: center;
+  transition: ease-in-out 0.2s;
+
+  div.btn {
+    display: inline-block;
+    //display: table-cell;
+    line-height: @footer-height;
+    vertical-align: middle;
+    margin: 0 5px;
+    transition: 0.2s;
+    background: @footer-bg;
+    position: relative;
+    span.icon {
+      color: @footer-btn-bg;
+      .animate();
+    }
+    span.text {
+      color: @footer-btn-bg;
+      font-size: @footer-text-font-size;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      text-align: center;
+      .animate();
+    }
+  }
+
+  div.btn.inactive {
+    width: @footer-height;
+    height: @footer-height;
+    .animate();
+    span.icon {
+      font-size: @footer-btn-font-size;
+      filter: opacity(0.3);
+      .animate();
+    }
+    span.text {
+      bottom: 0;
+      filter: opacity(0);
+      .animate();
+    }
+  }
+
+  div.btn.active {
+    margin-top: calc(~'@{footer-height} - @{footer-btn-size}');
+    box-shadow: 1px 3px 10px 0 gray;
+    width: @footer-btn-size;
+    height: @footer-btn-size;
+    transition: 0.5s;
+    span.icon {
+      filter: opacity(1.0);
+      font-size: @footer-btn-font-size * 1.2;
+      transition: 0.2s;
+    }
+    span.text {
+      filter: opacity(1.0);
+      bottom: -5px;
+      .animate();
+    }
+  }
+
+  div.join-us {
+    height: @footer-height;
+    line-height: @footer-height;
+    font-size: 14px;
+    color: @footer-text;
+    vertical-align: middle;
+    span.myweb-huntianxia {
+      margin-left: 6px;
+      font-size: 16px;
+    }
+  }
+}

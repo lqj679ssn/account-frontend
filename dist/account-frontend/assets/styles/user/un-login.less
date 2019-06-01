@@ -1,0 +1,157 @@
+@import "../base/color";
+@import "../base/size";
+
+div.main-container {
+  div.nav {
+    div.title-box {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      color: white;
+      font-size: 44px;
+      transition: 0.5s;
+      padding-left: 15px;
+    }
+    @media screen and (max-width: 370px) {
+      div.title-box {
+        font-size: 40px;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  @lr-padding: 24px;
+  div.un-login-container {
+    @ulc-margin-top: 15px;
+    //@ulc-margin-top: 0px;
+    margin-top: @ulc-margin-top;
+    width: 100%;
+    height: calc(~'100% - @{nav-height} - @{saying-box-height} - @{ulc-margin-top}');
+    padding: 0 @lr-padding;
+    .transparent(white, @main-alpha);
+    div.main-title {
+      padding-top: 11px;
+      color: @yellow;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    div.sub-title {
+      color: @yellow;
+      font-size: 16px;
+    }
+    div.input-box {
+      position: relative;
+      margin-top: 25px;
+      @input-box-height: 70px;
+      height: @input-box-height;
+      //padding: 0 10px;
+
+      div.inner-padding {
+        position: relative;
+        border-bottom: 1px solid @light-yellow;
+        height: @input-box-height;
+        &:hover {
+          border-bottom: 1px solid @shine-yellow;
+        }
+
+        div.title {
+          font-size: 14px;
+          font-weight: bold;
+          color: @yellow;
+        }
+
+        div.right-button {
+          font-size: 14px;
+          color: @yellow;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        div.region-selector {
+          background-color: @shine-yellow;
+          padding: 7px 8px;
+          color: white;
+          position: absolute;
+          bottom: 7px;
+          border-radius: 5px;
+          font-size: 14px;
+          &:hover {
+            background-color: @yellow;
+          }
+        }
+
+        input {
+          position: absolute;
+          bottom: 7px;
+          left: 0;
+          padding: 7px 0;
+          font-size: 14px;
+          width: 100%;
+          color: @shine-yellow;
+        }
+
+        input.region-selector {
+          left: 70px;
+          width: calc(~'100% - 70px');
+        }
+
+        div.right-operator {
+          position: absolute;
+          bottom: 7px;
+          font-size: 14px;
+          padding: 7px 0;
+          right: 0;
+          span {
+            padding: 0 7px;
+            color: @shine-yellow;
+            &:hover {
+              color: @yellow;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  div.footer-choices {
+    position: absolute;
+    bottom: 16px;
+    @choice-height: 30px;
+    div.choice {
+      margin-bottom: 12px;
+      border: 1px solid @shine-yellow;
+      border-radius: @choice-height / 2;
+      height: @choice-height;
+      line-height: @choice-height;
+      vertical-align: middle;
+      color: @shine-yellow;
+      font-size: 14px;
+      padding: 0 20px;
+      width: fit-content;
+      &:hover {
+        background-color: @shine-yellow;
+        color: white;
+      }
+    }
+  }
+
+  @icon-size: 60px;
+  div.icon-box {
+    position: absolute;
+    bottom: 28px;
+    right: @lr-padding;
+    span.icon-right {
+      font-size: @icon-size;
+      color: @shine-yellow;
+      &:hover {
+        color: @yellow;
+      }
+    }
+  }
+
+  div.icon-box.left {
+    right: calc(~'100% - @{icon-size} - @{lr-padding}');
+    transform: rotate(180deg);
+  }
+}

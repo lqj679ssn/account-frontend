@@ -1,0 +1,467 @@
+@import "../base/color";
+@import "../base/size";
+
+
+@section-nav-height: 36px;
+@profile-attribute-width: 80px;
+@profile-attribute-margin: 10px;
+
+div.main-container.no-footer {
+  height: 100%;
+}
+
+// menu-center-component
+div.main-container {
+  .transparent(@gray, 0.4);
+  transition: 0.5s;
+  position: absolute;
+  width: 100%;
+  height: calc(~'100% - @{footer-height}');
+
+  // nav
+  div.nav {
+    position: relative;
+    width: 100%;
+    height: @nav-height;
+    background-color: @yellow;
+    overflow: hidden;
+    div.myweb-qitianbu {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 250px;
+      right: 0;
+      top: 20px;
+      transition: 0.5s;
+    }
+    @media screen and (max-width: 370px) {
+      div.myweb-qitianbu {
+        font-size: 200px;
+        top: 40px;
+      }
+    }
+    @media screen and (max-width: 330px) {
+      div.myweb-qitianbu {
+        font-size: 150px;
+        top: 60px;
+      }
+    }
+    div.avatar-box {
+      position: absolute;
+      bottom: 10px;
+      left: 17px;
+      @avatar-size: 60px;
+      div.avatar {
+        width: @avatar-size;
+        height: @avatar-size;
+        border-radius: @avatar-size / 2;
+      }
+      div.text-box {
+        position: absolute;
+        left: @avatar-size + 8px;
+        div.nickname {
+          position: absolute;
+          bottom: 30px;
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+          width: max-content;
+        }
+        div.append-info {
+          position: absolute;
+          bottom: 4px;
+          width: max-content;
+          @verify-height: 19px;
+          div.boxy {
+            border-radius: 5px;
+            height: @verify-height;
+            line-height: @verify-height;
+            vertical-align: middle;
+            color: white;
+            font-size: @append-text-size;
+            padding: 0 5px;
+            display: inline-block;
+            margin-right: 6px;
+          }
+          div.boxy.succ {
+            background-color: @blue;
+          }
+          div.boxy.fail {
+            background-color: @warn;
+          }
+        }
+      }
+    }
+  }
+
+  div.section-container {
+    margin-top: 15px;
+    width: 100%;
+    .transparent(white, @main-alpha);
+    &:first-child {
+      margin-top: 0;
+    }
+    div.section-nav {
+      //padding-top: 4px;
+      position: relative;
+      width: 100%;
+      height: @section-nav-height;
+      div.section-title {
+        position: absolute;
+        left: 10px;
+        font-size: @section-title-size;
+        color: @yellow;
+        line-height: @section-nav-height;
+        vertical-align: middle;
+        font-weight: bold;
+        span.num {
+          background: @yellow;
+          color: white;
+          border-radius: @section-title-size;
+          font-size: small;
+          font-weight: normal;
+          padding: 2px 7px;
+          vertical-align: bottom;
+          margin: 0 5px;
+        }
+      }
+      div.operator {
+        position: absolute;
+        right: 17px;
+        font-size: @content-size;
+        color: @shine-yellow;
+        line-height: @section-nav-height;
+        vertical-align: middle;
+      }
+      div.operator-box {
+        position: absolute;
+        right: 17px;
+        font-size: @content-size;
+        color: @shine-yellow;
+        line-height: @section-nav-height;
+        vertical-align: middle;
+
+        div.op {
+          margin-left: 10px;
+          white-space: nowrap;
+          display: inline-block;
+        }
+      }
+    }
+
+    div.avatar-box {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @avatar-size: 46px;
+      div.avatar {
+        width: @avatar-size;
+        height: @avatar-size;
+        border-radius: @avatar-size / 2;
+        vertical-align: middle;
+      }
+      div.text-box {
+        position: relative;
+        margin-left: 8px;
+        height: @avatar-size;
+        vertical-align: middle;
+        div.nickname {
+          //position: absolute;
+          //bottom: 30px;
+          color: @blue;
+          font-size: 18px;
+          font-weight: bold;
+          width: max-content;
+        }
+        div.append-info {
+          //position: absolute;
+          //bottom: 4px;
+          width: max-content;
+          max-width: 200px;
+          overflow-x: scroll;
+          @desc-height: 19px;
+          div.desc {
+            height: @desc-height;
+            line-height: @desc-height;
+            vertical-align: middle;
+            color: @middle-gray;
+            font-size: @append-text-size;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    div.section-list {
+      div.section-item.profile {
+        height: auto;
+        padding: 8px 0;
+        position: relative;
+        transition: 0.2s;
+        .middle-line {
+          @item-line-height: 23px;
+          height: @item-line-height;
+          line-height: @item-line-height;
+          vertical-align: middle;
+        }
+        .profile-attribute {
+          display: inline-block;
+          font-size: @content-size;
+          color: @light-black;
+          margin: 0 @profile-attribute-margin;
+          width: @profile-attribute-width;
+          vertical-align: middle;
+        }
+        .profile-value {
+          display: inline-block;
+          font-size: @content-size;
+          width: calc(~'100% - @{profile-attribute-width} - 2 * @{profile-attribute-margin} - 56px');
+          vertical-align: middle;
+          &::placeholder {
+            color: @middle-gray;
+          }
+          span.icon-checked, span.icon-unchecked {
+            margin-right: 10px;
+          }
+        }
+        .active-element {
+          display: none;
+        }
+        .inactive-element {
+          display: inline-block;
+        }
+        .right-icon {
+          display: none;
+          float: right;
+          margin-right: 23px;
+          font-size: @content-size;
+        }
+        .right-icon.button {
+          background-color: white;
+          border-radius: 15px;
+          padding: 0 10px;
+        }
+      }
+      div.section-item.profile {
+        .profile-value {
+          color: @blue;
+        }
+        .right-icon {
+          color: @light-black;
+        }
+      }
+      div.section-item.app {
+        position: relative;
+        padding: 10px 0;
+        @app-logo-size: 40px;
+        @right-operator-width: 80px;
+        @app-item-margin: 20px;
+        @item-element-margin: 7px;
+        div.app-logo {
+          display: inline-block;
+          vertical-align: top;
+          width: @app-logo-size;
+          height: @app-logo-size;
+          border-radius: 5px;
+          margin-left: @app-item-margin;
+        }
+        div.app-info {
+          display: inline-block;
+          vertical-align: top;
+          margin-left: @item-element-margin;
+          width: calc(~'100% - 2*@{app-item-margin} - @{app-logo-size} - @{right-operator-width} - 2*@{item-element-margin}');
+          div.app-name {
+            font-size: @section-title-size;
+            color: @shine-yellow;
+            font-weight: bold;
+          }
+          div.app-slogan {
+            font-size: @append-text-size;
+            color: @light-blue;
+          }
+        }
+        div.right-operator-box {
+          position: relative;
+          display: inline-block;
+          width: @right-operator-width;
+          height: @app-logo-size;
+          margin-left: @item-element-margin;
+          div.right-operator {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+          }
+          div.btn {
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: @append-text-size;
+            background-color: @yellow;
+            color: white;
+          }
+        }
+      }
+    }
+    div.center-hint {
+      font-size: @content-size;
+      color: @shine-yellow;
+      padding: 20px 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  div.section-container.edit-mode {
+    div.section-list {
+      div.section-item.profile.inactive {
+        .profile-value {
+          color: @dark-gray;
+        }
+        .profile-value.warn {
+          color: @warn;
+        }
+      }
+      div.section-item.profile.active {
+        //background-color: @yellow;
+        background-color: @light-black;
+        .profile-attribute {
+          color: white;
+        }
+        .profile-value {
+          color: @gray;
+        }
+        .active-element {
+          display: inline-block;
+        }
+        .inactive-element {
+          display: none;
+        }
+        .right-icon {
+          color: white;
+        }
+        .right-icon.button {
+          color: @light-black;
+        }
+        .icon-next {
+          transform: rotate(90deg);
+        }
+      }
+      div.section-item {
+        div.right-icon {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+// detailed element
+div.main-container {
+  div.section-container.edit-mode {
+    div.section-list {
+      div.section-item.profile.active {
+        @profile-avatar-size: 80px;
+
+        .profile-avatar {
+          position: absolute;
+          width: @profile-avatar-size;
+          height: @profile-avatar-size;
+          border: 3px solid white;
+          border-radius: @profile-avatar-size / 2;
+          left: calc(~'50% - @{profile-avatar-size} / 2');
+          top: 40px;
+          cursor: pointer;
+
+          &:hover {
+            border: 3px solid @middle-gray;
+          }
+        }
+
+        .note {
+          text-align: center;
+          font-size: @append-text-size;
+          color: @gray;
+          padding: 0 10px;
+          display: inherit;
+        }
+
+        .idcard-box {
+          width: 100%;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          @border-height: 80px;
+          @ratio: 1.58;
+          div.card-size {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: @border-height * @ratio;
+            height: @border-height;
+            border: 1px dotted white;
+            border-radius: 10px;
+            font-size: @append-text-size;
+            color: white;
+            &:hover {
+              border-color: @middle-gray;
+              color: @middle-gray;
+            }
+          }
+          div.card-size.text-hide {
+            color: rgba(255, 255, 255, 0) !important;
+          }
+        }
+
+        div.under-line {
+          display: block;
+          margin-left: @profile-attribute-width + @profile-attribute-margin * 2;
+          margin-top: 7px;
+        }
+
+        div.apply-dev {
+          background: white;
+          border-radius: 15px;
+          height: 24px;
+          padding: 0 12px;
+          font-size: 14px;
+          line-height: 24px;
+          text-align: center;
+          display: flex;
+          margin: 10px auto 5px;
+          width: fit-content;
+        }
+      }
+    }
+  }
+  div.section-container {
+    div.section-list {
+      div.section-item.profile {
+        div.change-avatar-hint {
+          position: relative;
+          padding: 100px 0 15px;
+          width: 100%;
+          text-align: center;
+          color: @gray;
+          font-size: @append-text-size;
+        }
+        @profile-avatar-size: 20px;
+        div.profile-avatar {
+          display: inline-block;
+          width: @profile-avatar-size;
+          height: @profile-avatar-size;
+          border-radius: @profile-avatar-size / 2;
+          transition: 0.2s;
+          vertical-align: middle;
+          z-index: 1;
+        }
+
+        .idcard-box {
+          display: none;
+        }
+
+        .note {
+          display: none;
+        }
+      }
+    }
+  }
+}

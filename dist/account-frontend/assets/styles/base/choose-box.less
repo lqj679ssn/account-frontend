@@ -1,0 +1,166 @@
+@import "./color";
+@import "./size";
+
+@search-input-height: 30px;
+@choose-item-height: 40px;
+@choose-list-max-height: @choose-item-height * 8;
+@op-height: 40px;
+@choose-box-total-height: 25px + 30px + @search-input-height + @choose-list-max-height + @op-height;
+
+div.choose-container {
+  div.choose-box-mask {
+    .transparent(black, 0.7);
+    display: none;
+  }
+
+  div.choose-box {
+    position: absolute;
+    bottom: -@choose-box-total-height;
+    left: 0;
+    width: 100%;
+    transition: 0.5s;
+    z-index: 2;
+
+    div.title-box {
+      background-color: @blue;
+
+      div.title {
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        padding: 10px 0;
+      }
+
+      div.title.show-search-box {
+        padding: 10px 0 5px;
+      }
+
+      div.search-box {
+        padding-bottom: 10px;
+
+        span.search-icon {
+          position: absolute;
+          left: 20px;
+          line-height: @search-input-height;
+          vertical-align: middle;
+          font-size: 14px;
+          color: @middle-gray;
+        }
+
+        input.search-input {
+          height: @search-input-height;
+          margin: 0 10px;
+          border-radius: @search-input-height / 2;
+          padding: 0 @search-input-height;
+          font-size: @content-size;
+          background-color: white;
+          width: stretch;
+        }
+      }
+    }
+
+    div.choose-list {
+      max-height: @choose-list-max-height;
+
+      div.choose-item {
+        position: relative;
+        height: @choose-item-height;
+        background-color: white;
+        border-bottom: 1px solid @gray;
+        color: @light-blue;
+
+        @key-left-padding: 50px;
+        @value-right-padding: 20px;
+
+        div.check-icon, div.key, div.value {
+          position: absolute;
+          top: 0;
+          line-height: @choose-item-height;
+          vertical-align: middle;
+          font-size: @content-size;
+        }
+
+        div.check-icon {
+          left: 20px;
+        }
+
+        div.check-icon.icon-checked {
+          color: @light-blue;
+        }
+
+        @desc-padding-bottom: 1px;
+        div.desc {
+          position: absolute;
+          font-size: @append-text-size;
+          left: @key-left-padding;
+          bottom: @desc-padding-bottom;
+          color: @middle-gray;
+          width: calc(~'100% - @{key-left-padding} - @{value-right-padding}');
+        }
+
+        div.key.show-desc, div.value.show-desc {
+          line-height: @choose-item-height - @append-text-size - @desc-padding-bottom * 2;
+        }
+
+        div.key {
+          left: @key-left-padding;
+        }
+
+        div.value {
+          right: @value-right-padding;
+        }
+
+        &:hover {
+          background-color: @gray;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      div.choose-item.chosen {
+        color: @blue;
+      }
+
+      div.choose-item.disabled {
+        background-color: white;
+        color: @middle-gray;
+      }
+
+      div.choose-item.enabled {
+        background-color: @gray;
+      }
+    }
+
+    div.op-box {
+      div.op {
+        height: @op-height;
+        line-height: @op-height;
+        vertical-align: middle;
+        text-align: center;
+        color: @gray;
+        display: inline-block;
+        width: 50%;
+      }
+
+      div.op.cancel {
+        background-color: @middle-gray;
+      }
+
+      div.op.submit {
+        background-color: @blue;
+      }
+    }
+  }
+}
+
+div.choose-container.show {
+  div.choose-box-mask {
+    display: inherit;
+  }
+
+  div.choose-box {
+    bottom: 0;
+  }
+}

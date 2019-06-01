@@ -1,0 +1,72 @@
+@import "color";
+
+div.loading-box {
+  display: none;
+  filter: opacity(0);
+  div.loading-box-mask {
+    background-color: black;
+    filter: opacity(0.7);
+  }
+
+  div.canvas {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1;
+  }
+
+  @max-spinner-size: 80px;
+  @border-size: 5px;
+  .spinner {
+    align-items: center;
+    border: @border-size solid transparent;
+    border-top: @border-size solid @shine-yellow;
+    border-right: @border-size solid @shine-yellow;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .spinnerMax {
+    animation: spinnerOne 3s linear infinite;
+    height: @max-spinner-size;
+    width: @max-spinner-size;
+  }
+
+  .spinnerMid {
+    animation: spinnerOne 5s linear infinite;
+    height: @max-spinner-size - 2 * @border-size;
+    width: @max-spinner-size - 2 * @border-size;
+  }
+
+  .spinnerMin {
+    animation: spinnerOne 5s linear infinite;
+    height: @max-spinner-size - 4 * @border-size;
+    width: @max-spinner-size - 4 * @border-size;
+  }
+
+  @keyframes spinnerOne {
+    0% {
+      transform: rotate(0deg)
+    }
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+
+  div.text {
+    margin-top: 10px;
+    color: @shine-yellow;
+  }
+}
+
+div.loading-box.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.loading-box.fade-in {
+  filter: opacity(1);
+}
