@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -41,6 +42,7 @@ import { AppDepotService } from './services/app-depot.service';
 import {ScoreBoxComponent} from './components/base/score-box.component';
 import {InitProfileComponent} from './components/user/init-profile.component';
 import {RegionService} from './services/region.service';
+import {AppCenterComponent} from './components/menu/app-center.component';
 
 @NgModule({
   declarations: [
@@ -61,12 +63,14 @@ import {RegionService} from './services/region.service';
     UpdateComponent,
     ScoreBoxComponent,
     InitProfileComponent,
+    AppCenterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ClipboardModule,
     MarkdownModule.forRoot({
       provide: MarkedOptions,
       useFactory: markedOptionsFactory,

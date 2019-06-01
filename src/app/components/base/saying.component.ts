@@ -10,7 +10,7 @@ import {OneWorker} from '../../services/one-worker.service';
   ]
 })
 export class SayingComponent implements OnInit {
-  @Input('identifier') identifier: string;
+  @Input() identifier: string;
   sayingText: string;
 
   constructor(

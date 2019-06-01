@@ -1,0 +1,46 @@
+<div class="main-container oys">
+  <div class="section-container">
+    <div class="section-nav">
+      <div class="section-title">全部应用</div>
+    </div>
+    <div class="section-list">
+      <div class="section-item app" *ngFor="let app of appDepot.totalAppList">
+        <div class="app-logo img-fit" [ngStyle]="{'background-image': app.logo.url}"></div>
+        <div class="app-info">
+          <div class="app-name oxs">{{app.app_name}}</div>
+          <div class="app-slogan oxs">{{app.app_desc}}</div>
+        </div>
+        <div class="right-operator-box">
+          <div class="right-operator full">
+            <div class="btn ptr" (click)="goOauthApp(app)">进入应用</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-container" *ngIf="userService.user.is_dev">
+    <div class="section-nav">
+      <div class="section-title">我开发的应用</div>
+    </div>
+    <div class="section-list">
+      <div class="section-item app" *ngFor="let app of appDepot.devAppList">
+        <div class="app-logo img-fit" [ngStyle]="{'background-image': app.logo.url}"></div>
+        <div class="app-info">
+          <div class="app-name oxs">{{app.app_name}}</div>
+          <div class="app-slogan oxs">{{app.app_desc}}</div>
+        </div>
+        <div class="right-operator-box">
+          <div class="right-operator full">
+            <div class="btn ptr" (click)="goUpdateApp(app)">编辑应用</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center-hint ptr" (click)="jump.appApply()">接入更多应用</div>
+  </div>
+
+</div>
+
+<app-display #appDisplay [showPage]="showDisplayPage" [childMode]="true" (backing)="onAppBack()"></app-display>
+

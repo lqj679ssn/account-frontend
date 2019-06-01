@@ -71,7 +71,7 @@ div.main-container {
           bottom: 4px;
           width: max-content;
           @verify-height: 19px;
-          div.verify {
+          div.boxy {
             border-radius: 5px;
             height: @verify-height;
             line-height: @verify-height;
@@ -79,9 +79,14 @@ div.main-container {
             color: white;
             font-size: @append-text-size;
             padding: 0 5px;
+            display: inline-block;
+            margin-right: 6px;
           }
-          div.verify.verified {
+          div.boxy.succ {
             background-color: @blue;
+          }
+          div.boxy.fail {
+            background-color: @warn;
           }
         }
       }
@@ -179,7 +184,7 @@ div.main-container {
             height: @desc-height;
             line-height: @desc-height;
             vertical-align: middle;
-            color: @dark-gray;
+            color: @middle-gray;
             font-size: @append-text-size;
             white-space: nowrap;
           }
@@ -202,7 +207,7 @@ div.main-container {
         .profile-attribute {
           display: inline-block;
           font-size: @content-size;
-          color: @shine-yellow;
+          color: @light-black;
           margin: 0 @profile-attribute-margin;
           width: @profile-attribute-width;
           vertical-align: middle;
@@ -242,7 +247,7 @@ div.main-container {
           color: @blue;
         }
         .right-icon {
-          color: @shine-yellow;
+          color: @light-black;
         }
       }
       div.section-item.app {
@@ -268,6 +273,7 @@ div.main-container {
           div.app-name {
             font-size: @section-title-size;
             color: @shine-yellow;
+            font-weight: bold;
           }
           div.app-slogan {
             font-size: @append-text-size;
@@ -307,15 +313,15 @@ div.main-container {
     div.section-list {
       div.section-item.profile.inactive {
         .profile-value {
-          color: @light-blue;
+          color: @dark-gray;
         }
         .profile-value.warn {
-          color: #d04b4b;
+          color: @warn;
         }
       }
       div.section-item.profile.active {
         //background-color: @yellow;
-        background-color: @shine-yellow;
+        background-color: @light-black;
         .profile-attribute {
           color: white;
         }
@@ -332,7 +338,7 @@ div.main-container {
           color: white;
         }
         .right-icon.button {
-          color: @yellow;
+          color: @light-black;
         }
         .icon-next {
           transform: rotate(90deg);
@@ -365,7 +371,7 @@ div.main-container {
           cursor: pointer;
 
           &:hover {
-            border: 3px solid @dark-gray;
+            border: 3px solid @middle-gray;
           }
         }
 
@@ -396,8 +402,8 @@ div.main-container {
             font-size: @append-text-size;
             color: white;
             &:hover {
-              border-color: @dark-gray;
-              color: @dark-gray;
+              border-color: @middle-gray;
+              color: @middle-gray;
             }
           }
           div.card-size.text-hide {
@@ -409,6 +415,19 @@ div.main-container {
           display: block;
           margin-left: @profile-attribute-width + @profile-attribute-margin * 2;
           margin-top: 7px;
+        }
+
+        div.apply-dev {
+          background: white;
+          border-radius: 15px;
+          height: 24px;
+          padding: 0 12px;
+          font-size: 14px;
+          line-height: 24px;
+          text-align: center;
+          display: flex;
+          margin: 10px auto 5px;
+          width: fit-content;
         }
       }
     }

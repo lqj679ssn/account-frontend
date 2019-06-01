@@ -16,8 +16,8 @@ import {OneWorker} from '../../services/one-worker.service';
 })
 export class ScoreBoxComponent {
   @Input() app: App;
-  @Output() onCancel = new EventEmitter();
-  @Output() onSubmit = new EventEmitter<Array<ChooseItem>>();
+  @Output() cancel = new EventEmitter();
+  @Output() submit = new EventEmitter<Array<ChooseItem>>();
 
   showScoreBox: boolean;
 
@@ -31,9 +31,9 @@ export class ScoreBoxComponent {
     return Array.from(Array(number).keys());
   }
 
-  cancel() {
+  _cancel() {
     this.hide();
-    this.onCancel.emit();
+    this.cancel.emit();
   }
 
   show() {

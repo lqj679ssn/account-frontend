@@ -3,10 +3,10 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ElementRef,
+  ElementRef, EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
+  OnInit, Output,
   ViewChild
 } from '@angular/core';
 import {App} from '../../models/app';
@@ -32,6 +32,8 @@ import {MarkdownComponent} from 'ngx-markdown';
 export class DisplayComponent implements AfterViewChecked {
   @Input() showPage: boolean;
   @Input() childMode: boolean;
+
+  @Output() backing = new EventEmitter();
 
   @ViewChild('appScoreBox') appScoreBox: ScoreBoxComponent;
   @ViewChild('markdownBox') markdownBoxRef: ElementRef;
@@ -104,5 +106,16 @@ export class DisplayComponent implements AfterViewChecked {
           callback();
         });
     });
+  }
+
+  goBack() {
+    if (this.childMode) {
+      this.showPage = false;
+      setTimeout(() => {
+        this.backing.emit();
+      }, 500);
+    } else {
+      history.go(-1);
+    }
   }
 }

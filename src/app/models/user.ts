@@ -18,13 +18,14 @@ export class User {
   user_str_id: string;
   verify_status: number;
   verify_type: number;
+  is_dev: boolean;
 
-  constructor(_: {nickname?, description?, avatar?, qitian?, allow_qitian_modify?, user_str_id?, birthday?, verify_status?, verify_type?}) {
+  constructor(_: {nickname?, description?, avatar?, qitian?, allow_qitian_modify?, user_str_id?, birthday?, verify_status?, verify_type?, is_dev?}) {
     this.user_str_id = _.user_str_id;
     this.update(_);
   }
 
-  update(_: {nickname?, description?, avatar?, qitian?, allow_qitian_modify?, birthday?, verify_status?, verify_type?}) {
+  update(_: {nickname?, description?, avatar?, qitian?, allow_qitian_modify?, birthday?, verify_status?, verify_type?, is_dev?}) {
     this.nickname = _.nickname;
     this.description = _.description;
     if (_.avatar instanceof Link) {
@@ -37,6 +38,7 @@ export class User {
     this.birthday = _.birthday;
     this.verify_status = _.verify_status;
     this.verify_type = _.verify_type;
+    this.is_dev = _.is_dev;
   }
 
   get isVerified() {

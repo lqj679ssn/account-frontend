@@ -12,8 +12,8 @@ declare var grecaptcha: ReCAPTCHA;
   ]
 })
 export class CaptchaBoxComponent implements OnInit {
-  @Output() onCancel = new EventEmitter();
-  @Output() onSubmit = new EventEmitter<string>();
+  @Output() cancel = new EventEmitter();
+  @Output() submit = new EventEmitter<string>();
 
   // ReCaptcha component
   @ViewChild('gReCaptcha') gReCaptcha: ElementRef;
@@ -40,27 +40,25 @@ export class CaptchaBoxComponent implements OnInit {
 
   renderReCAPTCHA() {
     this.rendered = true;
-    window['reCAPTCHACallback'] = this.submit.bind(this);
+    window['reCAPTCHACallback'] = this._submit.bind(this);
     grecaptcha.render(this.gReCaptcha.nativeElement, {
       'callback': 'reCAPTCHACallback'
     });
   }
 
-  cancel() {
-    // console.log('cancel', !this.searchList);
+  _cancel() {
     this.hide();
-    this.onCancel.emit();
+    this.cancel.emit();
   }
 
-  submit() {
+  _submit() {
     this.hide();
-    this.onSubmit.emit(grecaptcha.getResponse());
+    this.submit.emit(grecaptcha.getResponse());
   }
 
   show() {
     if (this.rendered) {
       grecaptcha.reset();
-      // grecaptcha.execute();
     }
     this.showCaptchaBox = true;
     setTimeout(() => {

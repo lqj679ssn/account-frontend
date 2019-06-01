@@ -19,8 +19,8 @@ export class ChooseBoxComponent {
   @Input() minChosenNum: number;
   @Input() fastMode: boolean;
   @Input() keyword: string;
-  @Output() onCancel = new EventEmitter();
-  @Output() onSubmit = new EventEmitter<Array<ChooseItem>>();
+  @Output() cancel = new EventEmitter();
+  @Output() submit = new EventEmitter<Array<ChooseItem>>();
 
   showChooseBox: boolean;
 
@@ -89,7 +89,7 @@ export class ChooseBoxComponent {
         }
       }
       if (this.fastMode && chosenItem && chosenItem.selected) {
-        this.submit();
+        this._submit();
       }
       return;
     }
@@ -106,23 +106,21 @@ export class ChooseBoxComponent {
     }
     if (this.fastMode && this.maxChosenNum && this.minChosenNum &&
       this.maxChosenNum === this.minChosenNum && this.chosenNum === this.maxChosenNum) {
-      this.submit();
+      this._submit();
     }
   }
 
-  cancel() {
-    // console.log('cancel', !this.searchList);
+  _cancel() {
     this.hide();
-    this.onCancel.emit();
+    this.cancel.emit();
   }
 
-  submit() {
+  _submit() {
     if (this.minChosenNum && this.chosenNum < this.minChosenNum) {
       this.toastService.show(new Toast(`你最少需要选择${this.minChosenNum}项`));
     }
     this.hide();
-    // console.log('submit');
-    this.onSubmit.emit(this.chosenItems);
+    this.submit.emit(this.chosenItems);
   }
 
   show() {

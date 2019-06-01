@@ -18,7 +18,7 @@ import {IDCard} from '../../models/IDCard';
 import {ChooseItem} from '../../models/choose-item';
 import {ChooseBoxComponent} from '../base/choose-box.component';
 import {JumpService} from '../../services/jump.service';
-import {HttpCallback} from '../../models/httpCallback';
+import {HttpCallback} from '../../models/http-callback';
 // import {HttpCallback} from '../../models/httpCallback';
 
 @Component({
@@ -409,6 +409,34 @@ export class UserSettingComponent implements OnInit {
   /**
    * Developer Area
    */
+
+  get applyDevText() {
+    if (this.userService.user.isVerified) {
+      return '立即申请';
+    } else {
+      return '无法申请';
+    }
+  }
+
+  get applyDevNote() {
+    if (this.userService.user.isUnverified) {
+      return '实名认证后才能申请开发者';
+    } else {
+      return '恭喜！您拥有开发者申请资格';
+    }
+  }
+
+  applyDev() {
+    if (this.userService.user.isUnverified) {
+      return;
+    }
+    this.api.applyDev()
+      .then(resp => {
+        this.userService.user.update(resp);
+        this.toastService.show(new Toast('开发者申请成功'));
+      }).catch(this.api.defaultCatcher);
+  }
+
   applyApp() {
     this.jump.appApply();
   }

@@ -16,6 +16,7 @@ export class App {
   premises: Array<ChooseItem>;
   mark: Array<number>;
   user_num: number;
+  create_time: number;
   relation: {belong: boolean, bind: boolean, mark: number, rebind: boolean, user_app_id: string};
 
   markPeople: number;
@@ -28,8 +29,9 @@ export class App {
   premiseWarn: boolean;
 
   constructor(_: {user_num?, app_desc?, app_id?, app_name?, app_info?, logo?,
-    redirect_uri?, owner?, app_secret?, scopes?, premises?, relation?, mark?}) {
+    redirect_uri?, owner?, app_secret?, scopes?, premises?, relation?, mark?, create_time?}) {
     this.app_id = _.app_id;
+    this.create_time = _.create_time;
     this.update(_);
   }
 
@@ -133,5 +135,9 @@ export class App {
     } else {
       return 'icon-unchecked';
     }
+  }
+
+  get oauth_uri() {
+    return `${window.location.origin}/oauth/?app_id=${this.app_id}`;
   }
 }

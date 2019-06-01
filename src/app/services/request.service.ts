@@ -3,7 +3,7 @@ import {HttpClient, HttpEventType, HttpHeaderResponse, HttpHeaders, HttpRequest,
 import {Observable} from 'rxjs';
 import {ToastService} from './toast.service';
 import {Toast} from '../models/toast';
-import {HttpCallback} from '../models/httpCallback';
+import {HttpCallback} from '../models/http-callback';
 // import {ProgressHttp} from 'angular-progress-http';
 
 @Injectable()
@@ -28,31 +28,31 @@ export class RequestService {
   }
 
   static getOption(url, data = {}) {
-    const httpHeaders = new HttpHeaders({'Token': this.isSSOServer(url) ? (RequestService.token || '') : ''});
+    const httpHeaders = new HttpHeaders({'Token': this.isAPIServer(url) ? (RequestService.token || '') : ''});
     return {
       headers: httpHeaders,
       params: data,
-      withCredentials: this.isSSOServer(url),
+      withCredentials: this.isAPIServer(url),
     };
   }
 
   static getOptionV2(url, data: any = null) {
-    const httpHeaders = new HttpHeaders({'Token': this.isSSOServer(url) ? (RequestService.token || '') : ''});
+    const httpHeaders = new HttpHeaders({'Token': this.isAPIServer(url) ? (RequestService.token || '') : ''});
     return {
       headers: httpHeaders,
       params: data,
-      withCredentials: this.isSSOServer(url),
+      withCredentials: this.isAPIServer(url),
       reportProgress: true,
       // responseType: 'json',
     };
   }
 
-  static isSSOServer(url: string) {
+  static isAPIServer(url: string) {
     return url[0] === '/';
   }
 
   static fillUrl(url: string) {
-    if (this.isSSOServer(url)) {
+    if (this.isAPIServer(url)) {
       return RequestService.api_host + url;
     } else {
       return url;

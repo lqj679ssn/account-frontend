@@ -1,15 +1,17 @@
 <div class="main-container oys">
   <div class="nav">
+    <div class="myweb-qitianbu"></div>
     <div class="avatar-box">
       <div class="avatar img-fit" [ngStyle]="{'background-image': userService.user.avatar.url}"></div>
       <div class="text-box">
         <div class="nickname">{{userService.user.nickname}}</div>
         <div class="append-info">
-          <div class="verify verified">实名认证</div>
+          <div class="boxy succ" *ngIf="userService.user.isVerified">实名认证</div>
+          <div class="boxy fail" *ngIf="userService.user.isUnverified">未实名认证</div>
+          <div class="boxy succ" *ngIf="userService.user.is_dev">开发者</div>
         </div>
       </div>
     </div>
-    <div class="myweb-qitianbu"></div>
   </div>
   <app-saying [identifier]="'from-home-page'"></app-saying>
   <div class="section-container">
@@ -20,7 +22,6 @@
   <div class="section-container">
     <div class="section-nav">
       <div class="section-title">常用应用</div>
-      <!--<div class="operator ptr"></div>-->
     </div>
     <div class="section-list">
       <div class="section-item app" *ngFor="let frequentApp of appDepot.frequentAppList">
@@ -36,8 +37,8 @@
         </div>
       </div>
     </div>
-    <div class="center-hint ptr">更多应用，快来发现！</div>
+    <div class="center-hint ptr" (click)="jump.appCenter()">更多应用，快来发现！</div>
   </div>
 </div>
-<app-display #appDisplay [showPage]="showDisplayPage" [childMode]="true"></app-display>
+<app-display #appDisplay [showPage]="showDisplayPage" [childMode]="true" (backing)="onAppBack()"></app-display>
 

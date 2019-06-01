@@ -9,6 +9,7 @@ import {OauthComponent} from './components/app/oauth.component';
 import {ApplyComponent} from './components/app/apply.component';
 import {UpdateComponent} from './components/app/update.component';
 import {InitProfileComponent} from './components/user/init-profile.component';
+import {AppCenterComponent} from './components/menu/app-center.component';
 
 const routes: Routes = [
   {
@@ -36,8 +37,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home-page', pathMatch: 'full'},
       { path: 'home-page', component: HomePageComponent, data: {oauth: false} },
+      { path: 'app-center', component: AppCenterComponent },
       { path: 'user-setting', component: UserSettingComponent },
       { path: 'home-page/oauth', component: HomePageComponent, data: {oauth: true} },
+      { path: 'app-center/oauth', component: AppCenterComponent, data: {oauth: true} },
     ]
   },
   {

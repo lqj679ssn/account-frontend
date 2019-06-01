@@ -13,9 +13,14 @@ export class JumpService {
   handler(commands, params = null) {
     this.router.navigate(commands, {queryParams: params})
       .then()
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         this.toastService.show(new Toast('跳转失败'));
       });
+  }
+
+  outsideHandler(link) {
+    window.location.href = link;
   }
 
   homePage() {
@@ -38,11 +43,31 @@ export class JumpService {
     this.handler(['/menu', 'home-page', 'oauth'], {app_id: appId});
   }
 
+  appCenterOauthApp(appId) {
+    this.handler(['/menu', 'app-center', 'oauth'], {app_id: appId});
+  }
+
   loginPage() {
     this.handler(['/user', 'login']);
   }
 
   appApply() {
     this.handler(['/app', 'apply']);
+  }
+
+  appUpdate(appId) {
+    this.handler(['/app', 'update'], {app_id: appId});
+  }
+
+  createIssue() {
+    this.outsideHandler('https://github.com/lqj679ssn/account-frontend/issues/new');
+  }
+
+  viewCode() {
+    this.outsideHandler('https://github.com/lqj679ssn/account-frontend');
+  }
+
+  mailMe() {
+    this.outsideHandler('mailto:i@6-79.cn');
   }
 }

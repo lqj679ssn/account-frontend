@@ -75,12 +75,12 @@
     [maxChosenNum]="1"
     [minChosenNum]="1"
     [chooseList]="chooseList"
-    (onSubmit)="chooseBoxOnSubmit($event)"
-    (onCancel)="chooseBoxOnCancel()"
+    (submit)="chooseBoxOnSubmit($event)"
+    (cancel)="chooseBoxOnCancel()"
   ></app-choose-box>
   <app-captcha-box
     #captchaBox
-    (onSubmit)="captchaBoxOnSubmit($event)"
+    (submit)="captchaBoxOnSubmit($event)"
   ></app-captcha-box>
   <app-loading-box #loadingBox></app-loading-box>
 </div>

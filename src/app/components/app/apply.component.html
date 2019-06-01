@@ -1,10 +1,10 @@
 <div class="main-container">
   <div class="fix-nav">
-    <div class="title" *ngIf="showMagic">申请应用</div>
+    <div class="title" *ngIf="showMagic">应用接入</div>
   </div>
   <div class="scroll-container oys" (scroll)="onScroll($event)">
     <div class="nav">
-      <div class="title-box" *ngIf="!showMagic">申请应用</div>
+      <div class="title-box" *ngIf="!showMagic">应用接入</div>
     </div>
 
     <div class="section-container edit-mode" *ngIf="firstMode.active">
@@ -94,7 +94,7 @@
   #chooseBox
   [boxTitle]="chooseBoxTitle"
   [chooseList]="chooseList"
-  (onSubmit)="chooseBoxOnSubmit($event)"
-  (onCancel)="chooseBoxOnCancel()"
+  (submit)="chooseBoxOnSubmit($event)"
+  (cancel)="chooseBoxOnCancel()"
 ></app-choose-box>
-<app-image-split #appImageSplit (onSplit)="uploadLogo($event)"></app-image-split>
+<app-image-split #appImageSplit (split)="uploadLogo($event)"></app-image-split>

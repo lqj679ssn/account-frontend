@@ -36,6 +36,10 @@
       </div>
       <div class="section-list">
         <div class="section-item profile">
+          <div class="profile-attribute oxs middle-line">授权页面</div>
+          <div class="profile-value oxs middle-line ptr" ngxClipboard [cbContent]="app.oauth_uri" (cbOnSuccess)="copyOAuthSucc()">点击复制</div>
+        </div>
+        <div class="section-item profile">
           <div class="profile-attribute oxs middle-line">回调URI</div>
           <input class="profile-value oxs middle-line" placeholder="用户授权后的跳转地址" [(ngModel)]="app.redirect_uri"/>
         </div>
@@ -83,7 +87,7 @@
   #chooseBox
   [boxTitle]="chooseBoxTitle"
   [chooseList]="chooseList"
-  (onSubmit)="chooseBoxOnSubmit($event)"
-  (onCancel)="chooseBoxOnCancel()"
+  (submit)="chooseBoxOnSubmit($event)"
+  (cancel)="chooseBoxOnCancel()"
 ></app-choose-box>
-<app-image-split #appImageSplit (onSplit)="uploadLogo($event)"></app-image-split>
+<app-image-split #appImageSplit (split)="uploadLogo($event)"></app-image-split>

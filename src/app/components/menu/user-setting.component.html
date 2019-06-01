@@ -107,14 +107,17 @@
         <div class="profile-attribute oxs middle-line"></div>
         <div class="right-icon animate ptr middle-line button" (click)="verifyButtonClick()">{{verifyButtonText}}</div>
       </div>
-      <div class="section-item profile" [ngClass]="accountDevRadio.class">
+      <div class="section-item profile" [ngClass]="accountDevRadio.class" *ngIf="!userService.user.is_dev">
         <div class="profile-attribute oxs middle-line">开发者申请</div>
-        <div class="profile-value oxs middle-line">成为开发者，让你的应用连接世界</div>
+        <div class="inactive-element profile-value oxs middle-line">成为开发者，让你的应用连接世界</div>
+        <div class="right-icon icon-next animate ptr middle-line" (click)="accountInfoRadioList.toggle(accountDevRadio)"></div>
+        <div class="active-element note">{{applyDevNote}}</div>
+        <div class="active-element apply-dev ptr" (click)="applyDev()">{{applyDevText}}</div>
       </div>
     </div>
   </div>
 
-  <div class="section-container edit-mode">
+  <div class="section-container edit-mode" *ngIf="userService.user.is_dev">
     <div class="section-nav">
       <div class="section-title">开发者专区</div>
     </div>
@@ -127,14 +130,30 @@
     </div>
   </div>
 
-  <div class="section-container" [ngClass]="{'edit-mode': editUserInfo}">
+  <div class="section-container edit-mode">
     <div class="section-nav">
-      <div class="section-title">关于齐天簿</div>
-      <div class="operator ptr icon-next"></div>
+      <div class="section-title">帮助</div>
+    </div>
+    <div class="section-list">
+      <div class="section-item profile inactive">
+        <div class="profile-attribute oxs middle-line">问题反馈</div>
+        <div class="profile-value oxs middle-line">去GitHub提交issue</div>
+        <div class="right-icon icon-next animate ptr middle-line" (click)="jump.createIssue()"></div>
+      </div>
+      <div class="section-item profile inactive">
+        <div class="profile-attribute oxs middle-line">人工服务</div>
+        <div class="profile-value oxs middle-line">给我发邮件</div>
+        <div class="right-icon icon-next animate ptr middle-line" (click)="jump.mailMe()"></div>
+      </div>
+      <div class="section-item profile inactive">
+        <div class="profile-attribute oxs middle-line">代码开源</div>
+        <div class="profile-value oxs middle-line">查看代码</div>
+        <div class="right-icon icon-next animate ptr middle-line" (click)="jump.viewCode()"></div>
+      </div>
     </div>
   </div>
 </div>
-<app-image-split #appImageSplit (onSplit)="uploadAvatar($event)"></app-image-split>
+<app-image-split #appImageSplit (split)="uploadAvatar($event)"></app-image-split>
 <app-loading-box #loadingBox></app-loading-box>
 <app-choose-box
   #chooseBox
@@ -144,5 +163,5 @@
   [minChosenNum]="1"
   [fastMode]="true"
   [showSearchBox]="false"
-  (onSubmit)="chooseSexOnSubmit($event)"
+  (submit)="chooseSexOnSubmit($event)"
 ></app-choose-box>

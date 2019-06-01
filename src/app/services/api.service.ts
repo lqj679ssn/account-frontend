@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {RequestService} from './request.service';
 import {RespError} from '../models/resp-error';
 import {JumpService} from './jump.service';
-import {HttpCallback} from '../models/httpCallback';
+import {HttpCallback} from '../models/http-callback';
 
 @Injectable()
 export class ApiService {
@@ -61,7 +61,7 @@ export class ApiService {
       .get('/api/user/');
   }
 
-  public getAppList(data: {relation, frequent?, count?}) {
+  public getAppList(data: {relation, frequent?, count?, last_time?}) {
     return this.requestService
       .get('/api/app/', data);
   }
@@ -141,5 +141,10 @@ export class ApiService {
   public updateUserInfo(data: {nickname?, description?, qitian?, birthday?}) {
     return this.requestService
       .put('/api/user/', data);
+  }
+
+  public applyDev() {
+    return this.requestService
+      .post('/api/user/dev', {});
   }
 }

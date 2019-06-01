@@ -3,7 +3,7 @@
     <div class="logo-box full" *ngIf="showMagic">
       <div class="app-logo img-fit" [ngStyle]="{'background-image': app.logo.url}"></div>
     </div>
-    <div class="icon-next ptr"></div>
+    <div class="icon-next ptr" (click)="goBack()"></div>
   </div>
   <div class="scroll-container oys" (scroll)="onScroll($event)">
     <div class="app-nav">

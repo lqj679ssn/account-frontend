@@ -1,6 +1,6 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild} from '@angular/core';
 import {ImageSplitService} from '../../services/image-split.service';
-import {fromEvent} from 'rxjs';
+import {fromEvent, Subscription} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import {Point, Rect, Size} from '../../models/position';
 import {OneWorker} from '../../services/one-worker.service';
@@ -15,7 +15,7 @@ import {LoadingBoxComponent} from './loading-box.component';
     '../../../assets/styles/base/image-split.less',
   ]
 })
-export class ImageSplitComponent {
+export class ImageSplitComponent implements OnDestroy {
   constructor(
     public oneWorker: OneWorker,
   ) {
@@ -56,7 +56,9 @@ export class ImageSplitComponent {
   private fadeInComponent: boolean;
 
   imageFile: File;
-  @Output() onSplit = new EventEmitter<File>();
+  @Output() split = new EventEmitter<File>();
+
+  _resizeSubscription: Subscription;
 
   hide() {
     this.fadeInComponent = false;
@@ -72,7 +74,7 @@ export class ImageSplitComponent {
     setTimeout(() => {
       this.fadeInComponent = true;
 
-      fromEvent(window, 'resize')
+      this._resizeSubscription = fromEvent(window, 'resize')
         .pipe(debounceTime(300))
         .subscribe(() => {
           this.getElementSize();
@@ -252,8 +254,13 @@ export class ImageSplitComponent {
       const file = dataURLtoFile(dataURL, 'split-image');
       this.hide();
       callback();
-      this.onSplit.emit(file);
+      this.split.emit(file);
     }, new Toast(ImageSplitService.ERROR_IS_UPLOADING));
   }
 
+  ngOnDestroy(): void {
+    if (this._resizeSubscription) {
+      this._resizeSubscription.unsubscribe();
+    }
+  }
 }

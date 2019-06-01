@@ -134,7 +134,7 @@ export class ApplyComponent implements OnInit {
   }
 
   /**
-   * chooseBox show and onSubmit/onCancel handler
+   * chooseBox show and submit/onCancel handler
    */
   chooseScope() {
     this.chooseBoxTitle = '选择权限';

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ChooseBoxComponent} from '../base/choose-box.component';
 import {ChooseItem} from '../../models/choose-item';
 import {Radio, RadioList} from '../../models/radio';
@@ -12,6 +12,7 @@ import {ApiService} from '../../services/api.service';
 import {Toast} from '../../models/toast';
 import {ActivatedRoute} from '@angular/router';
 import {ImageSplitService} from '../../services/image-split.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   templateUrl: './update.component.html',
@@ -22,7 +23,7 @@ import {ImageSplitService} from '../../services/image-split.service';
     '../../../assets/styles/mywebicon.css',
   ]
 })
-export class UpdateComponent implements OnInit {
+export class UpdateComponent implements OnInit, OnDestroy {
   @ViewChild('chooseBox') chooseBox: ChooseBoxComponent;
   chooseList: Array<ChooseItem>;
   chooseBoxTitle: string;
@@ -45,6 +46,8 @@ export class UpdateComponent implements OnInit {
   // ui
   magicScrollTop: number;
   showMagic: boolean;
+
+  _routerSubscription: Subscription;
 
   constructor(
     public userService: UserService,
@@ -83,7 +86,7 @@ export class UpdateComponent implements OnInit {
       this.userService.userLC.calling(this.userLoadedCallback.bind(this));
     }
 
-    this.activatedRoute.queryParams.subscribe((params) => {
+    this._routerSubscription = this.activatedRoute.queryParams.subscribe((params) => {
       this.appId = params['app_id'];
       this.api.getAppInfo( this.appId)
         .then(resp => {
@@ -249,10 +252,20 @@ export class UpdateComponent implements OnInit {
       premises: premiseList
     }).then(resp => {
       this.app = this.appDepot.push(resp);
+      this.toastService.show(new Toast('更新成功'));
+      history.go(-1);
     }).catch(this.api.defaultCatcher);
+  }
+
+  copyOAuthSucc() {
+    this.toastService.show(new Toast('复制成功'));
   }
 
   onScroll($event) {
     this.showMagic = $event.target.scrollTop >= this.magicScrollTop;
+  }
+
+  ngOnDestroy(): void {
+    this._routerSubscription.unsubscribe();
   }
 }

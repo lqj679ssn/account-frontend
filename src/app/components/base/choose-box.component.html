@@ -1,5 +1,5 @@
 <div class="choose-container" [ngClass]="{show: showChooseBox}">
-  <div class="choose-box-mask full" (click)="cancel()"></div>
+  <div class="choose-box-mask full" (click)="_cancel()"></div>
   <div class="choose-box">
     <div class="title-box">
       <div class="title" [ngClass]="{'show-search-box': showSearchBox}">{{boxTitle}}</div>
@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="op-box" *ngIf="!fastMode || maxChosenNum > 1">
-      <div class="op ptr cancel" (click)="cancel()">取消</div>
-      <div class="op ptr submit" (click)="submit()">选择({{chosenNum}})</div>
+      <div class="op ptr cancel" (click)="_cancel()">取消</div>
+      <div class="op ptr submit" (click)="_submit()">选择({{chosenNum}})</div>
     </div>
   </div>
 </div>

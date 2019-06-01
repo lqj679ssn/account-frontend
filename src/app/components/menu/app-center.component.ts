@@ -1,22 +1,22 @@
 import {Component, OnDestroy, ViewChild} from '@angular/core';
-import {MenuFootBtnService} from '../../services/menu-foot-btn.service';
-import {UserService} from '../../services/user.service';
 import {AppDepotService} from '../../services/app-depot.service';
 import {App} from '../../models/app';
-import {DisplayComponent} from '../app/display.component';
-import {ApiService} from '../../services/api.service';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {JumpService} from '../../services/jump.service';
+import {MenuFootBtnService} from '../../services/menu-foot-btn.service';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {ApiService} from '../../services/api.service';
+import {DisplayComponent} from '../app/display.component';
+import {UserService} from '../../services/user.service';
 
 @Component({
-  templateUrl: './home-page.component.html',
+  templateUrl: './app-center.component.html',
   styleUrls: [
     '../../../assets/styles/menu/menu.less',
     '../../../assets/styles/mywebicon.css',
   ]
 })
-export class HomePageComponent implements OnDestroy {
+export class AppCenterComponent implements OnDestroy {
   @ViewChild('appDisplay') appDisplay: DisplayComponent;
   public app: App;
   public appId: string;
@@ -28,13 +28,13 @@ export class HomePageComponent implements OnDestroy {
   _querySubscription: Subscription;
 
   constructor(
-    private footBtnService: MenuFootBtnService,
+    public appDepot: AppDepotService,
+    private jump: JumpService,
+    public footBtnService: MenuFootBtnService,
+    public userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    public userService: UserService,
-    public appDepot: AppDepotService,
     private api: ApiService,
-    private jump: JumpService,
   ) {
     this._routerSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -55,22 +55,25 @@ export class HomePageComponent implements OnDestroy {
             }).catch(this.api.defaultCatcher);
         });
 
-        this.footBtnService.setActive(this.footBtnService.footBtnHomePage);
-        this.appDepot.getFrequentAppList();
+        this.footBtnService.setActive(this.footBtnService.footBtnAppCenter);
+        this.appDepot.getTotalAppList();
+        this.appDepot.getDevAppList();
       }
     });
   }
 
   goOauthApp(app: App) {
-    this._querySubscription.unsubscribe();
-    this._routerSubscription.unsubscribe();
-    this.jump.homePageOauthApp(app.app_id);
+    this.jump.appCenterOauthApp(app.app_id);
+  }
+
+  goUpdateApp(app: App) {
+    this.jump.appUpdate(app.app_id);
   }
 
   onAppBack() {
     this._querySubscription.unsubscribe();
     this._routerSubscription.unsubscribe();
-    this.jump.homePage();
+    this.jump.appCenter();
   }
 
   ngOnDestroy(): void {
