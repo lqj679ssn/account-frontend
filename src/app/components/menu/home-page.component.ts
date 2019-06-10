@@ -8,6 +8,7 @@ import {ApiService} from '../../services/api.service';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {JumpService} from '../../services/jump.service';
 import {Subscription} from 'rxjs';
+import {HistoryService} from '../../services/history.service';
 
 @Component({
   templateUrl: './home-page.component.html',
@@ -35,6 +36,7 @@ export class HomePageComponent implements OnDestroy {
     public appDepot: AppDepotService,
     private api: ApiService,
     public jump: JumpService,
+    private history: HistoryService,
   ) {
     this._routerSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -70,7 +72,7 @@ export class HomePageComponent implements OnDestroy {
   onAppBack() {
     this._querySubscription.unsubscribe();
     this._routerSubscription.unsubscribe();
-    this.jump.homePage();
+    this.history.go(this.jump.homePage.bind(this.jump));
   }
 
   ngOnDestroy(): void {

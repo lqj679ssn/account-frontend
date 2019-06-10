@@ -8,6 +8,7 @@ import {User} from './models/user';
 import {AppDepotService} from './services/app-depot.service';
 import {ChooseItem} from './models/choose-item';
 import {RegionService} from './services/region.service';
+import {HistoryService} from './services/history.service';
 
 declare var window: any;
 
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     private api: ApiService,
     private userService: UserService,
     private appDepot: AppDepotService,
+    private history: HistoryService,
   ) {
     ClockService.startClock();
   }

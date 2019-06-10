@@ -43,6 +43,7 @@ import {ScoreBoxComponent} from './components/base/score-box.component';
 import {InitProfileComponent} from './components/user/init-profile.component';
 import {RegionService} from './services/region.service';
 import {AppCenterComponent} from './components/menu/app-center.component';
+import {HistoryService} from './services/history.service';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import {AppCenterComponent} from './components/menu/app-center.component';
     JumpService,
     AppDepotService,
     RegionService,
+    HistoryService,
   ],
   bootstrap: [AppComponent]
 })

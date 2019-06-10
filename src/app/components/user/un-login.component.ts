@@ -13,6 +13,7 @@ import {JumpService} from '../../services/jump.service';
 import {template} from '../../services/common.service';
 import {OneWorker} from '../../services/one-worker.service';
 import {RegionService} from '../../services/region.service';
+import {HistoryService} from '../../services/history.service';
 
 @Component({
   templateUrl: './un-login.component.html',
@@ -70,6 +71,7 @@ export class UnLoginComponent implements OnInit {
     private jump: JumpService,
     private router: Router,
     private oneWorker: OneWorker,
+    private history: HistoryService,
   ) {
     this.initStatusList();
     // region choose-box
@@ -172,7 +174,7 @@ export class UnLoginComponent implements OnInit {
 
   userLoadedCallback() {
     if (this.userService.isLogin) {
-      this.jump.homePage();
+      this.history.go(this.jump.homePage.bind(this.jump));
     }
   }
 
@@ -328,7 +330,7 @@ export class UnLoginComponent implements OnInit {
           callback();
           this.userService.user = new User(resp.user);
           this.userService.token = resp.token;
-          this.jump.homePage();
+          this.history.go(this.jump.homePage.bind(this.jump));
         }).catch(() => {
           callback();
           // this.loadingBox.hide();
@@ -394,7 +396,7 @@ export class UnLoginComponent implements OnInit {
       }).then((resp) => {
         this.userService.user = new User(resp.user);
         this.userService.token = resp.token;
-        this.jump.homePage();
+        this.history.go(this.jump.homePage.bind(this.jump));
       }).catch(this.api.defaultCatcher);
     }
   }

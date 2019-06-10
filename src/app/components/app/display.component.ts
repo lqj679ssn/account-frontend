@@ -1,12 +1,10 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef, EventEmitter,
   Input,
-  OnDestroy,
-  OnInit, Output,
+  Output,
   ViewChild
 } from '@angular/core';
 import {App} from '../../models/app';
@@ -17,7 +15,9 @@ import {ToastService} from '../../services/toast.service';
 import {OneWorker} from '../../services/one-worker.service';
 import {Toast} from '../../models/toast';
 import {ScoreBoxComponent} from '../base/score-box.component';
-import {MarkdownComponent} from 'ngx-markdown';
+import {HistoryService} from '../../services/history.service';
+import {UserService} from '../../services/user.service';
+import {JumpService} from '../../services/jump.service';
 
 @Component({
   selector: 'app-display',
@@ -52,11 +52,14 @@ export class DisplayComponent implements AfterViewChecked {
   showMagic: boolean;
 
   constructor(
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private api: ApiService,
     private toastService: ToastService,
     private oneWorker: OneWorker,
     private changeDetector: ChangeDetectorRef,
+    private history: HistoryService,
+    private jump: JumpService,
   ) {
     this.app = new App({});
     this.foldInfo = true;
@@ -96,16 +99,28 @@ export class DisplayComponent implements AfterViewChecked {
   }
 
   oauthApp() {
-    this.oneWorker.do('oauth-app', (callback) => {
-      this.api.oauthApp({app_id: this.app.app_id})
-        .then(resp => {
-          callback();
-          window.location.href = `${this.app.redirect_uri}?code=${resp.auth_code}`;
-        })
-        .catch(() => {
-          callback();
-        });
-    });
+    if (!this.userService.isLogin) {
+      this.jump.loginPage();
+    } else {
+      this.oneWorker.do('oauth-app', (callback) => {
+        this.api.oauthApp({app_id: this.app.app_id})
+          .then(resp => {
+            callback();
+            window.location.href = `${this.app.redirect_uri}?code=${resp.auth_code}`;
+          })
+          .catch(() => {
+            callback();
+          });
+      });
+    }
+  }
+
+  get oauthFootText() {
+    if (this.userService.isLogin) {
+      return '前往';
+    } else {
+      return '登录';
+    }
   }
 
   goBack() {
@@ -115,7 +130,7 @@ export class DisplayComponent implements AfterViewChecked {
         this.backing.emit();
       }, 500);
     } else {
-      history.go(-1);
+      this.history.go(this.jump.homePage.bind(this.jump));
     }
   }
 }

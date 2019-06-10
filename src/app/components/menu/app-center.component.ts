@@ -8,6 +8,7 @@ import {Subscription} from 'rxjs';
 import {ApiService} from '../../services/api.service';
 import {DisplayComponent} from '../app/display.component';
 import {UserService} from '../../services/user.service';
+import {HistoryService} from '../../services/history.service';
 
 @Component({
   templateUrl: './app-center.component.html',
@@ -35,6 +36,7 @@ export class AppCenterComponent implements OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private api: ApiService,
+    private history: HistoryService,
   ) {
     this._routerSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -73,7 +75,7 @@ export class AppCenterComponent implements OnDestroy {
   onAppBack() {
     this._querySubscription.unsubscribe();
     this._routerSubscription.unsubscribe();
-    this.jump.appCenter();
+    this.history.go(this.jump.homePage.bind(this.jump));
   }
 
   ngOnDestroy(): void {
