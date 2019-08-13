@@ -15,7 +15,7 @@ import {ImageSplitService} from '../../services/image-split.service';
 import {Subscription} from 'rxjs';
 
 @Component({
-  templateUrl: './update.component.html',
+  templateUrl: './manage.component.html',
   styleUrls: [
     '../../../assets/styles/menu/menu.less',
     '../../../assets/styles/app/apply.less',
@@ -23,7 +23,7 @@ import {Subscription} from 'rxjs';
     '../../../assets/styles/mywebicon.css',
   ]
 })
-export class UpdateComponent implements OnInit, OnDestroy {
+export class ManageComponent implements OnInit, OnDestroy {
   @ViewChild('chooseBox') chooseBox: ChooseBoxComponent;
   chooseList: Array<ChooseItem>;
   chooseBoxTitle: string;
@@ -33,6 +33,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
   oauthInfoRadioList: RadioList;
   oauthScope: Radio;
   oauthPremise: Radio;
+  oauthSSH: Radio;
 
   @ViewChild('appImageSplit') appImageSplit: ImageSplitComponent;
   appInfoRadioList: RadioList;
@@ -65,9 +66,11 @@ export class UpdateComponent implements OnInit, OnDestroy {
 
     this.oauthScope = new Radio();
     this.oauthPremise = new Radio();
+    this.oauthSSH = new Radio();
     this.oauthInfoRadioList = new RadioList([
       this.oauthScope,
       this.oauthPremise,
+      this.oauthSSH,
     ]);
 
     this.appLogo = new Radio();
@@ -91,6 +94,12 @@ export class UpdateComponent implements OnInit, OnDestroy {
       this.api.getAppInfo( this.appId)
         .then(resp => {
           this.app = this.appDepot.push(resp);
+          if (!this.app.app_secret) {
+            this.api.getAppSecret(this.appId)
+              .then(app_secret => {
+                this.app.app_secret = app_secret;
+              });
+          }
 
           if (this.appDepot.scopeLC.loaded) {
             this.scopeLoadedCallback();

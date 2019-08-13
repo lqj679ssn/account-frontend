@@ -71,6 +71,11 @@ export class ApiService {
       .get(`/api/app/${appId}`);
   }
 
+  public getAppSecret(appId) {
+    return this.requestService
+      .get(`/api/app/${appId}/secret`);
+  }
+
   public oauthApp(data: {app_id}) {
     return this.requestService
       .post('/api/oauth/', data);

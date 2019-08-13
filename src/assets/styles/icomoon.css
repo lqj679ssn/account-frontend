@@ -31,6 +31,9 @@
 .icon-close:before {
   content: "\e5cd";
 }
+.icon-copy:before {
+  content: "\e14d";
+}
 .icon-star-s:before {
   content: "\e838";
 }

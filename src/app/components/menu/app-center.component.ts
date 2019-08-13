@@ -68,8 +68,8 @@ export class AppCenterComponent implements OnDestroy {
     this.jump.appCenterOauthApp(app.app_id);
   }
 
-  goUpdateApp(app: App) {
-    this.jump.appUpdate(app.app_id);
+  goManageApp(app: App) {
+    this.jump.appManage(app.app_id);
   }
 
   onAppBack() {

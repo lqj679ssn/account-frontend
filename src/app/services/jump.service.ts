@@ -55,8 +55,8 @@ export class JumpService {
     this.handler(['/app', 'apply']);
   }
 
-  appUpdate(appId) {
-    this.handler(['/app', 'update'], {app_id: appId});
+  appManage(appId) {
+    this.handler(['/app', 'manage'], {app_id: appId});
   }
 
   createIssue() {

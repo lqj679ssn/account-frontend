@@ -7,7 +7,7 @@ import {UserSettingComponent} from './components/menu/user-setting.component';
 import {UnLoginComponent} from './components/user/un-login.component';
 import {OauthComponent} from './components/app/oauth.component';
 import {ApplyComponent} from './components/app/apply.component';
-import {UpdateComponent} from './components/app/update.component';
+import {ManageComponent} from './components/app/manage.component';
 import {InitProfileComponent} from './components/user/init-profile.component';
 import {AppCenterComponent} from './components/menu/app-center.component';
 
@@ -56,8 +56,8 @@ const routes: Routes = [
     component: ApplyComponent,
   },
   {
-    path: 'app/update',
-    component: UpdateComponent,
+    path: 'app/manage',
+    component: ManageComponent,
   }
 ];
 

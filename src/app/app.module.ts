@@ -22,7 +22,7 @@ import { LoadingBoxComponent } from './components/base/loading-box.component';
 import { OauthComponent } from './components/app/oauth.component';
 import { DisplayComponent } from './components/app/display.component';
 import { ApplyComponent } from './components/app/apply.component';
-import { UpdateComponent } from './components/app/update.component';
+import { ManageComponent } from './components/app/manage.component';
 import { ToastComponent } from './components/base/toast.component';
 
 import { ClockService } from './services/clock.service';
@@ -61,7 +61,7 @@ import {HistoryService} from './services/history.service';
     OauthComponent,
     DisplayComponent,
     ApplyComponent,
-    UpdateComponent,
+    ManageComponent,
     ScoreBoxComponent,
     InitProfileComponent,
     AppCenterComponent,

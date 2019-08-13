@@ -7,6 +7,7 @@
 <font-face units-per-em="1024" ascent="960" descent="-64" />
 <missing-glyph horiz-adv-x="1024" />
 <glyph unicode="&#x20;" horiz-adv-x="512" d="" />
+<glyph unicode="&#xe14d;" glyph-name="copy" d="M810 42.667v598h-468v-598h468zM810 724.667c46 0 86-38 86-84v-598c0-46-40-86-86-86h-468c-46 0-86 40-86 86v598c0 46 40 84 86 84h468zM682 896.667v-86h-512v-598h-84v598c0 46 38 86 84 86h512z" />
 <glyph unicode="&#xe5ca;" glyph-name="ok" d="M384 248.667l452 452 60-60-512-512-238 238 60 60z" />
 <glyph unicode="&#xe5cd;" glyph-name="close" d="M810 664.667l-238-238 238-238-60-60-238 238-238-238-60 60 238 238-238 238 60 60 238-238 238 238z" />
 <glyph unicode="&#xe838;" glyph-name="star-s" d="M512 202.667l-264-160 70 300-232 202 306 26 120 282 120-282 306-26-232-202 70-300z" />

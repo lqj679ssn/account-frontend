@@ -225,10 +225,10 @@ div.main-container {
           }
         }
         .active-element {
-          display: none;
+          display: none!important;
         }
         .inactive-element {
-          display: inline-block;
+          display: inline-block!important;
         }
         .right-icon {
           display: none;
@@ -329,10 +329,10 @@ div.main-container {
           color: @gray;
         }
         .active-element {
-          display: inline-block;
+          display: inline-block!important;
         }
         .inactive-element {
-          display: none;
+          display: none!important;
         }
         .right-icon {
           color: white;
@@ -414,6 +414,10 @@ div.main-container {
         div.under-line {
           display: block;
           margin-left: @profile-attribute-width + @profile-attribute-margin * 2;
+          margin-top: 7px;
+        }
+
+        div.under-line-only {
           margin-top: 7px;
         }
 

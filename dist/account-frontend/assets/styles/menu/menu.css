@@ -202,10 +202,10 @@ div.main-container div.section-container div.section-list div.section-item.profi
   margin-right: 10px;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .active-element {
-  display: none;
+  display: none!important;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .inactive-element {
-  display: inline-block;
+  display: inline-block !important;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .right-icon {
   display: none;
@@ -293,10 +293,10 @@ div.main-container div.section-container.edit-mode div.section-list div.section-
   color: #F0F0F0;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .active-element {
-  display: inline-block;
+  display: inline-block !important;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .inactive-element {
-  display: none;
+  display: none!important;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .right-icon {
   color: white;
@@ -358,6 +358,9 @@ div.main-container div.section-container.edit-mode div.section-list div.section-
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active div.under-line {
   display: block;
   margin-left: 100px;
+  margin-top: 7px;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active div.under-line-only {
   margin-top: 7px;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active div.apply-dev {

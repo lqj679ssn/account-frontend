@@ -4,7 +4,7 @@
   </div>
   <div class="scroll-container oys" (scroll)="onScroll($event)">
     <div class="nav">
-      <div class="title-box">修改应用信息</div>
+      <div class="title-box">管理应用信息</div>
     </div>
 
     <div class="section-container edit-mode">
@@ -35,9 +35,21 @@
         <div class="section-title">授权信息</div>
       </div>
       <div class="section-list">
+        <div class="section-item profile" [ngClass]="oauthSSH.class">
+          <div class="profile-attribute oxs middle-line">密钥对</div>
+          <div class="profile-value oxs middle-line">查看密钥对</div>
+          <div class="right-icon icon-next animate ptr middle-line" (click)="oauthInfoRadioList.toggle(oauthSSH)"></div>
+          <div class="active-element profile-attribute oxs middle-line under-line-only">ID</div>
+          <div class="active-element profile-value oxs middle-line under-line-only">{{app.app_id}}</div>
+          <div class="active-element right-icon icon-copy animate ptr middle-line under-line-only" ngxClipboard [cbContent]="app.app_id" (cbOnSuccess)="copyOAuthSucc()"></div>
+          <div class="active-element profile-attribute oxs middle-line under-line-only">SECRET</div>
+          <div class="active-element profile-value oxs middle-line under-line-only">{{app.app_secret}}</div>
+          <div class="active-element right-icon icon-copy animate ptr middle-line under-line-only" ngxClipboard [cbContent]="app.app_secret" (cbOnSuccess)="copyOAuthSucc()"></div>
+        </div>
         <div class="section-item profile">
           <div class="profile-attribute oxs middle-line">授权页面</div>
-          <div class="profile-value oxs middle-line ptr" ngxClipboard [cbContent]="app.oauth_uri" (cbOnSuccess)="copyOAuthSucc()">点击复制</div>
+          <div class="profile-value oxs middle-line">{{app.oauth_uri}}</div>
+          <div class="right-icon icon-copy animate ptr middle-line" ngxClipboard [cbContent]="app.oauth_uri" (cbOnSuccess)="copyOAuthSucc()"></div>
         </div>
         <div class="section-item profile">
           <div class="profile-attribute oxs middle-line">回调URI</div>
