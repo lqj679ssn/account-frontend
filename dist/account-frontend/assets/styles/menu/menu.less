@@ -225,10 +225,10 @@ div.main-container {
           }
         }
         .active-element {
-          display: none!important;
+          display: none;
         }
         .inactive-element {
-          display: inline-block!important;
+          display: inline-block;
         }
         .right-icon {
           display: none;
@@ -329,10 +329,10 @@ div.main-container {
           color: @gray;
         }
         .active-element {
-          display: inline-block!important;
+          display: inline-block;
         }
         .inactive-element {
-          display: none!important;
+          display: none;
         }
         .right-icon {
           color: white;
@@ -346,6 +346,22 @@ div.main-container {
       }
       div.section-item {
         div.right-icon {
+          display: inline-block;
+        }
+      }
+      div.section-item.active {
+        div.right-icon.active-element {
+          display: inline-block;
+        }
+        div.right-icon.inactive-element {
+          display: none;
+        }
+      }
+      div.section-item.inactive {
+        div.right-icon.active-element {
+          display: none;
+        }
+        div.right-icon.inactive-element {
           display: inline-block;
         }
       }
