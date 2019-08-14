@@ -202,10 +202,10 @@ div.main-container div.section-container div.section-list div.section-item.profi
   margin-right: 10px;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .active-element {
-  display: none!important;
+  display: none;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .inactive-element {
-  display: inline-block !important;
+  display: inline-block;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .right-icon {
   display: none;
@@ -293,10 +293,10 @@ div.main-container div.section-container.edit-mode div.section-list div.section-
   color: #F0F0F0;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .active-element {
-  display: inline-block !important;
+  display: inline-block;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .inactive-element {
-  display: none!important;
+  display: none;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .right-icon {
   color: white;
@@ -308,6 +308,18 @@ div.main-container div.section-container.edit-mode div.section-list div.section-
   transform: rotate(90deg);
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item div.right-icon {
+  display: inline-block;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.active div.right-icon.active-element {
+  display: inline-block;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.active div.right-icon.inactive-element {
+  display: none;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.inactive div.right-icon.active-element {
+  display: none;
+}
+div.main-container div.section-container.edit-mode div.section-list div.section-item.inactive div.right-icon.inactive-element {
   display: inline-block;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .profile-avatar {
