@@ -111,6 +111,17 @@ div.main-container div.section-container div.section-nav div.section-title span.
   vertical-align: bottom;
   margin: 0 5px;
 }
+div.main-container div.section-container div.section-nav div.section-title.center {
+  position: relative;
+  left: 0;
+  text-align: center;
+}
+div.main-container div.section-container div.section-nav div.section-title.warn {
+  color: #d04b4b;
+}
+div.main-container div.section-container div.section-nav div.section-title.warn span.num {
+  background: #d04b4b;
+}
 div.main-container div.section-container div.section-nav div.operator {
   position: absolute;
   right: 17px;

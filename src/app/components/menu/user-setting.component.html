@@ -152,6 +152,18 @@
       </div>
     </div>
   </div>
+
+  <div class="section-container">
+    <div class="section-nav ptr">
+      <div class="section-title center">切换账号</div>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <div class="section-nav ptr" (click)="logout()">
+      <div class="section-title center warn">退出登录</div>
+    </div>
+  </div>
 </div>
 <app-image-split #appImageSplit (split)="uploadAvatar($event)"></app-image-split>
 <app-loading-box #loadingBox></app-loading-box>

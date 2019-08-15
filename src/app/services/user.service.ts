@@ -19,6 +19,10 @@ export class UserService {
     private local: LocalService,
     private userHabitService: UserHabitService,
   ) {
+    this.init();
+  }
+
+  init() {
     this._user = new User({});
     this.tokenKey = 'user-token';
     this.tokenLC = new LoadCallback();
@@ -34,6 +38,11 @@ export class UserService {
 
   saveToken() {
     this.local.save(this.tokenKey, this._token);
+  }
+
+  logout() {
+    this.local.remove(this.tokenKey);
+    this.init();
   }
 
   userBackUp() {

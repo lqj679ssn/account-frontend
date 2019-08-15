@@ -440,4 +440,9 @@ export class UserSettingComponent implements OnInit {
   applyApp() {
     this.jump.appApply();
   }
+
+  logout() {
+    this.userService.logout();
+    this.jump.loginPage();
+  }
 }
