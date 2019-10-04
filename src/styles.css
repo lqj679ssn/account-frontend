@@ -63,9 +63,6 @@ body {
   background-repeat: no-repeat;
   display: inherit;
 }
-.img-random {
-  background-image: url("https://unsplash.6-79.cn/random");
-}
 .oxs {
   white-space: nowrap;
   overflow-x: scroll;
@@ -93,11 +90,11 @@ body {
 }
 .bg-blur {
   position: absolute;
-  top: -8px;
-  left: -8px;
-  width: calc(100% + 2*8px);
-  height: calc(100% + 2*8px);
-  filter: brightness(70%) blur(8px);
+  top: 0px;
+  left: 0px;
+  width: calc(100% + 2*0px);
+  height: calc(100% + 2*0px);
+  filter: brightness(90%) blur(0px);
   background-color: black;
 }
 /*# sourceMappingURL=styles.css.map */

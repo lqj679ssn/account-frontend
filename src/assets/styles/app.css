@@ -1,9 +1,6 @@
 div.full.main-bg {
   position: fixed;
-  background-color: #F0F0F0;
+  background-image: url("../images/bg.png");
   transition: 1s;
-}
-div.main-bg.bg-blur.clean {
-  filter: brightness(0.7);
 }
 /*# sourceMappingURL=app.css.map */

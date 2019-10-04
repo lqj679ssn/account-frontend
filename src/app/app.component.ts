@@ -20,8 +20,8 @@ declare var window: any;
   ]
 })
 export class AppComponent implements OnInit {
-  smallImage: PreloadImage;
-  regularImage: PreloadImage;
+  // smallImage: PreloadImage;
+  // regularImage: PreloadImage;
 
   constructor(
     private regionService: RegionService,
@@ -37,14 +37,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     window['onloadCallback'] = this.reCAPTCHAService.loadedCallback.bind(this.reCAPTCHAService);
 
-    this.api.getRandomImage()
-      .then((resp) => {
-        this.smallImage = new PreloadImage(resp.thumb);
-        this.regularImage = new PreloadImage(resp.regular);
-        this.smallImage.load(() => {
-          this.regularImage.load(null);
-        });
-      }).catch();
+    // this.api.getRandomImage()
+    //   .then((resp) => {
+    //     this.smallImage = new PreloadImage(resp.thumb);
+    //     this.regularImage = new PreloadImage(resp.regular);
+    //     this.smallImage.load(() => {
+    //       this.regularImage.load(null);
+    //     });
+    //   }).catch();
 
     // try login with user-token
     if (this.userService.tokenLC.loaded) {
@@ -89,15 +89,15 @@ export class AppComponent implements OnInit {
       }).catch(this.api.defaultCatcher);
   }
 
-  get backgroundImage() {
-    let src = '';
-    if (this.regularImage && this.regularImage.loaded) {
-      src = this.regularImage.src;
-    } else if (this.smallImage && this.smallImage.loaded) {
-      src =  this.smallImage.src;
-    }
-    return `url('${src}')`;
-  }
+  // get backgroundImage() {
+  //   let src = '';
+  //   if (this.regularImage && this.regularImage.loaded) {
+  //     src = this.regularImage.src;
+  //   } else if (this.smallImage && this.smallImage.loaded) {
+  //     src =  this.smallImage.src;
+  //   }
+  //   return `url('${src}')`;
+  // }
 
   loginWithUserToken() {
     this.api.getMyInfo()
