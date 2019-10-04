@@ -12,7 +12,7 @@ div.main-container.display.solid {
 div.main-container div.fix-nav {
   position: relative;
   height: 32px;
-  background-color: #EDAC0F;
+  background-color: #333333;
   width: 100%;
 }
 div.main-container div.fix-nav div.icon-next {
@@ -44,7 +44,7 @@ div.main-container div.fix-nav div.bind-btn {
   vertical-align: middle;
   border-radius: 12px;
   padding: 0 15px;
-  color: #FFB500;
+  color: #363636;
   font-size: 14px;
   margin-top: 4px;
 }
@@ -57,7 +57,7 @@ div.main-container div.scroll-container {
 div.main-container div.scroll-container div.app-nav {
   position: relative;
   height: 124px;
-  background-color: #EDAC0F;
+  background-color: #333333;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -68,7 +68,7 @@ div.main-container div.scroll-container div.app-nav div.app-name {
 }
 div.main-container div.scroll-container div.app-nav div.app-desc {
   font-size: 12px;
-  color: #888888;
+  color: #444444;
 }
 div.main-container div.scroll-container div.app-nav div.app-logo {
   margin-top: 13px;
@@ -95,14 +95,14 @@ div.main-container div.section-container div.fold-box div.fold-btn {
   display: inline-block;
   border-radius: 20px;
   padding: 5px 15px;
-  background-color: #EDAC0F;
+  background-color: #333333;
   color: white;
   font-size: 12px;
 }
 div.main-container div.section-container div.app-info {
   padding: 0 25px;
   width: 100%;
-  color: #BBBBBB;
+  color: #444444;
   font-size: 14px;
   text-align: justify;
 }
@@ -134,12 +134,12 @@ div.main-container div.section-container div.mark-box div.mark-info-star div.sta
 div.main-container div.section-container div.mark-box div.mark-info-star div.star-box div {
   display: inline-block;
   font-size: 14px;
-  color: #FFB500;
+  color: #363636;
 }
 div.main-container div.section-container div.mark-box div.mark-info-star div.mark-info {
   line-height: 18px;
   font-size: 12px;
-  color: #BBBBBB;
+  color: #444444;
 }
 div.main-container div.section-container div.mark-box div.owner-box {
   display: inline-block;
@@ -149,10 +149,10 @@ div.main-container div.section-container div.mark-box div.owner-box {
   text-align: right;
 }
 div.main-container div.section-container div.mark-box div.owner-box div.owner-name {
-  color: #444;
+  color: #7f6320;
   font-weight: bold;
 }
 div.main-container div.section-container div.mark-box div.owner-box div.owner-title {
-  color: #BBBBBB;
+  color: #444444;
 }
 /*# sourceMappingURL=app.css.map */

@@ -12,7 +12,7 @@ div.score-container div.score-box {
   transition: 0.5s;
 }
 div.score-container div.score-box div.title-box {
-  background-color: #5F80D0;
+  background-color: #fec63f;
 }
 div.score-container div.score-box div.title-box div.title {
   font-size: 20px;
@@ -34,7 +34,7 @@ div.score-container div.score-display-box div.star-ratio-line div.star-line div.
   line-height: 14px;
   vertical-align: middle;
   font-size: 12px;
-  color: #BBBBBB;
+  color: #444444;
   display: inline-block;
 }
 div.score-container div.score-display-box div.star-ratio-line div.star-line div.hidden {
@@ -53,7 +53,7 @@ div.score-container div.score-display-box div.star-ratio-line div.ratio-line {
 }
 div.score-container div.score-display-box div.star-ratio-line div.ratio-line div.percentage-line {
   height: 8px;
-  background-color: #BBBBBB;
+  background-color: #444444;
   border-radius: 6px;
 }
 div.score-container div.score-display-box div.my-score-box {
@@ -63,12 +63,12 @@ div.score-container div.score-display-box div.my-score-box {
   align-items: center;
 }
 div.score-container div.score-display-box div.my-score-box div.title {
-  color: #BBBBBB;
+  color: #444444;
   font-size: 14px;
 }
 div.score-container div.score-display-box div.my-score-box div.star-line div {
   display: inline-block;
-  color: #BBBBBB;
+  color: #444444;
   font-size: 30px;
 }
 div.score-container.show div.score-box-mask {

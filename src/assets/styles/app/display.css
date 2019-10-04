@@ -5,7 +5,7 @@ footer.solid {
   background-color: #F0F0F0;
 }
 footer.solid div.next-box {
-  color: #5F80D0;
+  color: #fec63f;
 }
 footer {
   position: absolute;
@@ -23,7 +23,7 @@ footer {
 }
 footer div.license-box {
   margin-left: 20px;
-  color: #223E83;
+  color: #fec63f;
 }
 footer div.license-box div {
   display: inline-block;

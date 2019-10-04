@@ -11,7 +11,7 @@ div.choose-container div.choose-box {
   z-index: 2;
 }
 div.choose-container div.choose-box div.title-box {
-  background-color: #5F80D0;
+  background-color: #fec63f;
 }
 div.choose-container div.choose-box div.title-box div.title {
   font-size: 20px;
@@ -31,7 +31,7 @@ div.choose-container div.choose-box div.title-box div.search-box span.search-ico
   line-height: 30px;
   vertical-align: middle;
   font-size: 14px;
-  color: #BBBBBB;
+  color: #444444;
 }
 div.choose-container div.choose-box div.title-box div.search-box input.search-input {
   height: 30px;
@@ -50,7 +50,7 @@ div.choose-container div.choose-box div.choose-list div.choose-item {
   height: 40px;
   background-color: white;
   border-bottom: 1px solid #F0F0F0;
-  color: #869CD3;
+  color: #a9842a;
 }
 div.choose-container div.choose-box div.choose-list div.choose-item div.check-icon,
 div.choose-container div.choose-box div.choose-list div.choose-item div.key,
@@ -65,14 +65,14 @@ div.choose-container div.choose-box div.choose-list div.choose-item div.check-ic
   left: 20px;
 }
 div.choose-container div.choose-box div.choose-list div.choose-item div.check-icon.icon-checked {
-  color: #869CD3;
+  color: #a9842a;
 }
 div.choose-container div.choose-box div.choose-list div.choose-item div.desc {
   position: absolute;
   font-size: 12px;
   left: 50px;
   bottom: 1px;
-  color: #BBBBBB;
+  color: #444444;
   width: calc(100% - 50px - 20px);
 }
 div.choose-container div.choose-box div.choose-list div.choose-item div.key.show-desc,
@@ -92,11 +92,11 @@ div.choose-container div.choose-box div.choose-list div.choose-item:last-child {
   border-bottom: none;
 }
 div.choose-container div.choose-box div.choose-list div.choose-item.chosen {
-  color: #5F80D0;
+  color: #fec63f;
 }
 div.choose-container div.choose-box div.choose-list div.choose-item.disabled {
   background-color: white;
-  color: #BBBBBB;
+  color: #444444;
 }
 div.choose-container div.choose-box div.choose-list div.choose-item.enabled {
   background-color: #F0F0F0;
@@ -111,10 +111,10 @@ div.choose-container div.choose-box div.op-box div.op {
   width: 50%;
 }
 div.choose-container div.choose-box div.op-box div.op.cancel {
-  background-color: #BBBBBB;
+  background-color: #444444;
 }
 div.choose-container div.choose-box div.op-box div.op.submit {
-  background-color: #5F80D0;
+  background-color: #fec63f;
 }
 div.choose-container.show div.choose-box-mask {
   display: inherit;

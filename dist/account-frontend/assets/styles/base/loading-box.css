@@ -16,8 +16,8 @@ div.loading-box div.canvas {
 div.loading-box .spinner {
   align-items: center;
   border: 5px solid transparent;
-  border-top: 5px solid #FFB500;
-  border-right: 5px solid #FFB500;
+  border-top: 5px solid #363636;
+  border-right: 5px solid #363636;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -47,7 +47,7 @@ div.loading-box .spinnerMin {
 }
 div.loading-box div.text {
   margin-top: 10px;
-  color: #FFB500;
+  color: #363636;
 }
 div.loading-box.show {
   display: flex;

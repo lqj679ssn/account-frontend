@@ -10,7 +10,7 @@ div.toast-container {
 div.toast-container div.toast-text {
   font-size: 14px;
   color: white;
-  background-color: #BBBBBB;
+  background-color: #444444;
   line-height: 40px;
   vertical-align: middle;
   white-space: nowrap;

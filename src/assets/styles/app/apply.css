@@ -1,7 +1,7 @@
 div.main-container div.fix-nav {
   position: relative;
   height: 32px;
-  background-color: #EDAC0F;
+  background-color: #333333;
   width: 100%;
 }
 div.main-container div.fix-nav div.title {
@@ -32,10 +32,10 @@ div.main-container div.scroll-container div.section-container div.section-list d
 div.main-container div.scroll-container div.section-container div.section-list div.section-item div.textarea-box textarea {
   width: 100%;
   font-size: 14px;
-  color: #BBBBBB;
+  color: #444444;
 }
 div.main-container div.scroll-container div.section-container div.section-list div.section-item div.textarea-box textarea::placeholder {
-  color: #BBBBBB;
+  color: #444444;
 }
 div.main-container div.scroll-container div.section-container div.section-list div.section-item.profile .profile-avatar.profile-logo {
   border-radius: 3px;
@@ -58,7 +58,7 @@ footer {
 }
 footer div.license-box {
   margin-left: 20px;
-  color: #223E83;
+  color: #fec63f;
 }
 footer div.license-box div {
   display: inline-block;

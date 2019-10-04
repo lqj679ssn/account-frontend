@@ -8,7 +8,7 @@ footer {
   min-width: 100%;
   bottom: 0;
   height: 56px;
-  background: #EDAC0F;
+  background: #333333;
   white-space: nowrap;
   text-align: center;
   transition: ease-in-out 0.2s;
@@ -19,7 +19,7 @@ footer div.btn {
   vertical-align: middle;
   margin: 0 5px;
   transition: 0.2s;
-  background: #EDAC0F;
+  background: #333333;
   position: relative;
 }
 footer div.btn span.icon {
@@ -71,7 +71,7 @@ footer div.join-us {
   height: 56px;
   line-height: 56px;
   font-size: 14px;
-  color: #FFDE8E;
+  color: #1f1f1f;
   vertical-align: middle;
 }
 footer div.join-us span.myweb-huntianxia {

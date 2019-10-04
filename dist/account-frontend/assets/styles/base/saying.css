@@ -1,10 +1,10 @@
 div.saying-box {
-  background-color: rgba(255, 222, 142, 0.8);
+  background-color: rgba(31, 31, 31, 0.4);
   height: 0px;
   width: 100%;
 }
 div.saying-box div.saying-text {
-  color: #223E83;
+  color: #fec63f;
   line-height: 0px;
   vertical-align: middle;
   padding: 0 15px;

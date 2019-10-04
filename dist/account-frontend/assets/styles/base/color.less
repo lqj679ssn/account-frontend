@@ -1,16 +1,16 @@
-@yellow: #EDAC0F;
-@light-yellow: #FFDE8E;
-@blue: #5F80D0;
-@dark-blue: #223E83;
+@yellow: #333333;
+@light-yellow: #1f1f1f;
+@blue: #fec63f;
+@dark-blue: #fec63f;
 @gray: #F0F0F0;
-@middle-gray: #BBBBBB;
-@light-blue: #869CD3;
-@dark-gray: #888888;
-@shine-yellow: #FFB500;
-@light-black: #444;
+@middle-gray: #444444;
+@light-blue: (#fec63f * 2 + black) / 3;
+@dark-gray: #444444;
+@shine-yellow: #363636;
+@light-black: (#fec63f + black) / 2;
 @warn: #d04b4b;
 
-@main-alpha: 0.8;
+@main-alpha: 0.4;
 .transparent(@color, @alpha) {
   background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
 }

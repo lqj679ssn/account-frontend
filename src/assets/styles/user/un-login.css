@@ -18,16 +18,16 @@ div.main-container div.un-login-container {
   width: 100%;
   height: calc(100% - 140px - 0px - 15px);
   padding: 0 24px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 div.main-container div.un-login-container div.main-title {
   padding-top: 11px;
-  color: #EDAC0F;
+  color: #333333;
   font-size: 20px;
   font-weight: bold;
 }
 div.main-container div.un-login-container div.sub-title {
-  color: #EDAC0F;
+  color: #333333;
   font-size: 16px;
 }
 div.main-container div.un-login-container div.input-box {
@@ -37,26 +37,26 @@ div.main-container div.un-login-container div.input-box {
 }
 div.main-container div.un-login-container div.input-box div.inner-padding {
   position: relative;
-  border-bottom: 1px solid #FFDE8E;
+  border-bottom: 1px solid #1f1f1f;
   height: 70px;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding:hover {
-  border-bottom: 1px solid #FFB500;
+  border-bottom: 1px solid #363636;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding div.title {
   font-size: 14px;
   font-weight: bold;
-  color: #EDAC0F;
+  color: #333333;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding div.right-button {
   font-size: 14px;
-  color: #EDAC0F;
+  color: #333333;
   position: absolute;
   right: 0;
   top: 0;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding div.region-selector {
-  background-color: #FFB500;
+  background-color: #363636;
   padding: 7px 8px;
   color: white;
   position: absolute;
@@ -65,7 +65,7 @@ div.main-container div.un-login-container div.input-box div.inner-padding div.re
   font-size: 14px;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding div.region-selector:hover {
-  background-color: #EDAC0F;
+  background-color: #333333;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding input {
   position: absolute;
@@ -74,7 +74,7 @@ div.main-container div.un-login-container div.input-box div.inner-padding input 
   padding: 7px 0;
   font-size: 14px;
   width: 100%;
-  color: #FFB500;
+  color: #363636;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding input.region-selector {
   left: 70px;
@@ -89,10 +89,10 @@ div.main-container div.un-login-container div.input-box div.inner-padding div.ri
 }
 div.main-container div.un-login-container div.input-box div.inner-padding div.right-operator span {
   padding: 0 7px;
-  color: #FFB500;
+  color: #363636;
 }
 div.main-container div.un-login-container div.input-box div.inner-padding div.right-operator span:hover {
-  color: #EDAC0F;
+  color: #333333;
 }
 div.main-container div.footer-choices {
   position: absolute;
@@ -100,18 +100,18 @@ div.main-container div.footer-choices {
 }
 div.main-container div.footer-choices div.choice {
   margin-bottom: 12px;
-  border: 1px solid #FFB500;
+  border: 1px solid #363636;
   border-radius: 15px;
   height: 30px;
   line-height: 30px;
   vertical-align: middle;
-  color: #FFB500;
+  color: #363636;
   font-size: 14px;
   padding: 0 20px;
   width: fit-content;
 }
 div.main-container div.footer-choices div.choice:hover {
-  background-color: #FFB500;
+  background-color: #363636;
   color: white;
 }
 div.main-container div.icon-box {
@@ -121,10 +121,10 @@ div.main-container div.icon-box {
 }
 div.main-container div.icon-box span.icon-right {
   font-size: 60px;
-  color: #FFB500;
+  color: #363636;
 }
 div.main-container div.icon-box span.icon-right:hover {
-  color: #EDAC0F;
+  color: #333333;
 }
 div.main-container div.icon-box.left {
   right: calc(100% - 60px - 24px);

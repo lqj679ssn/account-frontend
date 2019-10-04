@@ -12,7 +12,7 @@ div.main-container div.nav {
   position: relative;
   width: 100%;
   height: 140px;
-  background-color: #EDAC0F;
+  background-color: #333333;
   overflow: hidden;
 }
 div.main-container div.nav div.myweb-qitianbu {
@@ -74,7 +74,7 @@ div.main-container div.nav div.avatar-box div.text-box div.append-info div.boxy 
   margin-right: 6px;
 }
 div.main-container div.nav div.avatar-box div.text-box div.append-info div.boxy.succ {
-  background-color: #5F80D0;
+  background-color: #fec63f;
 }
 div.main-container div.nav div.avatar-box div.text-box div.append-info div.boxy.fail {
   background-color: #d04b4b;
@@ -82,7 +82,7 @@ div.main-container div.nav div.avatar-box div.text-box div.append-info div.boxy.
 div.main-container div.section-container {
   margin-top: 15px;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 div.main-container div.section-container:first-child {
   margin-top: 0;
@@ -96,13 +96,13 @@ div.main-container div.section-container div.section-nav div.section-title {
   position: absolute;
   left: 10px;
   font-size: 16px;
-  color: #EDAC0F;
+  color: #333333;
   line-height: 36px;
   vertical-align: middle;
   font-weight: bold;
 }
 div.main-container div.section-container div.section-nav div.section-title span.num {
-  background: #EDAC0F;
+  background: #333333;
   color: white;
   border-radius: 16px;
   font-size: small;
@@ -126,7 +126,7 @@ div.main-container div.section-container div.section-nav div.operator {
   position: absolute;
   right: 17px;
   font-size: 14px;
-  color: #FFB500;
+  color: #363636;
   line-height: 36px;
   vertical-align: middle;
 }
@@ -134,7 +134,7 @@ div.main-container div.section-container div.section-nav div.operator-box {
   position: absolute;
   right: 17px;
   font-size: 14px;
-  color: #FFB500;
+  color: #363636;
   line-height: 36px;
   vertical-align: middle;
 }
@@ -162,7 +162,7 @@ div.main-container div.section-container div.avatar-box div.text-box {
   vertical-align: middle;
 }
 div.main-container div.section-container div.avatar-box div.text-box div.nickname {
-  color: #5F80D0;
+  color: #fec63f;
   font-size: 18px;
   font-weight: bold;
   width: max-content;
@@ -176,7 +176,7 @@ div.main-container div.section-container div.avatar-box div.text-box div.append-
   height: 19px;
   line-height: 19px;
   vertical-align: middle;
-  color: #BBBBBB;
+  color: #444444;
   font-size: 12px;
   white-space: nowrap;
 }
@@ -194,7 +194,7 @@ div.main-container div.section-container div.section-list div.section-item.profi
 div.main-container div.section-container div.section-list div.section-item.profile .profile-attribute {
   display: inline-block;
   font-size: 14px;
-  color: #444;
+  color: #7f6320;
   margin: 0 10px;
   width: 80px;
   vertical-align: middle;
@@ -206,7 +206,7 @@ div.main-container div.section-container div.section-list div.section-item.profi
   vertical-align: middle;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .profile-value::placeholder {
-  color: #BBBBBB;
+  color: #444444;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .profile-value span.icon-checked,
 div.main-container div.section-container div.section-list div.section-item.profile .profile-value span.icon-unchecked {
@@ -230,10 +230,10 @@ div.main-container div.section-container div.section-list div.section-item.profi
   padding: 0 10px;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .profile-value {
-  color: #5F80D0;
+  color: #fec63f;
 }
 div.main-container div.section-container div.section-list div.section-item.profile .right-icon {
-  color: #444;
+  color: #7f6320;
 }
 div.main-container div.section-container div.section-list div.section-item.app {
   position: relative;
@@ -255,12 +255,12 @@ div.main-container div.section-container div.section-list div.section-item.app d
 }
 div.main-container div.section-container div.section-list div.section-item.app div.app-info div.app-name {
   font-size: 16px;
-  color: #FFB500;
+  color: #363636;
   font-weight: bold;
 }
 div.main-container div.section-container div.section-list div.section-item.app div.app-info div.app-slogan {
   font-size: 12px;
-  color: #869CD3;
+  color: #a9842a;
 }
 div.main-container div.section-container div.section-list div.section-item.app div.right-operator-box {
   position: relative;
@@ -278,24 +278,24 @@ div.main-container div.section-container div.section-list div.section-item.app d
   border-radius: 20px;
   padding: 5px 10px;
   font-size: 12px;
-  background-color: #EDAC0F;
+  background-color: #333333;
   color: white;
 }
 div.main-container div.section-container div.center-hint {
   font-size: 14px;
-  color: #FFB500;
+  color: #363636;
   padding: 20px 0;
   width: 100%;
   text-align: center;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.inactive .profile-value {
-  color: #888888;
+  color: #444444;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.inactive .profile-value.warn {
   color: #d04b4b;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active {
-  background-color: #444;
+  background-color: #7f6320;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .profile-attribute {
   color: white;
@@ -313,7 +313,7 @@ div.main-container div.section-container.edit-mode div.section-list div.section-
   color: white;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .right-icon.button {
-  color: #444;
+  color: #7f6320;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .icon-next {
   transform: rotate(90deg);
@@ -344,7 +344,7 @@ div.main-container div.section-container.edit-mode div.section-list div.section-
   cursor: pointer;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .profile-avatar:hover {
-  border: 3px solid #BBBBBB;
+  border: 3px solid #444444;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .note {
   text-align: center;
@@ -372,8 +372,8 @@ div.main-container div.section-container.edit-mode div.section-list div.section-
   color: white;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .idcard-box div.card-size:hover {
-  border-color: #BBBBBB;
-  color: #BBBBBB;
+  border-color: #444444;
+  color: #444444;
 }
 div.main-container div.section-container.edit-mode div.section-list div.section-item.profile.active .idcard-box div.card-size.text-hide {
   color: rgba(255, 255, 255, 0) !important;
