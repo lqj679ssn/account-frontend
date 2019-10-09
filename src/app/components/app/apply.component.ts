@@ -215,7 +215,7 @@ export class ApplyComponent implements OnInit {
 
     this.api.createNewApp({
       name: this.app.app_name,
-      description: this.app.app_desc,
+      desc: this.app.app_desc,
       info: this.app.app_info,
       redirect_uri: this.app.redirect_uri,
       scopes: scopeList,
@@ -232,7 +232,7 @@ export class ApplyComponent implements OnInit {
     }
     this.api.updateAppInfo(this.app.app_id, {
       name: null,
-      description: null,
+      desc: null,
       info: this.app.app_info,
       redirect_uri: null,
       scopes: null,

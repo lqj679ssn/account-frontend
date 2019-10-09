@@ -20,7 +20,8 @@ export class User {
   verify_type: number;
   is_dev: boolean;
 
-  constructor(_: {nickname?, description?, avatar?, qitian?, allow_qitian_modify?, user_str_id?, birthday?, verify_status?, verify_type?, is_dev?}) {
+  constructor(_: {nickname?, description?, avatar?, qitian?, allow_qitian_modify?, user_str_id?, birthday?, verify_status?,
+    verify_type?, is_dev?}) {
     this.user_str_id = _.user_str_id;
     this.update(_);
   }
@@ -36,6 +37,7 @@ export class User {
     this.qitian = _.qitian;
     this.allow_qitian_modify = _.allow_qitian_modify;
     this.birthday = _.birthday;
+    console.log('bir', this.birthday);
     this.verify_status = _.verify_status;
     this.verify_type = _.verify_type;
     this.is_dev = _.is_dev;

@@ -36,11 +36,6 @@ export class ApiService {
       .get('/api/base/regions');
   }
 
-  public getRandomImage() {
-    return this.requestService
-      .get('https://unsplash.6-79.cn/random/info');
-  }
-
   public getPhoneCode(data: {mode, phone, response}) {
     return this.requestService
       .post('/api/base/recaptcha', data);
@@ -91,7 +86,7 @@ export class ApiService {
       .get('/api/app/premise');
   }
 
-  public createNewApp(data: {name, info, description, redirect_uri, scopes, premises}) {
+  public createNewApp(data: {name, info, desc, redirect_uri, scopes, premises}) {
     return this.requestService
       .post('/api/app/', data);
   }
@@ -118,7 +113,7 @@ export class ApiService {
       .postV2(ApiService.qn_host, formData, callback);
   }
 
-  public updateAppInfo(appId, data: {name, description, info, redirect_uri, scopes, premises}) {
+  public updateAppInfo(appId, data: {name, desc, info, redirect_uri, scopes, premises}) {
     return this.requestService
       .put(`/api/app/${appId}`, data);
   }

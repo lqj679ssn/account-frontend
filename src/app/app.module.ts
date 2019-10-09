@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/menu/home-page.component';
-import { SayingComponent } from './components/base/saying.component';
 import { ImageSplitComponent } from './components/base/image-split.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { UserSettingComponent } from './components/menu/user-setting.component';
@@ -51,7 +50,6 @@ import {HistoryService} from './services/history.service';
     AppComponent,
     HomePageComponent,
     UserSettingComponent,
-    SayingComponent,
     ImageSplitComponent,
     ToastComponent,
     UnLoginComponent,

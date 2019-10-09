@@ -254,7 +254,7 @@ export class ManageComponent implements OnInit, OnDestroy {
 
     this.api.updateAppInfo(this.appId, {
       name: this.app.app_name,
-      description: this.app.app_desc,
+      desc: this.app.app_desc,
       info: this.app.app_info,
       redirect_uri: this.app.redirect_uri,
       scopes: scopeList,

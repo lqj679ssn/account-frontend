@@ -14,6 +14,7 @@ export class RequestService {
   ) {}
   public static token: string = null;
   public static api_host = 'https://ssoapi.6-79.cn';
+  // public static api_host = 'http://localhost:8001';
 
   public static async_worker = 0;
 
