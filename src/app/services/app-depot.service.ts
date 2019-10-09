@@ -73,7 +73,6 @@ export class AppDepotService {
   }
 
   getDevAppList() {
-    console.log('getting');
     this.api.getAppList({relation: 'owner'})
       .then(resp => {
         const newDevAppList = [];

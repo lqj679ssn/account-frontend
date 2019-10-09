@@ -37,7 +37,6 @@ export class User {
     this.qitian = _.qitian;
     this.allow_qitian_modify = _.allow_qitian_modify;
     this.birthday = _.birthday;
-    console.log('bir', this.birthday);
     this.verify_status = _.verify_status;
     this.verify_type = _.verify_type;
     this.is_dev = _.is_dev;

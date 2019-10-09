@@ -3,6 +3,7 @@ import {RequestService} from './request.service';
 import {RespError} from '../models/resp-error';
 import {JumpService} from './jump.service';
 import {HttpCallback} from '../models/http-callback';
+import {App} from '../models/app';
 
 @Injectable()
 export class ApiService {
@@ -86,7 +87,7 @@ export class ApiService {
       .get('/api/app/premise');
   }
 
-  public createNewApp(data: {name, info, desc, redirect_uri, scopes, premises}) {
+  public createNewApp(data: {name, info, desc, redirect_uri, test_redirect_uri, scopes, premises}) {
     return this.requestService
       .post('/api/app/', data);
   }
@@ -113,9 +114,26 @@ export class ApiService {
       .postV2(ApiService.qn_host, formData, callback);
   }
 
-  public updateAppInfo(appId, data: {name, desc, info, redirect_uri, scopes, premises}) {
+  public updateAppInfo(app: App) {
+    const scopeList = [];
+    const premiseList = [];
+    for (const scope of app.scopes) {
+      scopeList.push(scope.id);
+    }
+    for (const premise of app.premises) {
+      premiseList.push(premise.id);
+    }
+
     return this.requestService
-      .put(`/api/app/${appId}`, data);
+      .put(`/api/app/${app.app_id}`, {
+        name: app.app_name || '',
+        desc: app.app_desc || '',
+        info: app.app_info || '',
+        redirect_uri: app.redirect_uri || '',
+        test_redirect_uri: app.test_redirect_uri || '',
+        scopes: scopeList,
+        premises: premiseList
+      });
   }
 
   public updateScore(appUserId, data: {mark}) {

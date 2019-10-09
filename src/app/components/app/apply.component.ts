@@ -214,10 +214,11 @@ export class ApplyComponent implements OnInit {
     }
 
     this.api.createNewApp({
-      name: this.app.app_name,
-      desc: this.app.app_desc,
-      info: this.app.app_info,
-      redirect_uri: this.app.redirect_uri,
+      name: this.app.app_name || '',
+      desc: this.app.app_desc || '',
+      info: this.app.app_info || '',
+      redirect_uri: this.app.redirect_uri || '',
+      test_redirect_uri: this.app.test_redirect_uri || '',
       scopes: scopeList,
       premises: premiseList,
     }).then(resp => {
@@ -230,15 +231,9 @@ export class ApplyComponent implements OnInit {
     if (!this.paramValid(this.app.app_info, '应用介绍')) {
       return;
     }
-    this.api.updateAppInfo(this.app.app_id, {
-      name: null,
-      desc: null,
-      info: this.app.app_info,
-      redirect_uri: null,
-      scopes: null,
-      premises: null,
-    }).then(resp => {
+    this.api.updateAppInfo(this.app).then(resp => {
       this.app = this.appDepot.push(resp);
+      this.jump.appCenter();
     });
   }
 

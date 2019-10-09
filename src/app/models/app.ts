@@ -10,6 +10,7 @@ export class App {
   app_info: string;
   logo: Link;
   redirect_uri: string;
+  test_redirect_uri: string;
   owner: User;
   app_secret: string;
   scopes: Array<ChooseItem>;
@@ -28,14 +29,14 @@ export class App {
   premiseSummaryText: string;
   premiseWarn: boolean;
 
-  constructor(_: {user_num?, app_desc?, app_id?, app_name?, app_info?, logo?,
+  constructor(_: {user_num?, app_desc?, app_id?, app_name?, app_info?, logo?, test_redirect_uri?,
     redirect_uri?, owner?, app_secret?, scopes?, premises?, relation?, mark?, create_time?}) {
     this.app_id = _.app_id;
     this.create_time = _.create_time;
     this.update(_);
   }
 
-  update(_: {user_num?, app_desc?, app_name?, app_info?, logo?, redirect_uri?,
+  update(_: {user_num?, app_desc?, app_name?, app_info?, logo?, redirect_uri?, test_redirect_uri?,
     owner?, app_secret?, scopes?, premises?, relation?, mark?}, base = false) {
     this.app_desc = _.app_desc;
     this.app_name = _.app_name;
@@ -44,6 +45,7 @@ export class App {
     if (!base) {
       this.app_info = _.app_info;
       this.redirect_uri = _.redirect_uri;
+      this.test_redirect_uri = _.test_redirect_uri;
       this.owner = _.owner || new User({});
       this.app_secret = _.app_secret;
       this.scopes = [];

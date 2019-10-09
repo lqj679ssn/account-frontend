@@ -52,7 +52,7 @@ export class DisplayComponent implements AfterViewChecked {
   showMagic: boolean;
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private activatedRoute: ActivatedRoute,
     private api: ApiService,
     private toastService: ToastService,
@@ -113,6 +113,27 @@ export class DisplayComponent implements AfterViewChecked {
           });
       });
     }
+  }
+
+  oauthTestApp() {
+    if (!this.userService.isLogin) {
+      this.jump.loginPage();
+    } else {
+      this.oneWorker.do('oauth-test-app', (callback) => {
+        this.api.oauthApp({app_id: this.app.app_id})
+          .then(resp => {
+            callback();
+            window.location.href = `${this.app.test_redirect_uri}?code=${resp.auth_code}`;
+          })
+          .catch(() => {
+            callback();
+          });
+      });
+    }
+  }
+
+  manageApp() {
+    this.jump.appManage(this.app.app_id);
   }
 
   get oauthFootText() {

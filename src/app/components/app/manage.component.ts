@@ -243,23 +243,7 @@ export class ManageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const scopeList = [];
-    const premiseList = [];
-    for (const scope of this.app.scopes) {
-      scopeList.push(scope.id);
-    }
-    for (const premise of this.app.premises) {
-      premiseList.push(premise.id);
-    }
-
-    this.api.updateAppInfo(this.appId, {
-      name: this.app.app_name,
-      desc: this.app.app_desc,
-      info: this.app.app_info,
-      redirect_uri: this.app.redirect_uri,
-      scopes: scopeList,
-      premises: premiseList
-    }).then(resp => {
+    this.api.updateAppInfo(this.app).then(resp => {
       this.app = this.appDepot.push(resp);
       this.toastService.show(new Toast('更新成功'));
       history.go(-1);

@@ -56,6 +56,23 @@
         </div>
       </div>
     </div>
+    <div class="section-container edit-mode" *ngIf="userService.user?.user_str_id == app.owner?.user_str_id">
+      <div class="section-nav">
+        <div class="section-title">开发者选项</div>
+      </div>
+      <div class="section-list">
+        <div class="section-item profile" *ngIf="app.test_redirect_uri">
+          <div class="profile-attribute oxs middle-line">测试服</div>
+          <div class="profile-value oxs middle-line">前往测试服</div>
+          <div class="right-icon icon-next animate ptr middle-line" (click)="oauthTestApp()"></div>
+        </div>
+        <div class="section-item profile">
+          <div class="profile-attribute oxs middle-line">管理</div>
+          <div class="profile-value oxs middle-line">前往管理页面</div>
+          <div class="right-icon icon-next animate ptr middle-line" (click)="manageApp()"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

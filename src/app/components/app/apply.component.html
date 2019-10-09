@@ -32,6 +32,10 @@
           <div class="profile-attribute oxs middle-line">回调URI</div>
           <input class="profile-value oxs middle-line" placeholder="用户授权后的跳转地址" [(ngModel)]="app.redirect_uri"/>
         </div>
+        <div class="section-item profile">
+          <div class="profile-attribute oxs middle-line">测试URI</div>
+          <input class="profile-value oxs middle-line" placeholder="用于测试服的跳转地址，可空" [(ngModel)]="app.test_redirect_uri"/>
+        </div>
         <div class="section-item profile" [ngClass]="oauthScope.class">
           <div class="profile-attribute oxs middle-line">权限</div>
           <div class="profile-value oxs middle-line ptr" (click)="chooseScope()">{{scopeText}}</div>
