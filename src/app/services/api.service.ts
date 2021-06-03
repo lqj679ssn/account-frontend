@@ -34,72 +34,72 @@ export class ApiService {
 
   public getRegions() {
     return this.requestService
-      .get('/api/base/regions');
+      .get('/base/regions');
   }
 
   public getPhoneCode(data: {mode, phone, response}) {
     return this.requestService
-      .post('/api/base/recaptcha', data);
+      .post('/base/recaptcha', data);
   }
 
   public getLoginTokenUsingPWD(data: {mode, phone, qt, response, pwd}) {
     return this.requestService
-      .post('/api/base/recaptcha', data);
+      .post('/base/recaptcha', data);
   }
 
   public getLoginTokenUsingCode(data: {mode, code, pwd}) {
     return this.requestService
-      .post('/api/base/recaptcha', data);
+      .post('/base/recaptcha', data);
   }
 
   public getMyInfo() {
     return this.requestService
-      .get('/api/user/');
+      .get('/user/');
   }
 
   public getAppList(data: {relation, frequent?, count?, last_time?}) {
     return this.requestService
-      .get('/api/app/', data);
+      .get('/app/', data);
   }
 
   public getAppInfo(appId) {
     return this.requestService
-      .get(`/api/app/${appId}`);
+      .get(`/app/${appId}`);
   }
 
   public getAppSecret(appId) {
     return this.requestService
-      .get(`/api/app/${appId}/secret`);
+      .get(`/app/${appId}/secret`);
   }
 
   public oauthApp(data: {app_id}) {
     return this.requestService
-      .post('/api/oauth/', data);
+      .post('/oauth/', data);
   }
 
   public getAppScope() {
     return this.requestService
-      .get('/api/app/scope');
+      .get('/app/scope');
   }
 
   public getAppPremise() {
     return this.requestService
-      .get('/api/app/premise');
+      .get('/app/premise');
   }
 
   public createNewApp(data: {name, info, desc, redirect_uri, test_redirect_uri, scopes, premises}) {
     return this.requestService
-      .post('/api/app/', data);
+      .post('/app/', data);
   }
 
   public getLogoUploadToken(data: {filename, app_id}) {
     return this.requestService
-      .get('/api/app/logo', data);
+      .get('/app/logo', data);
   }
 
   public getAvatarUploadToken(data: {filename}) {
     return this.requestService
-      .get('/api/user/avatar', data);
+      .get('/user/avatar', data);
   }
 
   public uploadFile(data: {key, token, file}) {
@@ -125,7 +125,7 @@ export class ApiService {
     }
 
     return this.requestService
-      .put(`/api/app/${app.app_id}`, {
+      .put(`/app/${app.app_id}`, {
         name: app.app_name || '',
         desc: app.app_desc || '',
         info: app.app_info || '',
@@ -138,31 +138,31 @@ export class ApiService {
 
   public updateScore(appUserId, data: {mark}) {
     return this.requestService
-      .put(`/api/app/user/${appUserId}`, data);
+      .put(`/app/user/${appUserId}`, data);
   }
 
   public getCardUploadToken(data: {filename, back}) {
     return this.requestService
-      .get('/api/user/idcard', data);
+      .get('/user/idcard', data);
   }
 
   public autoVerify() {
     return this.requestService
-      .get('/api/user/verify', {});
+      .get('/user/verify', {});
   }
 
   public confirmVerify(data: {name?, birthday?, idcard?, male?, token?, auto?}) {
     return this.requestService
-      .post('/api/user/verify', data);
+      .post('/user/verify', data);
   }
 
   public updateUserInfo(data: {nickname?, description?, qitian?, birthday?}) {
     return this.requestService
-      .put('/api/user/', data);
+      .put('/user/', data);
   }
 
   public applyDev() {
     return this.requestService
-      .post('/api/user/dev', {});
+      .post('/user/dev', {});
   }
 }
